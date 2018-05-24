@@ -1,8 +1,8 @@
 <p align="center">
-  <img src="https://github.com/sleepdefic1t/ark-cpp/blob/master/ark_cpp_logo.png"/>
+  <img src="https://github.com/Ark-IoT/ark-cpp/blob/master/ark_cpp_logo.png"/>
 </p>
 
-# Ark for Machines v0.6.8 
+# Ark for Machines v0.8 
 
 ![language](https://img.shields.io/badge/language-Cpp/C++-blue.svg?style=flat) 
 ![version](https://img.shields.io/badge/version-v0.6.8-orange.svg?style=flat)
@@ -12,9 +12,9 @@
 ![environment](https://img.shields.io/badge/environment-macOS-blue.svg?style=flat)  
 ![environment](https://img.shields.io/badge/environment-windows-blue.svg?style=flat)  
 
-[![Build Status](https://travis-ci.org/sleepdefic1t/Ark-Cpp.svg?branch=master)](https://travis-ci.org/sleepdefic1t/Ark-Cpp)  
+[![Build Status](https://travis-ci.org/Ark-IoT/Ark-Cpp.svg?branch=master)](https://travis-ci.org/Ark-IoT/Ark-Cpp)  
 
-[![Build status](https://ci.appveyor.com/api/projects/status/axh3d985qa1xas4i?svg=true)](https://ci.appveyor.com/project/sleepdefic1t/ark-cpp)
+[![Build status](https://ci.appveyor.com/api/projects/status/dtbx7xmu6m8fpdb7?svg=true)](https://ci.appveyor.com/project/Ark-IoT/ark-cpp)
 
 Not production ready.  
 
@@ -152,22 +152,22 @@ Get Ark Account from a given Ark Address
   - [ ] Test Crypto
     - [X] test sha256
     - [X] test bigint
-    - [ ] test secp256k1 ECDSA
+    - [X] test secp256k1 ECDSA
     - [X] test ripemd160
     - [X] test base58
-    - [ ] test Signing and Address generation.
+    - [X] test Address generation
+    - [ ] test Signing/Signature Generation
   - [ ] Add Crypto
-    - [ ] add sha256
-    - [ ] add bigint
-    - [ ] add secp256k1 ECDSA
-    - [ ] add ripemd160
-    - [ ] add base58
-    - [ ] add Signing and Address generation.
+    - [X] add sha256
+    - [X] add bigint
+    - [X] add secp256k1 ECDSA
+    - [X] add ripemd160
+    - [X] add base58
+    - [X] add Address generation
+    - [ ] add Signing/Signature Generation
 
 
 - [ ] TODO
   - [ ] Documentation 
-  - [ ] Tests 
   - [ ] Handle Large Callbacks 
-  - [X] Remove 'String' objects in favor of 'const char*'
 
