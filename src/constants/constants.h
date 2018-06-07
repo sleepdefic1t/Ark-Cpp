@@ -9,7 +9,7 @@
 #ifndef CONSTANTS_H
 #define CONSTANTS_H
 
-#include "../models/models.h"
+#include "models/models.h"
 
 #include "constants/currencies.h"
 #include "constants/networks.h"
