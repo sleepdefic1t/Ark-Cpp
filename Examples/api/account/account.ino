@@ -28,7 +28,7 @@ void checkAPI() {
   /*************************************************/
   auto publicKey = arkManager.accountPublickey(darkAddress);
     Serial.println("publicKey: ");
-    Serial.println(publicKey.getValue());
+    Serial.println(publicKey);
     Serial.println("\n=====\n");
     delay(50);
   /*************************************************/

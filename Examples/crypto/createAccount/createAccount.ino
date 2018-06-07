@@ -16,10 +16,10 @@ void createAccount()
   
 	const auto account = ARK::Crypto::create_account(network_id, passphrase);
 	Serial.print("\nAddress: ");
-	Serial.println(account.address().getValue());
+	Serial.println(account.address());
 
 	Serial.print("\nPublic Key: ");
-	Serial.println(account.public_key().getValue());
+	Serial.println(account.public_key()));
 }
 
 void setup()
