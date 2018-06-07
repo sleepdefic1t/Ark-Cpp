@@ -2,19 +2,19 @@
   <img src="https://github.com/Ark-IoT/ark-cpp/blob/master/ark_cpp_logo.png"/>
 </p>
 
-# Ark for Machines v0.8 
+# Ark for Machines v0.9 
 
 ![language](https://img.shields.io/badge/language-Cpp/C++-blue.svg?style=flat) 
-![version](https://img.shields.io/badge/version-v0.6.8-orange.svg?style=flat)
+![version](https://img.shields.io/badge/version-v0.9-orange.svg?style=flat)
 ![License: MIT](https://img.shields.io/badge/license-MIT-BE90D4.svg?style=flat)  
 ![environment](https://img.shields.io/badge/environment-arduino-15909C.svg?style=flat)  
 ![environment](https://img.shields.io/badge/environment-linux-FF7F50.svg?style=flat)  
 ![environment](https://img.shields.io/badge/environment-macOS-blue.svg?style=flat)  
 ![environment](https://img.shields.io/badge/environment-windows-blue.svg?style=flat)  
 
-[![Build Status](https://travis-ci.org/Ark-IoT/Ark-Cpp.svg?branch=master)](https://travis-ci.org/Ark-IoT/Ark-Cpp)  
+[![Build Status](https://travis-ci.org/sleepdeficit/Ark-Cpp.svg?branch=improvements_preview)](https://travis-ci.org/sleepdeficit/Ark-Cpp)  
 
-[![Build status](https://ci.appveyor.com/api/projects/status/dtbx7xmu6m8fpdb7?svg=true)](https://ci.appveyor.com/project/Ark-IoT/ark-cpp)
+[![Build status](https://ci.appveyor.com/api/projects/status/axh3d985qa1xas4i?svg=true)](https://ci.appveyor.com/project/sleepdefic1t/ark-cpp)
 
 Not production ready.  
 
@@ -72,6 +72,7 @@ Get VendorField of a given Transaction ID using the ESP8266
 * demo_sketch.ino
 */
 
+#include <ark.h>
 #include <ESP8266WiFi.h>
 
 const char* ssid = "yourSSID";
@@ -156,7 +157,7 @@ Get Ark Account from a given Ark Address
     - [X] test ripemd160
     - [X] test base58
     - [X] test Address generation
-    - [ ] test Signing/Signature Generation
+    - [X] test Signing/Signature Generation
   - [ ] Add Crypto
     - [X] add sha256
     - [X] add bigint
