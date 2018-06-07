@@ -1,5 +1,5 @@
-#include "utilities/platform.h"
 
+#include "utilities/platform.h"
 
 #if !defined USE_IOT
 

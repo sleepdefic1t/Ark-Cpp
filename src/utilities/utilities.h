@@ -9,9 +9,10 @@
 #ifndef UTILITIES_H
 #define UTILITIES_H
 
-#include "http.h"
-#include "connector.h"
-#include "json.h"
-#include "platform.h"
+#include "utilities/platform.h"
+#include "utilities/formatting.h"
+#include "utilities/connector.h"
+#include "utilities/http.h"
+#include "utilities/json.h"
 
 #endif

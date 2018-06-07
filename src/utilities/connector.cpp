@@ -13,8 +13,8 @@ namespace Network
 *	Default: Empty Constructor
 **************************************************/
 Connector::Connector() : 
-    network(nullptr),
-    netType(ARK::NetworkType::INVALID),
+    // network(nullptr),
+    // netType(ARK::NetworkType::INVALID),
     networkPeer(),
     networkPort(-1) {}
 /*************************************************/
@@ -41,9 +41,9 @@ Connector::Connector(
 		ARK::NetworkType networkType
 )
 {
-	(networkType == DEV)
-			? (this->connect(ARK::Constants::Networks::Model::Devnet))
-			: (this->connect(ARK::Constants::Networks::Model::Mainnet));
+	(networkType == DEV) ?
+			(this->connect(ARK::Constants::Networks::Model::Devnet)) :
+			(this->connect(ARK::Constants::Networks::Model::Mainnet));
 }
 /*************************************************/
 
@@ -122,23 +122,22 @@ void Connector::connect(
 		const ARK::Network& network
 )
 {
-	if (strcmp(network.nethash().getValue(), ARK::Constants::Networks::Devnet::nethash.getValue()) == 0)
+	if (strcmp(network.nethash(), ARK::Constants::Networks::Devnet::nethash) == 0)
 	{
 		this->netType = ARK::NetworkType::DEV;
 	}
-	else if (strcmp(network.nethash().getValue(), ARK::Constants::Networks::Mainnet::nethash.getValue()) == 0)
+	else if (strcmp(network.nethash(), ARK::Constants::Networks::Mainnet::nethash) == 0)
 	{
 		this->netType = ARK::NetworkType::MAIN;
 	}
-	else if (strcmp(network.nethash().getValue(), "") != 0)
+	else if (strcmp(network.nethash(), "") != 0)
 	{
 		this->netType = ARK::NetworkType::CUSTOM;
 	}
 	else
 	{
 		this->netType = ARK::NetworkType::INVALID;
-	}
-
+	};
 	this->network = &network;
 	this->setNetworkPeer(ARK::Constants::Networks::randomPeer(this->netType));
 }
@@ -152,7 +151,8 @@ void Connector::connect(
 void Connector::connectCustom(
 		const ARK::Network& network,
 		const char* peer,
-		int port)
+		int port
+)
 {
 	this->netType = ARK::NetworkType::CUSTOM;
 	this->network = &network;
@@ -169,10 +169,12 @@ void Connector::connectCustom(
 **************************************************/
 const char* Connector::randomPeer() const
 {
-	if ( this->netType == ARK::NetworkType::DEV
-			|| this->netType == ARK::NetworkType::MAIN )
+	if (
+			this->netType == ARK::NetworkType::DEV ||
+			this->netType == ARK::NetworkType::MAIN
+	)
 	{
-		ARK::Constants::Networks::randomPeer(this->netType);
+		return ARK::Constants::Networks::randomPeer(this->netType);
 	}
 	return "Error: Nethash does not match ARK::Constants";
 }
@@ -206,11 +208,18 @@ void Connector::setNetworkPeer(
 * Manages directing the callback from
 *	the devices HTTPClient Library
 **************************************************/
+// TODO: add proper check for callback.
 std::string Connector::callback(
 		const char *const request
 )
 {
-	return this->http->get(this->networkPeer, this->networkPort, request);
+	std::string httpGet = this->http->get(this->networkPeer, this->networkPort, request);
+	while (strlen(httpGet.data()) < 10)
+	{
+		this->setNetworkPeer(randomPeer());
+		httpGet = this->http->get(this->networkPeer, this->networkPort, request);
+	};
+	return httpGet.data();
 }
 /*************************************************/
 
