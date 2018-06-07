@@ -1,135 +1,13 @@
 
 
-#include "api/delegatable/delegate_gettable.h"
+#include "api/delegatable/delegatable.h"
 
-namespace ARK
-{
-namespace API
-{
-namespace Delegate
-{
-/*************************************************
-* ARK::API::Delegate::Gettable::count
-*	/api/delegates/count
-*
-*	{ 
-*		"success":true,
-*		"count":166
-*	}
-**************************************************/
-int ARK::API::Delegate::Gettable::count(
-		ARK::Utilities::Network::Connector &netConnector
-)
-{
-	auto callback = netConnector.callback(ARK::API::Paths::Delegate::count_s);
-	auto parser = ARK::Utilities::make_json_string(callback);
-	return convert_to_int(parser->valueFor("count").c_str());
-};
-/*************************************************/
 
-/**************************************************************************************************/
 
 /*************************************************
-* ARK::API::Delegate::Gettable::search
-* /api/delegates/search?q=sleepdeficit
-*
-*	{ 
-*		"success":true,
-*		"delegates":
-*		[
-*			{ 
-*				"username":"_username",
-*				"address":"_arkAddress",
-*				"publicKey":"_pubkey",
-*				"vote":"0000000000000",
-*				"producedblocks":0,
-*				"missedblocks":0
-*			}
-*		]
-*	}
-**************************************************/
-ARK::API::Delegate::Respondable::Search ARK::API::Delegate::Gettable::search(
-		ARK::Utilities::Network::Connector &netConnector,
-		const char *const username
-)
-{
-	char uri[69 + 1] = { '\0' };
-		strcpy(uri, ARK::API::Paths::Delegate::search_s);
-		strcat(uri, "?q=");
-		strcat(uri, username);
-	auto callback = netConnector.callback(uri);
-	auto parser = ARK::Utilities::make_json_string(callback);
-	return {
-		parser->subarrayValueIn("delegates", 0, "username").c_str(),
-		parser->subarrayValueIn("delegates", 0, "address").c_str(),
-		parser->subarrayValueIn("delegates", 0, "publicKey").c_str(),
-		parser->subarrayValueIn("delegates", 0, "vote").c_str(),
-		convert_to_int(parser->subarrayValueIn("delegates", 0, "producedblocks").c_str()),
-		convert_to_int(parser->subarrayValueIn("delegates", 0, "missedblocks").c_str())
-	};
-};
-/*************************************************/
-
-/**************************************************************************************************/
-
-/*************************************************
-* ARK::API::Delegate::Gettable::voters
-*	/api/delegates/voters?publicKey=_pubKey
-*
-*	{
-*		"success":true,
-*		"accounts":
-*		[
-*			{ 
-*				"username": "const char*",
-*				"address":  "Balance",
-*				"publicKey":  "Publickey",
-*				"balance":  "Balance"
-*			},
-*			{
-*				"username": "const char*",
-*				"address":  "Address",
-*				"publicKey":  "Publickey",
-*				"balance":  "Balance"
-*			}
-*		]
-*	}
-**************************************************/
-ARK::API::Delegate::Respondable::Voters ARK::API::Delegate::Gettable::voters(
-		ARK::Utilities::Network::Connector &netConnector,
-		const Publickey &publicKey
-)
-{
-	char uri[123 + 1] = { '\0' };
-		strcpy(uri, ARK::API::Paths::Delegate::voters_s);
-		strcat(uri, "?publicKey=");
-		strcat(uri, publicKey.getValue());
-	auto callback = netConnector.callback(uri);
-	auto parser = ARK::Utilities::make_json_string(callback);
-
-	int voterCount = substringCount(callback.c_str(), "username");
-	ARK::API::Delegate::Respondable::Voters voters(voterCount);
-
-	for (int i = 0; i < voterCount; ++i)
-	{
-		voters[i] = {
-			parser->subarrayValueIn("accounts", i, "username").c_str(),
-			parser->subarrayValueIn("accounts", i, "address").c_str(),
-			parser->subarrayValueIn("accounts", i, "publicKey").c_str(),
-			parser->subarrayValueIn("accounts", i, "balance").c_str()
-		};
-	};
-	return voters;
-};
-/*************************************************/
-
-/**************************************************************************************************/
-
-/*************************************************
-* ARK::API::Delegate::Gettable::delegate
 *	/api/delegates/get?username=sleepdeficit
-*	/api/delegates/get?publicKey=_pubKey
 *
+*	EXAMPLE:
 *	{ 
 *		"success":true,
 *		"delegate":
@@ -146,8 +24,7 @@ ARK::API::Delegate::Respondable::Voters ARK::API::Delegate::Gettable::voters(
 *		}
 *	}
 **************************************************/
-ARK::Delegate ARK::API::Delegate::Gettable::delegate(
-		ARK::Utilities::Network::Connector &netConnector,
+ARK::Delegate ARK::API::Delegatable::delegate(
 		const char *const parameter
 )
 {
@@ -173,33 +50,132 @@ ARK::Delegate ARK::API::Delegate::Gettable::delegate(
 		convert_to_float(parser->valueIn("delegate", "productivity").c_str())
 	};
 };
-/*************************************************/
 
 /**************************************************************************************************/
 
-/*************************************************/
-/*************************************************/
-/*	BROKEN: fix for large callbacks    */
-/*  Delegates callback is ~13,564 bytes  */
-// String delegates(ARK::Utilities::Network::Connector _netConnector);
-// String delegatesfromJSON(String _jsonStr);
-/*************************************************/
+/*************************************************
+*	/api/delegates/count
+*
+*	EXAMPLE:
+*	{ 
+*		"success":true,
+*		"count":166
+*	}
+**************************************************/
+int ARK::API::Delegatable::delegatesCount()
+{
+	auto callback = netConnector.callback(ARK::API::Paths::Delegate::count_s);
+	auto parser = ARK::Utilities::make_json_string(callback);
+	return convert_to_int(parser->valueFor("count").c_str());
+};
 /*************************************************/
 
 /**************************************************************************************************/
 
 /*************************************************
-* ARK::API::Delegate::Gettable::fee
+*	/api/delegates/search?q=sleepdeficit 
+*
+*	EXAMPLE:
+*	{ 
+*		"success":true,
+*		"delegates":
+*		[
+*			{ 
+*				"username":"_username",
+*				"address":"_arkAddress",
+*				"publicKey":"_pubkey",
+*				"vote":"0000000000000",
+*				"producedblocks":0,
+*				"missedblocks":0
+*			}
+*		]
+*	}
+**************************************************/
+ARK::API::Delegate::Respondable::Search ARK::API::Delegatable::delegateSearch(
+		const char *const username
+)
+{
+	char uri[69 + 1] = { '\0' };
+		strcpy(uri, ARK::API::Paths::Delegate::search_s);
+		strcat(uri, "?q=");
+		strcat(uri, username);
+	auto callback = netConnector.callback(uri);
+	auto parser = ARK::Utilities::make_json_string(callback);
+	return {
+		parser->subarrayValueIn("delegates", 0, "username").c_str(),
+		parser->subarrayValueIn("delegates", 0, "address").c_str(),
+		parser->subarrayValueIn("delegates", 0, "publicKey").c_str(),
+		parser->subarrayValueIn("delegates", 0, "vote").c_str(),
+		convert_to_int(parser->subarrayValueIn("delegates", 0, "producedblocks").c_str()),
+		convert_to_int(parser->subarrayValueIn("delegates", 0, "missedblocks").c_str())
+	};
+};
+/*************************************************/
+
+/**************************************************************************************************/
+
+/*************************************************
+*	/api/delegates/voters?publicKey=_pubKey
+*
+*	EXAMPLE:
+*	{
+*		"success":true,
+*		"accounts":
+*		[
+*			{ 
+*				"username": "const char*",
+*				"address":  "Balance",
+*				"publicKey":  "Publickey",
+*				"balance":  "Balance"
+*			},
+*			{
+*				"username": "const char*",
+*				"address":  "Address",
+*				"publicKey":  "Publickey",
+*				"balance":  "Balance"
+*			}
+*		]
+*	}
+**************************************************/
+ARK::API::Delegate::Respondable::Voters ARK::API::Delegatable::delegateVoters(
+		const Publickey &publicKey
+)
+{
+	char uri[123 + 1] = { '\0' };
+		strcpy(uri, ARK::API::Paths::Delegate::voters_s);
+		strcat(uri, "?publicKey=");
+		strcat(uri, publicKey);
+	auto callback = netConnector.callback(uri);
+	auto parser = ARK::Utilities::make_json_string(callback);
+
+	int voterCount = substringCount(callback.c_str(), "username");
+	ARK::API::Delegate::Respondable::Voters voters(voterCount);
+
+	for (int i = 0; i < voterCount; ++i)
+	{
+		voters[i] = {
+			parser->subarrayValueIn("accounts", i, "username").c_str(),
+			parser->subarrayValueIn("accounts", i, "address").c_str(),
+			parser->subarrayValueIn("accounts", i, "publicKey").c_str(),
+			parser->subarrayValueIn("accounts", i, "balance").c_str()
+		};
+	};
+	return voters;
+};
+/*************************************************/
+
+/**************************************************************************************************/
+
+/*************************************************
 *	/api/delegates/fee
-*	
+*
+*	EXAMPLE:
 *	{
 *		"success":true,
 *		"fee":  Balance
 *	}
 **************************************************/
-Balance ARK::API::Delegate::Gettable::fee(
-		ARK::Utilities::Network::Connector &netConnector
-)
+Balance ARK::API::Delegatable::delegateFee()
 {
 	auto callback = netConnector.callback(ARK::API::Paths::Delegate::fee_s);
 	auto parser = ARK::Utilities::make_json_string(callback);
@@ -210,9 +186,9 @@ Balance ARK::API::Delegate::Gettable::fee(
 /**************************************************************************************************/
 
 /*************************************************
-* ARK::API::Delegate::Gettable::forgedByAccount
 *	/api/delegates/forging/getForgedByAccount?generatorPublicKey=_genPubkey
 *
+*	EXAMPLE:
 *	{
 *		"success":true,
 *		"fees": "Balance",
@@ -220,15 +196,15 @@ Balance ARK::API::Delegate::Gettable::fee(
 *		"forged": "Balance"
 *	}
 **************************************************/
-ARK::API::Delegate::Respondable::ForgedByAccount ARK::API::Delegate::Gettable::forgedByAccount(
-		ARK::Utilities::Network::Connector &netConnector,
+ARK::API::Delegate::Respondable::ForgedByAccount ARK::API::Delegatable::delegateForgedByAccount(
 		const Publickey &generatorPublicKey
 )
 {
-	char uri[152 + 1] = {'\0'};
+	char uri[152 + 1];
 		strcpy(uri, ARK::API::Paths::Delegate::getForgedByAccount_s);
 		strcat(uri, "?generatorPublicKey=");
-		strcat(uri, generatorPublicKey.getValue());
+		strcat(uri, generatorPublicKey );
+
 	auto callback = netConnector.callback(uri);
 	auto parser = ARK::Utilities::make_json_string(callback);
 	return {
@@ -242,9 +218,9 @@ ARK::API::Delegate::Respondable::ForgedByAccount ARK::API::Delegate::Gettable::f
 /**************************************************************************************************/
 
 /*************************************************
-* ARK::API::Delegate::Gettable::nextForgers
 *	/api/delegates/getNextForgers
 *
+*	EXAMPLE:
 *	{ 
 *		"success":true,
 *		"currentBlock":2307497,
@@ -264,9 +240,7 @@ ARK::API::Delegate::Respondable::ForgedByAccount ARK::API::Delegate::Gettable::f
 *		]
 *	}
 **************************************************/
-ARK::API::Delegate::Respondable::NextForgers ARK::API::Delegate::Gettable::nextForgers(
-		ARK::Utilities::Network::Connector &netConnector
-)
+ARK::API::Delegate::Respondable::NextForgers ARK::API::Delegatable::delegateNextForgers()
 {
 	auto callback = netConnector.callback(ARK::API::Paths::Delegate::getNextForgers_s);
 	auto parser = ARK::Utilities::make_json_string(callback);
@@ -283,7 +257,3 @@ ARK::API::Delegate::Respondable::NextForgers ARK::API::Delegate::Gettable::nextF
 	};
 };
 /*************************************************/
-
-};
-};
-};

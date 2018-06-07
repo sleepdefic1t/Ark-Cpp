@@ -14,23 +14,6 @@ namespace Peer
 {
 namespace Respondable
 {
-/*************************************************
-*	ARK::API::Peer::Respondable::version_t
-*
-*	@param:	char version[32]
-*	@param:	char build[32]
-*
-*	@brief:	Type for Loader Status API Response
-**************************************************/
-struct version_t
-{
-	protected:
-		char version_[32];
-		char build_[32];
-};
-/*************************************************/
-
-/**************************************************************************************************/
 
 /*************************************************
 *	ARK::API::Peer::Respondable::Version
@@ -42,9 +25,12 @@ struct version_t
 *	@brief:	Model for Loader Status API Response
 **************************************************/
 struct Version :
-		public version_t,
-		Printable
+		public Printable
 {
+	protected:
+		char version_[32];
+		char build_[32];
+
 	public:
 		/*************************************************
 		*	Constructor

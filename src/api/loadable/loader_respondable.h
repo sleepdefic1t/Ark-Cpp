@@ -16,26 +16,6 @@ namespace Loader
 namespace Respondable
 {
 /*************************************************
-*	ARK::API::Loader::Respondable::status_t
-*
-*	@param:	bool loaded
-*	@param:	int now
-*	@param:	char blocksCount[64]
-*
-*	@brief:	Model for Loader Status API Response
-**************************************************/
-struct status_t
-{
-	protected:
-		bool	loaded_;
-		int 	now_;
-		int		blocksCount_;
-};
-/*************************************************/
-
-/**************************************************************************************************/
-
-/*************************************************
 *	ARK::API::Loader::Respondable::Status
 *
 *	@param: bool loaded
@@ -45,17 +25,21 @@ struct status_t
 *	@brief:	Model for Loader Status API Response
 **************************************************/
 struct Status :
-		public status_t,
-		Printable
+		public Printable
 {
+	protected:
+		bool loaded_;
+		int now_;
+		int blocksCount_;
+
 public:
 	/*************************************************
 	*	Constructor
 	**************************************************/
 	Status(
-			bool	newLoaded,
-			int		newNow,
-			int		newBlocksCount
+			bool newLoaded,
+			int newNow,
+			int newBlocksCount
 	);
 	/*************************************************/
 
@@ -79,26 +63,6 @@ public:
 /**************************************************************************************************/
 
 /*************************************************
-*	ARK::API::Loader::Respondable::sync_t 
-*
-*	@param:	bool syncing
-*	@param:	int blocks
-*	@param:	char height[32]
-*	@param:	char id[32];
-*
-*	@brief:	Model for Loader Sync API Response
-**************************************************/
-struct sync_t
-{
-	protected:
-		bool	syncing_;
-		int 	blocks_;
-		char	height_[32];
-		char	id_[32];
-};
-/*************************************************/
-
-/*************************************************
 *	ARK::API::Loader::Respondable::Sync 
 *
 *	@param:	bool syncing
@@ -109,16 +73,21 @@ struct sync_t
 *	@brief:	Model for Loader Sync API Response
 **************************************************/
 struct Sync :
-		public sync_t,
-		Printable
+		public Printable
 {
+	protected:
+		bool syncing_;
+		int blocks_;
+		char height_[32];
+		char id_[32];
+		
 	public:
 		/*************************************************
 		*	Constructor
 		**************************************************/
 		Sync(
-				bool							newSyncing,
-				int								newBlocks,
+				bool newSyncing,
+				int newBlocks,
 				const char *const newHeight,
 				const char *const newID
 		);

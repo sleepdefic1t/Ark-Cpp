@@ -46,18 +46,18 @@ Status::Status(
 		const char *const newEpoch,
 		const char *const newHeight,
 		const char *const newFee,
-		int               newMilestone,
+		int newMilestone,
 		const char *const newNethash,
 		const char *const newReward,
-		const char *const newSupply)
+		const char *const newSupply
+) :	fee_(newFee),
+		milestone_(newMilestone),
+		nethash_(newNethash),
+		reward_(newReward),
+		supply_(newSupply)
 {
 	strncpy(this->epoch_, newEpoch, sizeof(epoch_) / sizeof(epoch_[0]));
 	strncpy(this->height_, newHeight, sizeof(height_) / sizeof(height_[0]));
-	this->fee_ = Balance(newFee);
-	this->milestone_ = newMilestone;
-	this->nethash_ = Hash(newNethash);
-	this->reward_ = Balance(newReward);
-	this->supply_ = Balance(newSupply);
 };
 /*************************************************/
 
@@ -80,7 +80,7 @@ size_t Status::printTo(Print &p) const
 		size += p.print(this->milestone_);
 
 		size += p.print("\nnethash: ");
-		size += p.print(this->nethash_.getValue());
+		size += p.print(this->nethash_);
 
 		size += p.print("\nreward: ");
 		size += p.print(this->reward_.ark());

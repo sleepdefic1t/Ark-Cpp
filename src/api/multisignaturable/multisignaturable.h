@@ -3,7 +3,13 @@
 #ifndef MULTISIGNATURABLE_H
 #define MULTISIGNATURABLE_H
 
-#include "api/multisignaturable/multisignature_gettable.h"
+// #include "api/multisignaturable/multisignature_gettable.h"
+#include "utilities/platform.h"
+#include "utilities/connector.h"
+#include "api/paths.h"
+#include "types/crypto/eckey.h"
+#include "utilities/json.h"
+#include <cstring>
 
 namespace ARK
 {
@@ -17,7 +23,6 @@ namespace API
 *	API's Multisignature Loader Model
 **************************************************/
 class MultiSignaturable :
-		public MultiSignature::Gettable,
 		virtual ARK::Utilities::Network::Connectable
 {
 public:
@@ -29,23 +34,7 @@ public:
 	*
 	*	@brief:	Gets Pending Multisignatures of	Account by Publickey from a Node via API.
 	**************************************************/
-	const char *multisignaturesPending(
-			const Publickey &publicKey
-	)
-	{
-		return ARK::API::MultiSignature::Gettable::pending(this->netConnector, publicKey);
-	};
-	/*************************************************/
-
-	/**************************************************************************************************/
-
-	/*************************************************/
-	/*************************************************/
-	// /*  Only on Mainnet?  */
-	//     /*  /api/multisignatures/accounts?publicKey=  */
-	//     String multisignaturesAccounts(String _publicKey)
-	//     { return ARK::API::MultiSignature::Gettable::accounts(this->netConnector, _publicKey); };
-	/*************************************************/
+	const char *multisignaturesPending( const Publickey &publicKey);
 	/*************************************************/
 
 };
@@ -54,3 +43,32 @@ public:
 };
 
 #endif
+
+
+	/**************************************************************************************************/
+	/**************************************************************************************************/
+	/*************************************************/
+	/*************************************************/
+	// /*  Only on Mainnet?  */
+	//     /*  /api/multisignatures/accounts?publicKey=  */
+	//     String multisignaturesAccounts(String _publicKey)
+	//     { return ARK::API::MultiSignature::Gettable::accounts(this->netConnector, _publicKey); };
+	/*************************************************/
+	/*************************************************/
+/*  ARK::API::MultiSignature::Gettable::accounts  */
+// /*  /api/multisignatures/accounts?publicKey=  */
+// String ARK::API::MultiSignatureGettable::accounts(ARK::Utilities::Network::Connector _netConnector, String _publicKey) {
+//   String uri = ARK::API::Paths::MultiSignatures::accounts_s;
+//     uri += "?publicKey=";
+//     uri += _publicKey;
+//   String callback = _netConnector.cb(uri);
+//   return ARK::API::MultiSignature::Gettable::accountsfromJSON(callback);
+// };
+
+/*  Only on Mainnet?  */
+// String ARK::API::MultiSignature::Gettable::accountsfromJSON(String _jsonStr) {
+//   ARK::Utilities::JSONString jString(_jsonStr);
+//   return jString.valueFor("??");
+// };
+	/**************************************************************************************************/
+	/**************************************************************************************************/

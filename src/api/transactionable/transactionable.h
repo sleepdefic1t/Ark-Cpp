@@ -4,7 +4,15 @@
 #define TRANSACTIONABLE_H
 
 #include "api/transactionable/transaction_respondable.h"
-#include "api/transactionable/transaction_gettable.h"
+#include "utilities/platform.h"
+#include "types/hash.h"
+#include "models/transaction.h"
+#include "utilities/connector.h"
+#include "api/paths.h"
+#include "utilities/json.h"
+
+#include <cstring>
+#include <memory>
 
 namespace ARK
 {
@@ -18,7 +26,6 @@ namespace API
 *	API's Peer Model
 **************************************************/
 class Transactionable :
-		public Transaction::Gettable,
 		virtual ARK::Utilities::Network::Connectable
 {
 public:
@@ -31,22 +38,7 @@ public:
 	*
 	*	@brief: Gets Transaction by Hash ID from a Node via API.
 	**************************************************/
-	ARK::Transaction transaction(Hash id)
-	{
-		return ARK::API::Transaction::Gettable::transaction(this->netConnector, id);
-	};
-	/*************************************************/
-
-	/**************************************************************************************************/
-
-	/*************************************************/
-	/*************************************************/
-	/*	BROKEN: fix for large callbacks  */
-	/*	Peers callback is ~28,908 bytes  */
-	/*  /api/transactions  */
-	// String transactions()
-	// { return ARK::API::Transaction::Gettable::transactions(this->netConnector); };
-	/*************************************************/
+	ARK::Transaction transaction(const Hash &id);
 	/*************************************************/
 
 	/**************************************************************************************************/
@@ -60,10 +52,7 @@ public:
 	*
 	*	@brief: Gets Unconfirmed Transaction by Hash ID from a Node via API.
 	**************************************************/
-	ARK::API::Transaction::Respondable::Unconfirmed transactionUnconfirmed(const Hash &id)
-	{
-		return ARK::API::Transaction::Gettable::transactionUnconfirmed(this->netConnector, id);
-	};
+	ARK::API::Transaction::Respondable::Unconfirmed transactionUnconfirmed(const Hash &id);
 	/*************************************************/
 
 	/**************************************************************************************************/
@@ -76,10 +65,7 @@ public:
 	*
 	*	@brief:	Gets Unconfirmed Transactions from a Node via API.
 	**************************************************/
-	ARK::API::Transaction::Respondable::Unconfirmed transactionsUnconfirmed()
-	{
-		return ARK::API::Transaction::Gettable::transactionsUnconfirmed(this->netConnector);
-	};
+	ARK::API::Transaction::Respondable::Unconfirmed transactionsUnconfirmed();
 	/*************************************************/
 
 	/**************************************************************************************************/
@@ -92,10 +78,7 @@ public:
 	*
 	*	@brief: Gets vendorField for a given Transaction by  txID from a Node via API.
 	**************************************************/
-	const char *getVendorField(Hash txID)
-	{
-		return ARK::API::Transaction::Gettable::vendorField(this->netConnector, txID);
-	};
+	const char *getVendorField(const Hash &txID);
 	/*************************************************/
 
 };
@@ -105,3 +88,14 @@ public:
 };
 
 #endif
+
+
+	/*************************************************/
+	/*************************************************/
+	/*	BROKEN: fix for large callbacks  */
+	/*	Peers callback is ~28,908 bytes  */
+	/*  /api/transactions  */
+	// String transactions()
+	// { return ARK::API::Transaction::Gettable::transactions(this->netConnector); };
+	/*************************************************/
+	/*************************************************/

@@ -3,8 +3,16 @@
 #ifndef ACCOUNTABLE_H
 #define ACCOUNTABLE_H
 
+#include "utilities/platform.h"
 #include "api/accountable/account_respondable.h"
-#include "api/accountable/account_gettable.h"
+#include "models/account.h"
+#include "models/delegate.h"
+#include "types/address.h"
+#include "types/balance.h"
+#include "types/crypto/eckey.h"
+#include "utilities/connector.h"
+#include "api/paths.h"
+#include "utilities/json.h"
 
 namespace ARK
 {
@@ -18,7 +26,6 @@ namespace API
 *	API's Account Model
 **************************************************/
 class Accountable :
-		public Account::Gettable,
 		virtual ARK::Utilities::Network::Connectable
 {
 	public:
@@ -30,12 +37,7 @@ class Accountable :
 		*
 		*	@brief:	Uses Ark Address to get an Accounts Confirmed	and Unconfirmed Balances from a Node via API.
 		**************************************************/
-		ARK::API::Account::Respondable::Balances accountBalance(
-				const Address &arkAddress
-		)
-		{
-			return ARK::API::Account::Gettable::balance(this->netConnector, arkAddress);
-		};
+		ARK::API::Account::Respondable::Balances accountBalance(const Address &arkAddress);
 		/*************************************************/
 
 		/**************************************************************************************************/
@@ -48,12 +50,7 @@ class Accountable :
 		*
 		*	@brief:	Uses Ark Address to get an Accounts Publickey from a Node via API.
 		**************************************************/
-		Publickey accountPublickey(
-				const Address &arkAddress
-		)
-		{
-			return ARK::API::Account::Gettable::publickey(this->netConnector, arkAddress);
-		};
+		Publickey accountPublickey(const Address &arkAddress);
 		/*************************************************/
 
 		/**************************************************************************************************/
@@ -66,12 +63,7 @@ class Accountable :
 		*
 		*	@brief:	Uses Ark Address to get Delegate Registration Fee from a Node via API.
 		**************************************************/
-		Balance accountDelegatesFee(
-				const Address &arkAddress
-		)
-		{
-			return ARK::API::Account::Gettable::delegatesFee(this->netConnector, arkAddress);
-		};
+		Balance accountDelegatesFee(const Address &arkAddress);
 		/*************************************************/
 
 		/**************************************************************************************************/
@@ -84,12 +76,7 @@ class Accountable :
 		*
 		*	@brief:	Uses Ark Address to get Delegate Object from a Node via API.
 		**************************************************/
-		ARK::Delegate accountDelegates(
-				const Address &arkAddress
-		)
-		{
-			return ARK::API::Account::Gettable::delegates(this->netConnector, arkAddress);
-		};
+		ARK::Delegate accountDelegates(const Address &arkAddress);
 		/*************************************************/
 
 		/**************************************************************************************************/
@@ -102,12 +89,7 @@ class Accountable :
 		*
 		*	@brief:	Uses Ark Address to get Account Object from a Node via API.
 		**************************************************/
-		ARK::Account account(
-				const Address &arkAddress
-		)
-		{
-			return ARK::API::Account::Gettable::account(this->netConnector, arkAddress);
-		};
+		ARK::Account account(const Address &arkAddress);
 		/*************************************************/
 
 };

@@ -1,25 +1,19 @@
 
 
-#include "api/accountable/account_gettable.h"
+#include "api/accountable/accountable.h"
 
-namespace ARK
-{
-namespace API
-{
-namespace Account
-{
+
 /*************************************************
-*	ARK::API::Account::Gettable::balance
 *	/api/accounts/getBalance?address=arkAddress
 *
+*	EXAMPLE:
 *	{
 *		"success":true,
 *		"balance":  "Balance",
 *		"unconfirmedBalance": "Balance"
 *	}
 **************************************************/
-ARK::API::Account::Respondable::Balances ARK::API::Account::Gettable::balance(
-		ARK::Utilities::Network::Connector &netManager,
+ARK::API::Account::Respondable::Balances ARK::API::Accountable::accountBalance(
 		const Address &arkAddress
 )
 {
@@ -27,7 +21,7 @@ ARK::API::Account::Respondable::Balances ARK::API::Account::Gettable::balance(
 		strcpy(uri, ARK::API::Paths::Account::getBalance_s);
 		strcat(uri, "?address=");
 		strcat(uri, arkAddress.getValue());
-	auto callback = netManager.callback(uri);
+	auto callback = netConnector.callback(uri);
 	auto parser = ARK::Utilities::make_json_string(callback);
 	return {
 		parser->valueFor("balance").c_str(),
@@ -39,16 +33,15 @@ ARK::API::Account::Respondable::Balances ARK::API::Account::Gettable::balance(
 /**************************************************************************************************/
 
 /*************************************************
-*	ARK::API::Account::Gettable::publickey
-*	/api/accounts/getPublickey?address=arkAddress
+*	api/accounts/getPublickey?address=arkAddress
 *
+*	EXAMPLE:
 *	{
 *		"success":true,
 *		"publicKey":  "Publickey"
 *	}
 **************************************************/
-Publickey ARK::API::Account::Gettable::publickey(
-		ARK::Utilities::Network::Connector &netManager,
+Publickey ARK::API::Accountable::accountPublickey(
 		const Address &arkAddress
 )
 {
@@ -56,7 +49,7 @@ Publickey ARK::API::Account::Gettable::publickey(
 		strcpy(uri, ARK::API::Paths::Account::getPublickey_s);
 		strcat(uri, "?address=");
 		strcat(uri, arkAddress.getValue());
-	auto callback = netManager.callback(uri);
+	auto callback = netConnector.callback(uri);
 	auto parser = ARK::Utilities::make_json_string(callback);
 	return {
 		parser->valueFor("publicKey").c_str()
@@ -67,16 +60,15 @@ Publickey ARK::API::Account::Gettable::publickey(
 /**************************************************************************************************/
 
 /*************************************************
-*	ARK::API::Account::Gettable::delegatesFee
 *	/api/accounts/delegates/fee?address=arkAddress
 *
+*	EXAMPLE:
 *	{
 *		"success":true,
 *		"fee":2500000000
 *	}
 **************************************************/
-Balance ARK::API::Account::Gettable::delegatesFee(
-		ARK::Utilities::Network::Connector &netManager,
+Balance ARK::API::Accountable::accountDelegatesFee(
 		const Address &arkAddress
 )
 {
@@ -84,7 +76,7 @@ Balance ARK::API::Account::Gettable::delegatesFee(
 		strcpy(uri, ARK::API::Paths::Account::delegatesFee_s);
 		strcat(uri, "?address=");
 		strcat(uri, arkAddress.getValue());
-	auto callback = netManager.callback(uri);
+	auto callback = netConnector.callback(uri);
 	auto parser = ARK::Utilities::make_json_string(callback);
 	return Balance(parser->valueFor("fee").c_str());
 };
@@ -93,9 +85,9 @@ Balance ARK::API::Account::Gettable::delegatesFee(
 /**************************************************************************************************/
 
 /*************************************************
-*	ARK::API::Account::Gettable::delegates
 *	/api/accounts/delegates?address=arkAddress
 *
+*	EXAMPLE:
 *	{
 *		"success":true,
 *		"delegates":
@@ -114,8 +106,7 @@ Balance ARK::API::Account::Gettable::delegatesFee(
 *		]
 *	}
 **************************************************/
-ARK::Delegate ARK::API::Account::Gettable::delegates(
-		ARK::Utilities::Network::Connector &netManager,
+ARK::Delegate ARK::API::Accountable::accountDelegates(
 		const Address &arkAddress
 )
 {
@@ -123,7 +114,7 @@ ARK::Delegate ARK::API::Account::Gettable::delegates(
 		strcpy(uri, ARK::API::Paths::Account::delegates_s);
 		strcat(uri, "?address=");
 		strcat(uri, arkAddress.getValue());
-	auto callback = netManager.callback(uri);
+	auto callback = netConnector.callback(uri);
 	auto parser = ARK::Utilities::make_json_string(callback);
 	return {
 		parser->subarrayValueIn("delegates", 0, "username").c_str(),
@@ -142,9 +133,9 @@ ARK::Delegate ARK::API::Account::Gettable::delegates(
 /**************************************************************************************************/
 
 /*************************************************
-*	ARK::API::Account::Gettable::account
-*	/api/accounts?address=arkAddress 
+*	/api/accounts?address=arkAddress
 *
+*	EXAMPLE:
 *	{
 *		"success":true,
 *		"account":
@@ -161,8 +152,7 @@ ARK::Delegate ARK::API::Account::Gettable::delegates(
 *		}
 *	}
 **************************************************/
-ARK::Account ARK::API::Account::Gettable::account(
-		ARK::Utilities::Network::Connector &netManager,
+ARK::Account ARK::API::Accountable::account(
 		const Address &arkAddress
 )
 {
@@ -170,14 +160,12 @@ ARK::Account ARK::API::Account::Gettable::account(
 		strcpy(uri, ARK::API::Paths::Account::accounts_s);
 		strcat(uri, "?address=");
 		strcat(uri, arkAddress.getValue());
-	auto callback = netManager.callback(uri);
+	auto callback = netConnector.callback(uri);
 	auto parser = ARK::Utilities::make_json_string(callback);
-
 		/********************
 		*	FIXME 
 		* multisignatures & u_multisignatures returns an array of Transaction ID's (Hash type)
 		********************/
-
 	return {
 		parser->valueIn("account", "address").c_str(),
 		parser->valueIn("account", "unconfirmedBalance").c_str(),
@@ -186,16 +174,10 @@ ARK::Account ARK::API::Account::Gettable::account(
 		convert_to_int(parser->valueIn("account", "unconfirmedSignature").c_str()),
 		convert_to_int(parser->valueIn("account", "secondSignature").c_str()),
 		parser->valueIn("account", "secondPublicKey").c_str(),
-
 		// parser->subarrayValueIn("account", 0, "multisignatures").c_str(),	//	FIXME
 		// multisigsArray,																										//	FIXME
 		// parser->subarrayValueIn("account", 0, "u_multisignatures").c_str()	//	FIXME
 		// u_multisigsArray																										//	FIXME
-
 	};
 };
 /*************************************************/
-
-};
-};
-};

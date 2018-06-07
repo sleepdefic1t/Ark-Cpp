@@ -3,8 +3,16 @@
 #ifndef BLOCKABLE_H
 #define BLOCKABLE_H
 
+#include "utilities/platform.h"
 #include "api/blockable/block_respondable.h"
-#include "api/blockable/block_gettable.h"
+#include "models/block.h"
+#include "models/fees.h"
+#include "utilities/connector.h"
+#include "api/paths.h"
+#include "utilities/json.h"
+
+#include <memory>
+#include <vector>
 
 namespace ARK
 {
@@ -18,7 +26,6 @@ namespace API
 *	API's Block Model
 **************************************************/
 class Blockable :
-		public Block::Gettable,
 		virtual ARK::Utilities::Network::Connectable
 {
 	public:
@@ -30,28 +37,7 @@ class Blockable :
 		*
 		*	@brief:	Uses Block ID to get that Blocks information from a Node via API.
 		**************************************************/
-		ARK::Block block(
-				const char *const blockId
-		)
-		{
-			return ARK::API::Block::Gettable::block(this->netConnector, blockId);
-		};
-		/*************************************************/
-
-		/**************************************************************************************************/
-
-		/*************************************************/
-		/*************************************************
-		*	BROKEN: fix for large callbacks
-		*	blocks callback is ~63,712 bytes
-		**************************************************/
-		/*************************************************/
-		/*************************************************
-		* /api/blocks
-		**************************************************/
-		// String blocks()
-		// { return ARK::API::Block::Gettable::blocks(this->netConnector); };
-		/*************************************************/
+		ARK::Block block(const char *const blockId);
 		/*************************************************/
 
 		/**************************************************************************************************/
@@ -63,12 +49,7 @@ class Blockable :
 		*
 		*	@brief:	Gets the Block Epoch from a Node via API.
 		**************************************************/
-		void blockEpoch(
-				char buffer[]
-		)
-		{
-			return ARK::API::Block::Gettable::epoch(this->netConnector, buffer);
-		};
+		void blockEpoch(char buffer[]);
 		/*************************************************/
 
 		/**************************************************************************************************/
@@ -80,10 +61,7 @@ class Blockable :
 		*
 		*	@brief:	Gets the Block-Height from a Node via API.
 		**************************************************/
-		ARK::API::Block::Respondable::Height blockHeight()
-		{
-			return ARK::API::Block::Gettable::height(this->netConnector);
-		};
+		ARK::API::Block::Respondable::Height blockHeight();
 		/*************************************************/
 
 		/**************************************************************************************************/
@@ -95,10 +73,7 @@ class Blockable :
 		*
 		*	@brief:	Gets the Networks Hash from a Node via API.
 		**************************************************/
-		Hash blockNethash()
-		{
-			return ARK::API::Block::Gettable::nethash(this->netConnector);
-		};
+		Hash blockNethash();
 		/*************************************************/
 
 		/**************************************************************************************************/
@@ -106,14 +81,13 @@ class Blockable :
 		/*************************************************
 		*	/api/blocks/getFee
 		*
-		*	@return:	Balance
-		*
-		*	@brief:	Gets the Block-Fee from a Node via API.
+		*	EXAMPLE:
+		* {
+		*   "success":true,
+		*   "fee":  Balance
+		* }
 		**************************************************/
-		Balance blockFee()
-		{
-			return ARK::API::Block::Gettable::fee(this->netConnector);
-		};
+		Balance blockFee();
 		/*************************************************/
 
 		/**************************************************************************************************/
@@ -125,10 +99,7 @@ class Blockable :
 		*
 		*	@brief:	Gets Ark Network Fees from a Node via API.
 		**************************************************/
-		ARK::Fees blockFees()
-		{
-			return ARK::API::Block::Gettable::fees(this->netConnector);
-		};
+		ARK::Fees blockFees();
 		/*************************************************/
 
 		/**************************************************************************************************/
@@ -140,10 +111,7 @@ class Blockable :
 		*
 		*	@brief:	Gets the Block Milestone from a Node via API.
 		**************************************************/
-		const char *blockMilestone()
-		{
-			return ARK::API::Block::Gettable::milestone(this->netConnector);
-		};
+		const char *blockMilestone();
 		/*************************************************/
 
 		/**************************************************************************************************/
@@ -155,10 +123,7 @@ class Blockable :
 		*
 		*	@brief:	Gets the Block Reward from a Node via API.
 		**************************************************/
-		Balance blockReward()
-		{
-			return ARK::API::Block::Gettable::reward(this->netConnector);
-		};
+		Balance blockReward();
 		/*************************************************/
 
 		/**************************************************************************************************/
@@ -169,11 +134,9 @@ class Blockable :
 		*	@return:	Balance
 		*
 		*	@brief:	Gets the current Ark Supply from a Node via API.
+
 		**************************************************/
-		Balance blockSupply()
-		{
-			return ARK::API::Block::Gettable::supply(this->netConnector);
-		};
+		Balance blockSupply();
 		/*************************************************/
 
 		/**************************************************************************************************/
@@ -185,10 +148,7 @@ class Blockable :
 		*
 		*	@brief:	Gets the Ark Networks Status from a Node via API.
 		**************************************************/
-		ARK::API::Block::Respondable::Status blockStatus()
-		{
-			return ARK::API::Block::Gettable::status(this->netConnector);
-		};
+		ARK::API::Block::Respondable::Status blockStatus();
 		/*************************************************/
 
 };
@@ -198,3 +158,22 @@ class Blockable :
 };
 
 #endif
+
+
+/**************************************************************************************************/
+
+/*************************************************/
+/*************************************************
+*	BROKEN: fix for large callbacks
+*	blocks callback is ~63,712 bytes
+**************************************************/
+/*************************************************/
+/*************************************************
+* /api/blocks
+**************************************************/
+// String blocks()
+// { return ARK::API::Block::Gettable::blocks(this->netConnector); };
+/*************************************************/
+/*************************************************/
+
+/**************************************************************************************************/

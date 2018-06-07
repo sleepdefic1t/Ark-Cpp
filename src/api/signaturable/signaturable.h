@@ -3,7 +3,10 @@
 #ifndef SIGNATURABLE_H
 #define SIGNATURABLE_H
 
-#include "api/signaturable/signature_gettable.h"
+#include "types/balance.h"
+#include "api/paths.h"
+#include "utilities/connector.h"
+#include "utilities/json.h"
 
 namespace ARK
 {
@@ -17,7 +20,6 @@ namespace API
 *	API's Signature Loader Model
 **************************************************/
 class Signaturable :
-		public Signature::Gettable,
 		virtual ARK::Utilities::Network::Connectable
 {
 	public:
@@ -29,10 +31,7 @@ class Signaturable :
 		*
 		*	@brief:	Gets cost of Signature from a Node via API.
 		**************************************************/
-		Balance signaturesFee()
-		{
-			return ARK::API::Signature::Gettable::fee(this->netConnector);
-		};
+		Balance signaturesFee();
 		/*************************************************/
 		
 };

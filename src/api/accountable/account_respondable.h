@@ -15,32 +15,17 @@ namespace Account
 namespace Respondable
 {
 /*************************************************
-*	ARK::API::Account::Respondable::balances_t
-*
-*	@param: Balance confirmed
-*	@param: Balance confirmed
-*
-*	@brief: Model for Balances API Response
-**************************************************/
-struct balances_t
-{
-	protected:
-		Balance confirmed_;
-		Balance unconfirmed_;
-};
-/*************************************************/
-
-/**************************************************************************************************/
-
-/*************************************************
 *	ARK::API::Account::Respondable::Balances
 *
 *	@brief: Constructed API Balances Response Object
 **************************************************/
 class Balances :
-    public Printable,
-		virtual balances_t
+    public Printable
 {
+	protected:
+		Balance confirmed_;
+		Balance unconfirmed_;
+
 	public:
 		/*************************************************
 		*	ARK::API::Account::Respondable::Balances

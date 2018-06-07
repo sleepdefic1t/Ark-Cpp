@@ -21,8 +21,8 @@ namespace API
 *	ARK::API::Manager
 **************************************************/
 class Manager :
-		public ARK::API::Accountable,
-		public ARK::API::Blockable,
+		public Accountable,
+		public Blockable,
 		public Delegatable,
 		public Loadable,
 		public MultiSignaturable,
@@ -40,19 +40,21 @@ class Manager :
 
 		/*************************************************
 		*	ARK::API::Manager
+		*
+		*	@param: const ARK::Network& network 
+		* @brief: Creates API Manager instance using an Ark-based network.
 		**************************************************/
-		explicit Manager(
-				const ARK::Network& network
-		);
+		explicit Manager(const ARK::Network& network);
 		/*************************************************/
 
 	private:
 		/*************************************************
 		*	ARK::API::Manager::connect
+		*
+		*	@param: const ARK::Network& network 
+		*	@brief:	Private internal method. Connects APIManager to an Ark-based network.
 		**************************************************/
-		void connect(
-				const ARK::Network& network
-		);
+		void connect(const ARK::Network& network);
 		/*************************************************/
 
 };

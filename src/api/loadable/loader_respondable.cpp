@@ -15,15 +15,12 @@ namespace Respondable
 *	Constructor
 **************************************************/
 Status::Status(
-		bool	newLoaded,
-		int		newNow,
-		int		newBlocksCount
-)
-{
-	this->loaded_ = newLoaded;
-	this->now_ = newNow;
-	this->blocksCount_ = newBlocksCount;
-}
+		bool newLoaded,
+		int	 newNow,
+		int	 newBlocksCount
+) : loaded_(newLoaded),
+		now_(newNow),
+		blocksCount_(newBlocksCount) {}
 /*************************************************/
 
 /*************************************************
@@ -48,14 +45,13 @@ size_t Status::printTo(Print &p) const
 *	Constructor
 **************************************************/
 Sync::Sync(
-		bool 							newSyncing,
-		int 							newBlocks,
+		bool newSyncing,
+		int newBlocks,
 		const char *const newHeight,
 		const char *const newID
-)
+) : syncing_(newSyncing),
+		blocks_(newBlocks)
 {
-	this->syncing_ = newSyncing;
-	this->blocks_ = newBlocks;
 	strncpy(height_, newHeight, sizeof(height_) / sizeof(height_[0]));
 	strncpy(id_, newID, sizeof(id_) / sizeof(id_[0]));
 };

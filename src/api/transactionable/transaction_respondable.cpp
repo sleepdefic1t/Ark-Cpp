@@ -16,9 +16,8 @@ namespace Respondable
 Unconfirmed::Unconfirmed(
 		const ARK::Transaction* const newTx,
 		int newCount
-)
+) : count_(newCount)
 {
-	this->count_ = newCount;
 	assert((unsigned int)this->count_ <= transactions_.size());
 	for (int i = 0u; i < this->count_; ++i)
 	{

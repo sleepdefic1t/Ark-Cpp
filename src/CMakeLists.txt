@@ -19,19 +19,19 @@ find_package(nlohmann_json CONFIG REQUIRED)
 find_package(Poco CONFIG REQUIRED Foundation Net)
 
 set(COMMON_SRC 
-	${PROJECT_SOURCE_DIR}/api/accountable/account_gettable.cpp
+	${PROJECT_SOURCE_DIR}/api/accountable/accountable.cpp
 	${PROJECT_SOURCE_DIR}/api/accountable/account_respondable.cpp
-	${PROJECT_SOURCE_DIR}/api/blockable/block_gettable.cpp
+	${PROJECT_SOURCE_DIR}/api/blockable/blockable.cpp
 	${PROJECT_SOURCE_DIR}/api/blockable/block_respondable.cpp
-	${PROJECT_SOURCE_DIR}/api/delegatable/delegate_gettable.cpp
+	${PROJECT_SOURCE_DIR}/api/delegatable/delegatable.cpp
 	${PROJECT_SOURCE_DIR}/api/delegatable/delegate_respondable.cpp
-	${PROJECT_SOURCE_DIR}/api/loadable/loader_gettable.cpp
+	${PROJECT_SOURCE_DIR}/api/loadable/loadable.cpp
 	${PROJECT_SOURCE_DIR}/api/loadable/loader_respondable.cpp
-	${PROJECT_SOURCE_DIR}/api/multisignaturable/multisignature_gettable.cpp
-	${PROJECT_SOURCE_DIR}/api/peerable/peer_gettable.cpp
+	${PROJECT_SOURCE_DIR}/api/multisignaturable/multisignaturable.cpp
+	${PROJECT_SOURCE_DIR}/api/peerable/peerable.cpp
 	${PROJECT_SOURCE_DIR}/api/peerable/peer_respondable.cpp
-	${PROJECT_SOURCE_DIR}/api/signaturable/signature_gettable.cpp
-	${PROJECT_SOURCE_DIR}/api/transactionable/transaction_gettable.cpp
+	${PROJECT_SOURCE_DIR}/api/signaturable/signaturable.cpp
+	${PROJECT_SOURCE_DIR}/api/transactionable/transactionable.cpp
 	${PROJECT_SOURCE_DIR}/api/transactionable/transaction_respondable.cpp
 	${PROJECT_SOURCE_DIR}/api/manager.cpp
 	${PROJECT_SOURCE_DIR}/crypto/ark_crypto.cpp

@@ -4,11 +4,13 @@
 #define DELEGATE_RESPONDABLE_H
 
 #include "utilities/platform.h"
-#include "types/address.h"
-#include "types/publickey.h"
-#include "types/balance.h"
-#include "models/voter.h"
 #include "utilities/json.h"
+
+#include "models/voter.h"
+#include "types/address.h"
+#include "types/balance.h"
+#include "types/crypto/eckey.h"
+
 #include <array>
 #include <cstdio>
 #include <cstring>
@@ -22,29 +24,99 @@ namespace Delegate
 {
 namespace Respondable
 {
+
 /*************************************************
-*	ARK::API::Delegate::Respondable::search_t
+*	ARK::API::Delegate::Respondable::ForgedByAccount
 *
-*	@param: char[20]
-*	@param: Address
-*	@param: Publickey
-*	@param: Balance
-*	@param: int
-*	@param: int
+*	@param:	const Balance
+*	@param:	const Balance
+*	@param:	const Balance
 *
-*	@brief:	Model for Delegate Search API Response
+*	@brief:	Model for Delegate Forging Totals API Response
 **************************************************/
-// struct search_t
-// {
-// 	protected:
-// 		char 			username_[20 + 1];
-// 		Address 	address_;
-// 		Publickey publicKey_;
-// 		Balance 	vote_;
-// 		int 			producedblocks_;
-// 		int				missedblocks_;
-// };
+struct ForgedByAccount :
+		public Printable
+{
+	protected:
+		Balance fees_;
+		Balance rewards_;
+		Balance forged_;
+	public:
+		/*************************************************
+		*	Constructor
+		**************************************************/
+		ForgedByAccount(
+				const char *const newFees,
+				const char *const newRewards,
+				const char *const newForged
+		);
+		/*************************************************/
+
+		/*************************************************
+		*	Accessors
+		**************************************************/
+		const Balance& fees() const noexcept { return fees_; }
+		const Balance& rewards() const noexcept { return rewards_; }
+		const Balance& forged() const noexcept { return forged_; }
+		/*************************************************/
+
+		/*************************************************
+		*
+		**************************************************/
+		virtual size_t printTo(Print &p) const;
+		/*************************************************/
+
+};
 /*************************************************/
+
+/**************************************************************************************************/
+
+/*************************************************
+*	ARK::API::Delegate::Respondable::NextForgers
+*
+*	@param: char[64]
+*	@param: char[64]
+*	@param:	Publickey* const
+*
+*	@brief:	Model for Next 10 Forging Delegate Publickeys API Response
+**************************************************/
+struct NextForgers :
+		public Printable
+{
+	protected:
+		int currentBlock_;
+		int currentSlot_;
+		Publickey delegate_keys_[10];
+
+	public:
+		/*************************************************
+		*	Constructor
+		**************************************************/
+		NextForgers(
+				int newCB,
+				int newCS,
+				const Publickey *const newDelegateKeys
+		);
+		/*************************************************/
+
+		/*************************************************
+		*	Accessors
+		**************************************************/
+		int current_block() const noexcept { return currentBlock_; }
+		int current_slot() const noexcept { return currentSlot_; }
+		const Publickey *delegate_keys() const noexcept { return delegate_keys_; }
+		/*************************************************/
+
+		/*************************************************
+		*
+		**************************************************/
+		virtual size_t printTo(Print &p) const;
+		/*************************************************/
+
+};
+/*************************************************/
+
+/**************************************************************************************************/
 
 /*************************************************
 *	ARK::API::Delegate::Respondable::Search
@@ -52,17 +124,16 @@ namespace Respondable
 *	@brief:	Model for Delegate Search API Response
 **************************************************/
 struct Search :
-		// public search_t,
 		public Printable
 {
 
 	protected:
-		char 			username_[20 + 1];
-		Address 	address_;
+		char username_[20 + 1];
+		Address address_;
 		Publickey publicKey_;
-		Balance 	vote_;
-		int 			producedblocks_;
-		int				missedblocks_;
+		Balance vote_;
+		int producedblocks_;
+		int missedblocks_;
 
 	public:
 		/*************************************************
@@ -73,16 +144,9 @@ struct Search :
 				const char *const newAddress,
 				const char *const newPublickey,
 				const char *const newVote,
-				int								newProducedBlocks,
-				int								newMissedBlocks
-		): address_(Address(newAddress)),
-		publicKey_(Publickey(newPublickey)),
-		vote_(Balance(newVote)),
-		producedblocks_(newProducedBlocks),
-		missedblocks_(newMissedBlocks)
-		{
-			strncpy(this->username_, newUsername, sizeof(username_) / sizeof(username_[0]));
-		};
+				int newProducedBlocks,
+				int newMissedBlocks
+		);
 		/*************************************************/
 
 		/*************************************************
@@ -127,14 +191,14 @@ struct Voters :
 		/*************************************************
 		*	Constructor
 		**************************************************/
-		explicit Voters(size_t c) : count_(c), voters_(new ARK::Voter[c]) {}
+		Voters(size_t c) : count_(c), voters_(new ARK::Voter[c]) {}
 		/*************************************************/
 
-		// /*************************************************
-		// *	Deconstructor
-		// **************************************************/
-		// ~Voters();
-		// /*************************************************/
+		/*************************************************
+		*
+		**************************************************/
+		size_t count() const;
+		/*************************************************/
 
 		/*************************************************
 		*
@@ -146,121 +210,6 @@ struct Voters :
 		*
 		**************************************************/
 		Voter &operator[](size_t index);
-		/*************************************************/
-
-		/*************************************************
-		*
-		**************************************************/
-		virtual size_t printTo(Print &p) const;
-		/*************************************************/
-
-};
-/*************************************************/
-
-/**************************************************************************************************/
-
-/*************************************************
-*	ARK::API::Delegate::Respondable::forged_by_account_t
-*
-*	@param:	const Balance
-*	@param:	const Balance
-*	@param:	const Balance
-*
-*	@brief:	Model for Delegate Forging Totals API Response
-**************************************************/
-struct forged_by_account_t
-{
-	protected:
-		Balance fees_;
-		Balance rewards_;
-		Balance forged_;
-};
-/*************************************************/
-
-/*************************************************
-*	ARK::API::Delegate::Respondable::ForgedByAccount
-*
-*	@brief: Model for Delegate Forging Totals API Response
-**************************************************/
-struct ForgedByAccount :
-		public forged_by_account_t,
-		Printable
-{
-	public:
-		/*************************************************
-		*	Constructor
-		**************************************************/
-		ForgedByAccount(
-				const char *const newFees,
-				const char *const newRewards,
-				const char *const newForged
-		);
-		/*************************************************/
-
-		/*************************************************
-		*	Accessors
-		**************************************************/
-		const Balance& fees() const noexcept { return fees_; }
-		const Balance& rewards() const noexcept { return rewards_; }
-		const Balance& forged() const noexcept { return forged_; }
-		/*************************************************/
-
-		/*************************************************
-		*
-		**************************************************/
-		virtual size_t printTo(Print &p) const;
-		/*************************************************/
-
-};
-/*************************************************/
-
-/**************************************************************************************************/
-
-/*************************************************
-*	ARK::API::Delegate::Respondable::next_forgers_t
-*	@param: char currentBlock[64], char currentSlot[64], Publickey* const
-*
-*	@brief:	Model for Next 10 Forging Delegate Publickeys API Response
-**************************************************/
-struct next_forgers_t
-{
-	protected:
-		int currentBlock_;
-		int currentSlot_;
-		std::array<Publickey, 10> delegate_keys_;
-};
-/*************************************************/
-
-/*************************************************
-*	ARK::API::Delegate::Respondable::NextForgers
-*
-*	@param: char[64]
-*	@param: char[64]
-*	@param:	Publickey* const
-*
-*	@brief:	Model for Next 10 Forging Delegate Publickeys API Response
-**************************************************/
-struct NextForgers :
-		public next_forgers_t,
-		Printable
-{
-	public:
-		/*************************************************
-		*	Constructor
-		**************************************************/
-		NextForgers(
-				int 	newCB,
-				int 	newCS,
-				const Publickey *const newDelegateKeys
-		);
-		/*************************************************/
-
-		/*************************************************
-		*	Accessors
-		**************************************************/
-		int current_block() const noexcept { return currentBlock_; }
-		int current_slot() const noexcept { return currentSlot_; }
-		const std::array<Publickey, 10>& delegate_keys() const noexcept { return delegate_keys_; }
 		/*************************************************/
 
 		/*************************************************

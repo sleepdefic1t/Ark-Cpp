@@ -1,17 +1,11 @@
 
 
-#include "api/loadable/loader_gettable.h"
+#include "api/loadable/loadable.h"
 
-namespace ARK
-{
-namespace API
-{
-namespace Loader
-{
 /*************************************************
-* ARK::API::Loader::Gettable::autoconfigure
-* /api/loader/autoconfigure
+*	/api/loader/autoconfigure 
 *
+*	EXAMPLE:
 *	{
 *		"success":true,
 *		"network":
@@ -24,9 +18,7 @@ namespace Loader
 *		}
 *	}
 **************************************************/
-ARK::Network ARK::API::Loader::Gettable::autoconfigure(
-		ARK::Utilities::Network::Connector &netConnector
-)
+ARK::Network ARK::API::Loadable::loaderAutoconfigure()
 {
 	auto callback = netConnector.callback(ARK::API::Paths::Loader::autoconfigure_s);
 	auto parser = ARK::Utilities::make_json_string(callback);
@@ -43,9 +35,9 @@ ARK::Network ARK::API::Loader::Gettable::autoconfigure(
 /**************************************************************************************************/
 
 /*************************************************
-* ARK::API::Loader::Gettable::status
 *	/api/loader/status
 *
+*	EXAMPLE:
 *	{ 
 *		"success":true,
 *		"loaded": bool,
@@ -53,9 +45,7 @@ ARK::Network ARK::API::Loader::Gettable::autoconfigure(
 *		"blocksCount":  const char*
 *	}
 **************************************************/
-ARK::API::Loader::Respondable::Status ARK::API::Loader::Gettable::status(
-		ARK::Utilities::Network::Connector &netConnector
-)
+ARK::API::Loader::Respondable::Status ARK::API::Loadable::loaderStatus()
 {
 	auto callback = netConnector.callback(ARK::API::Paths::Loader::status_s);
 	auto parser = ARK::Utilities::make_json_string(callback);
@@ -70,9 +60,9 @@ ARK::API::Loader::Respondable::Status ARK::API::Loader::Gettable::status(
 /**************************************************************************************************/
 
 /*************************************************
-* ARK::API::Loader::Gettable::sync
-* /api/loader/status/sync
+*	/api/loader/status/sync
 *
+*	EXAMPLE:
 *	{ 
 *		"success":true,
 *		"syncing":  bool,
@@ -81,9 +71,7 @@ ARK::API::Loader::Respondable::Status ARK::API::Loader::Gettable::status(
 *		"id": "const char*"
 *	}
 **************************************************/
-ARK::API::Loader::Respondable::Sync ARK::API::Loader::Gettable::sync(
-		ARK::Utilities::Network::Connector &netConnector
-)
+ARK::API::Loader::Respondable::Sync ARK::API::Loadable::loaderSync()
 {
 	auto callback = netConnector.callback(ARK::API::Paths::Loader::sync_s);
 	auto parser = ARK::Utilities::make_json_string(callback);
@@ -96,6 +84,3 @@ ARK::API::Loader::Respondable::Sync ARK::API::Loader::Gettable::sync(
 }
 /*************************************************/
 
-};
-};
-};

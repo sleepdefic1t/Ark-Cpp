@@ -1,17 +1,11 @@
 
 
-#include "api/peerable/peer_gettable.h"
+#include "api/peerable/peerable.h"
 
-namespace ARK
-{
-namespace API
-{
-namespace Peer
-{
 /*************************************************
-* ARK::API::Peer::Gettable::peer
-* /api/peers/get?ip=167.114.29.55&port=4002
+*	/api/peers/get?ip=167.114.29.55&port=4002
 *
+*	EXAMPLE:
 *	{ 
 *		"success":true,
 *		"peer":
@@ -27,8 +21,7 @@ namespace Peer
 *		}
 *	}
 **************************************************/
-ARK::Peer ARK::API::Peer::Gettable::peer(
-		ARK::Utilities::Network::Connector& netConnector,
+ARK::Peer ARK::API::Peerable::peer(
 		const char* const ip,
 		int port
 )
@@ -52,24 +45,19 @@ ARK::Peer ARK::API::Peer::Gettable::peer(
 		parser->valueIn("peer", "status").c_str(),
 		convert_to_int(parser->valueIn("peer", "delay").c_str())
 	};
-}
-/*************************************************/
-
-/**************************************************************************************************/
+};
 
 /*************************************************
-* ARK::API::PeerGettable::version
-* /api/peers/version
+*	/api/peers/version
 *
+* EXAMPLE:
 *	{
 *		"success":true,
 *		"version":  "String",
 *		"build":  "String"
 *	}
 **************************************************/
-ARK::API::Peer::Respondable::Version ARK::API::Peer::Gettable::version(
-		ARK::Utilities::Network::Connector& netConnector
-)
+ARK::API::Peer::Respondable::Version ARK::API::Peerable::peerVersion()
 {
 	auto callback = netConnector.callback(ARK::API::Paths::Peer::version_s);
 	auto parser = ARK::Utilities::make_json_string(callback);
@@ -77,9 +65,4 @@ ARK::API::Peer::Respondable::Version ARK::API::Peer::Gettable::version(
 		parser->valueFor("version").c_str(),
 		parser->valueFor("build").c_str()
 	};
-};
-/*************************************************/
-
-};
-};
 };

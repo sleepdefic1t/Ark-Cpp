@@ -26,11 +26,7 @@ Balances::Balances() {};
 Balances::Balances(
 		const char *const newConfirmed,
 		const char *const newUnconfirmed
-)
-{
-	this->confirmed_ = Balance(newConfirmed);
-	this->unconfirmed_ = Balance(newUnconfirmed);
-}
+) :	confirmed_(newConfirmed), unconfirmed_(newUnconfirmed) {}
 /*************************************************/
 
 /*************************************************
@@ -41,11 +37,7 @@ Balances::Balances(
 Balances::Balances(
 		const Balance& newConfirmed,
 		const Balance& newUnconfirmed
-)
-{
-	this->confirmed_ = Balance(newConfirmed);
-	this->unconfirmed_ = Balance(newUnconfirmed);
-}
+):	confirmed_(newConfirmed), unconfirmed_(newUnconfirmed) {}
 /*************************************************/
 
 /*************************************************
