@@ -14,11 +14,9 @@
 *	Size 272
 *	160-bit base58Encoded hash from a RIPEME160 hash
 ********************************************************************************/
-
 #define ADDRESS_CHARACTER_WIDTH 8
 #define ADDRESS_LENGTH 34		/* Actual Length of Address */
 #define ADDRESS_SIZE (ADDRESS_LENGTH * ADDRESS_CHARACTER_WIDTH)		/* Size: 272 (Length of Address * character width) */
-
 /*************************************************
 *	Address
 **************************************************/
@@ -47,11 +45,10 @@ struct Address :
 		};
 		/*************************************************/
 
-		/*************************************************
-		*
-		**************************************************/
-		const char* getValue() const noexcept { return this->value_; }
-		/*************************************************/
+		const char *getValue() const
+		{
+			return this->value_;
+		};
 
 		/*************************************************
 		*

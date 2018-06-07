@@ -11,8 +11,10 @@
 
 #include "types/address.h"
 #include "types/balance.h"
+#include "types/hashable.h"
 #include "types/hash.h"
-#include "types/publickey.h"
-#include "types/signature.h"
+#include "types/crypto/eckey.h"
+#include "types/crypto/ecpair.h"
+#include "types/crypto/ecsignature.h"
 
 #endif
