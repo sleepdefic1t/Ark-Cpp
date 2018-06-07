@@ -1,6 +1,7 @@
-#include "types/address.h"
+
 
 #include "gtest/gtest.h"
+#include "types/address.h"
 
 TEST(types, construct_address)
 {

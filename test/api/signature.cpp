@@ -1,5 +1,6 @@
-#include "gtest/gtest.h"
 
+
+#include "gtest/gtest.h"
 #include "api/api.h"
 
 namespace
@@ -13,17 +14,15 @@ TEST(api, test_signature_fees)
 	const auto signatures_fee = _arkManager.signaturesFee();
 	ASSERT_STREQ("5.00000000", signatures_fee.ark());
 	ASSERT_STREQ("500000000", signatures_fee.arktoshi());
-
-	/*  ==================================  */
 }
 
-	/*  ==================================  */
-	/*  ==================================  */
-	/*  Only on Mainnet?  */
-	//  String multisignaturesAccounts = _arkManager.multisignaturesAccounts(darkHash);
-	//    Serial.println("multisignaturesAccounts: ");
-	//    Serial.println(multisignaturesAccounts);
-	//    Serial.println("\n=====\n");
-	/*  ==================================  */
-	/*  ==================================  */
+/*  ==================================  */
+/*  ==================================  */
+/*  Only on Mainnet?  */
+//  String multisignaturesAccounts = _arkManager.multisignaturesAccounts(darkHash);
+//    Serial.println("multisignaturesAccounts: ");
+//    Serial.println(multisignaturesAccounts);
+//    Serial.println("\n=====\n");
+/*  ==================================  */
+/*  ==================================  */
 

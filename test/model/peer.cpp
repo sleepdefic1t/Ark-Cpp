@@ -1,5 +1,6 @@
-#include "gtest/gtest.h"
 
+
+#include "gtest/gtest.h"
 #include "models/peer.h"
 
 TEST(model, construct_peer)

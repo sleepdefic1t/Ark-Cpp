@@ -1,10 +1,11 @@
-﻿#include "gtest/gtest.h"
+﻿
 
+#include "gtest/gtest.h"
 #include "models/currency.h"
 
 namespace
 {
-const auto ark_symbol = u8"Ѧ";
+	const auto ark_symbol = "Ѧ";
 }
 
 TEST(model, construct_currency)

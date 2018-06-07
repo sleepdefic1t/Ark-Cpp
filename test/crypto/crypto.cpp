@@ -1,25 +1,28 @@
-#include "gtest/gtest.h"
 
+
+#include "gtest/gtest.h"
 #include "crypto/ark_crypto.h"
 #include "constants/networks.h"
-
 #include <string>
 #include <vector>
 
-namespace {
+namespace
+{
 
-const auto passphrase = "bullet parade snow bacon mutual deposit brass floor staff list concert ask";
+	const auto passphrase = "bullet parade snow bacon mutual deposit brass floor staff list concert ask";
 
 }
 
-TEST(crypto, create_account) {
+TEST(crypto, create_account)
+{
 	const auto account = ARK::Crypto::create_account(ARK::Constants::Networks::Network_ADV::devnet.pubKeyHash, passphrase);
 	
 	ASSERT_STREQ("DStZXkgpEjxbG355nQ26vnkp95p24U9tsV", account.address().getValue());
-	ASSERT_STREQ("029fdf41a7d69d8efc7b236c21b9509a23d862ea4ed8b13a56e31eee58dbfd97b4", account.public_key().getValue());
+	ASSERT_STREQ("029fdf41a7d69d8efc7b236c21b9509a23d862ea4ed8b13a56e31eee58dbfd97b4", account.public_key());
 }
 
-TEST(crypto, generate_address) {
+TEST(crypto, generate_address)
+{
 	// dev net
 	ASSERT_STREQ(
 		"D8WEzKygD4BYDngjXyWC84om6GBvBMkVFY", 
@@ -39,7 +42,8 @@ TEST(crypto, generate_address) {
 	//);
 }
 
-TEST(crypto, get_private_key) {
+TEST(crypto, get_private_key)
+{
 	auto phrase = "seven age job canoe call lonely case same bounce giggle pluck mouse";
 	std::vector<uint8_t> priv_key(ARK::Crypto::PRIVATE_KEY_SIZE);
 	ARK::Crypto::get_private_key(phrase, priv_key);
@@ -50,7 +54,8 @@ TEST(crypto, get_private_key) {
 	);
 }
 
-TEST(crypto, get_public_key) {
+TEST(crypto, get_public_key)
+{
 	// TODO?:  test for n=1 is not supported with currenty ECC implementation.
 	// see https://github.com/kmackay/micro-ecc/issues/128
 	/*std::vector<uint8_t> priv_key = ParseHex("0000000000000000000000000000000000000000000000000000000000000001");
@@ -99,7 +104,8 @@ TEST(crypto, get_public_key) {
 	);
 }
 
-TEST(crypto, to_wif) {
+TEST(crypto, to_wif)
+{
 	std::vector<uint8_t> priv_key_vect = ParseHex("0000000000000000000000000000000000000000000000000000000000000001");
 	uint8_t priv_key[ARK::Crypto::PRIVATE_KEY_SIZE] = {};
 	std::memcpy(priv_key, &priv_key_vect[0], sizeof(priv_key));
@@ -145,7 +151,8 @@ TEST(crypto, to_wif) {
 	);
 }
 
-TEST(crypto, from_wif) {
+TEST(crypto, from_wif)
+{
 	uint8_t priv_key[ARK::Crypto::PRIVATE_KEY_SIZE] = {};
 	uint8_t version;
 	bool compressed;	

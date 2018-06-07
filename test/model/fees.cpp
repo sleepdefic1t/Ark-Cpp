@@ -1,5 +1,6 @@
-#include "gtest/gtest.h"
 
+
+#include "gtest/gtest.h"
 #include "models/fees.h"
 
 TEST(model, construct_fees)

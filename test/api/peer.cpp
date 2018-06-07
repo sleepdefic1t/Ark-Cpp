@@ -1,5 +1,6 @@
-#include "gtest/gtest.h"
 
+
+#include "gtest/gtest.h"
 #include "api/api.h"
 
 TEST(api, test_peer_peer)
@@ -17,17 +18,6 @@ TEST(api, test_peer_peer)
 	ASSERT_NE(0, peer.delay());
 }
 
-	/*  ==================================  */
-	/*  ==================================  */
-	/*	BROKEN: fix for large callbacks  */
-	/*	Peers callback is ~10,000 bytes  */
-	//  String peersDescription = _arkManager.peers().getValue();
-	//	Serial.println("peersDescription: ");
-	//	Serial.println(peersDescription);
-	//	Serial.println("\n=====\n");
-	/*  ==================================  */
-	/*  ==================================  */
-
 TEST(api, test_peer_version)
 {
 	ARK::API::Manager _arkManager(ARK::Constants::Networks::Model::Devnet);
@@ -35,3 +25,15 @@ TEST(api, test_peer_version)
 	ASSERT_STREQ("1.1.1", version.version());
 	ASSERT_STREQ("", version.build());
 }
+
+
+/*  ==================================  */
+/*  ==================================  */
+/*	BROKEN: fix for large callbacks  */
+/*	Peers callback is ~10,000 bytes  */
+//  String peersDescription = _arkManager.peers().getValue();
+//	Serial.println("peersDescription: ");
+//	Serial.println(peersDescription);
+//	Serial.println("\n=====\n");
+/*  ==================================  */
+/*  ==================================  */

@@ -1,11 +1,12 @@
+
+
 #include "gtest/gtest.h"
-
 #include "bip39/bip39.h"
-
 #include <cstring>
 #include <set>
 
-TEST(crypto_bip39, generate_mnemonic) {
+TEST(crypto_bip39, generate_mnemonic)
+{
 	auto passphrase = ARK::Crypto::BIP39::generate_mnemonic(ARK::Crypto::BIP39::language::en, 24);
 	std::set<std::string> words;
 	char s[256] = {};
