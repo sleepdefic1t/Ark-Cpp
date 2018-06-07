@@ -1,13 +1,39 @@
+
+
 #ifndef ARK_CRYPTO_H
 #define ARK_CRYPTO_H
 
+#include "utilities/platform.h"
 #include "models/account.h"
 
+#include "constants/networks.h"
+
+#include "bcl/Utils.hpp"
+#include "bcl/Base58Check.hpp"
+#include "bcl/CurvePoint.hpp"
+#include "bcl/Ecdsa.hpp"
+#include "bcl/FieldInt.hpp"
+#include "bcl/Ripemd160.hpp"
+#include "bcl/Sha256Hash.hpp"
+#include "bcl/Sha256.hpp"
+#include "bcl/Sha512.hpp"
+#include "bcl/Uint256.hpp"
+
+#if defined(USE_IOT)
+	#include "uECC.h"
+#else
+	#include "uECC/uECC.h"
+#endif
+
+#include <cassert>
 #include <string>
 #include <vector>
 
-namespace ARK {
-namespace Crypto {
+
+namespace ARK
+{
+namespace Crypto
+{
 
 const auto PUBLIC_KEY_SIZE = 65u;
 const auto COMPRESSED_PUBLIC_KEY_SIZE = 33u;
@@ -23,8 +49,10 @@ std::string get_address(uint8_t network, const std::vector<uint8_t>& public_key)
 
 Account create_account(uint8_t network, const char* const passphrase);
 
-}
-}
+};
+};
+
+
 
 template<typename T>
 std::string HexStr(const T itbegin, const T itend, bool fSpaces = false)
