@@ -10,23 +10,23 @@ ARK::Network::Network(
 		const char *const newToken,
 		const char *const newSymbol,
 		const char *const newExplorer,
-		int 							newVersion
-)	:
-	nethash_(newNethash),
-	token_(),
-	symbol_(),
-	explorer_(),
-	version_(newVersion)
+		int newVersion
+)	: nethash_(newNethash),
+		token_(),
+		symbol_(),
+		explorer_(),
+		version_(newVersion)
 {
-	strcpy(this->token_, newToken);
+	strncpy( this->token_, newToken, sizeof(this->token_) / sizeof(this->token_[0]) );
 	for (unsigned int i = 0; i < strlen(newSymbol); i++)
 	{
 		( sizeof(newSymbol[i]) == sizeof(char) )
 				? ( this->symbol_[i] = newSymbol[i] )
 				: ( sprintf(this->symbol_, "%2c", newSymbol[i]) );
 	}
-	strcpy(this->explorer_, newExplorer);
-};
+	strcat(this->symbol_, "\0");
+	strncpy(this->explorer_, newExplorer, sizeof(this->explorer_) / sizeof(this->explorer_[0]));
+}
 /*************************************************/
 
 /*************************************************
@@ -35,9 +35,8 @@ ARK::Network::Network(
 size_t ARK::Network::printTo(Print &p) const
 {
 	size_t size = 0;
-
-	size += p.print("nethash: ");
-	size += p.print(this->nethash_.getValue());
+	size += p.print("\nnethash: ");
+	size += p.print(this->nethash_);
 
 	size += p.print("\ntoken: ");
 	size += p.print(this->token_);
@@ -50,7 +49,6 @@ size_t ARK::Network::printTo(Print &p) const
 
 	size += p.print("\nversion: ");
 	size += p.print(this->version_);
-
 	return size;
 }
 /*************************************************/
@@ -63,12 +61,12 @@ size_t ARK::Network::printTo(Print &p) const
 bool ARK::Network::Network::operator==(const Network &rhs) const
 {
 	return (
-		strcmp(this->nethash_.getValue(), rhs.nethash().getValue()) == 0
+		strcmp(this->nethash_, rhs.nethash()) == 0
 			&& strcmp(this->token_, rhs.token()) == 0 && strcmp(this->symbol_, rhs.symbol()) == 0
 			&& strcmp(this->explorer_, rhs.explorer()) == 0
 			&& this->version_ == rhs.version()
 	);
-};
+}
 /*************************************************/
 
 /*************************************************
@@ -76,5 +74,5 @@ bool ARK::Network::Network::operator==(const Network &rhs) const
 *
 *	@brief:	Comparison of two Network Models for inequality.
 **************************************************/
-bool ARK::Network::Network::operator!=(const Network &rhs) const { return !(*this == rhs); };
+bool ARK::Network::Network::operator!=(const Network &rhs) const { return !(*this == rhs); }
 /*************************************************/

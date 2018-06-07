@@ -5,6 +5,7 @@
 
 #include "utilities/platform.h"
 #include "types/types.h"
+#include "types/hash.h"
 #include <cstdio>
 #include <cstring>
 
@@ -39,11 +40,11 @@ struct Network :
 		public Printable
 {
 	protected:
-		Hash	nethash_;
-		char	token_[5];
-		char	symbol_[5];
-		char	explorer_[40];
-		int 	version_;
+		Hash nethash_;
+		char token_[5];
+		char symbol_[5];
+		char explorer_[40];
+		int version_;
 
 	public:
 		/*************************************************
@@ -72,7 +73,7 @@ struct Network :
 		const char* symbol() const noexcept { return symbol_; }
 		const char* explorer() const noexcept { return explorer_; }
 		int version() const noexcept { return version_; }
-	/*************************************************/
+		/*************************************************/
 
 		/*************************************************
 		*	ARK::Network::Network::operator==

@@ -16,14 +16,14 @@ struct Peer :
 		public Printable
 {
 	protected:
-		char	ip_[40];
-		int 	port_;
-		char	version_[32];
-		int		errors_;
-		char	os_[32];
-		char	height_[32];
-		char	status_[32];
-		int		delay_;
+		char ip_[40];
+		int port_;
+		char version_[32];
+		int errors_;
+		char os_[32];
+		char height_[32];
+		char status_[32];
+		int delay_;
 
 	public:
 		/*************************************************
@@ -31,13 +31,13 @@ struct Peer :
 		**************************************************/
 		Peer(
 				const char *const newIP,
-				int 							newPort,
+				int newPort,
 				const char *const newVersion,
-				int 							newErrors,
+				int newErrors,
 				const char *const newOS,
 				const char *const newHeight,
 				const char *const newStatus,
-				int								newDelay
+				int newDelay
 		);
 		/*************************************************/
 

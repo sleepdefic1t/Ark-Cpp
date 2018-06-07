@@ -1,7 +1,8 @@
 #include "models/account.h"
 #include "crypto/ark_crypto.h"
 
-namespace ARK {
+namespace ARK
+{
 
 /*************************************************
 *	Constructs account from blockchain information
@@ -11,8 +12,8 @@ Account::Account(
 	const char *const newUnconfirmedBalance,
 	const char *const newBalance,
 	const char *const newPublickey,
-	int 							newUnconfirmedSignature,
-	int 							newSecondSignature,
+	int newUnconfirmedSignature,
+	int newSecondSignature,
 	const char *const newSecondPublickey//,
 	// Hash							newMultisignatures[],		//	FIXME
 	// Hash							newU_Multisignatures[]	//	FIXME
@@ -20,10 +21,10 @@ Account::Account(
 	address_(Address(newAddress)),
 	unconfirmedBalance_(Balance(newUnconfirmedBalance)),
 	balance_(Balance(newBalance)),
-	publicKey_(Publickey(newPublickey)),
+	publicKey_(newPublickey),
 	unconfirmedSignature_(newUnconfirmedSignature),
 	secondSignature_(newSecondSignature),
-	secondPublicKey_(Publickey(newSecondPublickey)) {}
+	secondPublicKey_(newSecondPublickey) {}
 	// int msigSize = round(newMultisignatures.size() / sizeof(Hash));
 	// this->multisignatures_ = new Hash[msigSize];
 	// for (unsigned int i = 0; i <= msigSize; i++)
@@ -43,8 +44,8 @@ Account::Account(
 *	Constructs account from public_key and address
 **************************************************/
 Account::Account(
-	const char* const public_key,
-	const char* const address
+	const char *const public_key,
+	const char *const address
 ) :
 	address_(address),
 	unconfirmedBalance_(),
@@ -65,7 +66,7 @@ size_t Account::printTo(Print& p) const
 {
 	size_t size = 0;
 		size += p.print("address: ");
-		size += p.print(address_.getValue());
+		size += p.print(this->address_.getValue());
 
 		size += p.print("\nunconfirmedBalance: ");
 		size += p.print(this->unconfirmedBalance_.ark());
@@ -74,7 +75,7 @@ size_t Account::printTo(Print& p) const
 		size += p.print(this->balance_.ark());
 
 		size += p.print("\npublicKey: ");
-		size += p.print(this->publicKey_.getValue());
+		size += p.print(this->publicKey_);
 
 		size += p.print("\nunconfirmedSignature: ");
 		size += p.print(this->unconfirmedSignature_);
@@ -83,7 +84,7 @@ size_t Account::printTo(Print& p) const
 		size += p.print(this->secondSignature_);
 
 		size += p.print("\nsecondPublicKey: ");
-		size += p.print(this->secondPublicKey_.getValue());
+		size += p.print(this->secondPublicKey_);
 
 		// size += p.print("\nmultisignatures: ");
 		// 	for (unsigned int i = 0; i <= (sizeof(this->u_multisignatures_) / sizeof(Hash)); i++)

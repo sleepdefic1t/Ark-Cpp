@@ -6,9 +6,10 @@
 #include "utilities/platform.h"
 #include "types/balance.h"
 #include "types/hash.h"
-#include "types/publickey.h"
 #include "types/address.h"
-#include "types/signature.h"
+#include "types/crypto/eckey.h"
+#include "types/crypto/ecsignature.h"
+
 #include <cstring>
 #include <cstdio>
 
@@ -45,21 +46,21 @@ struct Block :
 		public Printable
 {
 	protected:
-		char 			id_[MAX_UINT128_CHARS];
-		int 			version_;
-		char 			timestamp_[MAX_UINT128_CHARS];
-		char 			height_[64];
-		char 			previousBlock_[MAX_UINT128_CHARS];
-		char 			numberOfTransactions_[64];
-		Balance		totalAmount_;
-		Balance 	totalFee_;
-		Balance 	reward_;
-		char 			payloadLength_[64];
-		Hash 			payloadHash_;
+		char id_[MAX_UINT128_CHARS];
+		int version_;
+		char timestamp_[MAX_UINT128_CHARS];
+		char height_[64];
+		char previousBlock_[MAX_UINT128_CHARS];
+		char numberOfTransactions_[64];
+		Balance totalAmount_;
+		Balance totalFee_;
+		Balance reward_;
+		char payloadLength_[64];
+		Hash payloadHash_;
 		Publickey generatorPublicKey_;
-		Address 	generatorId_;
+		Address generatorId_;
 		Signature blockSignature_;
-		char 			confirmations_[64];
+		char confirmations_[64];
 		Balance 	totalForged_;
 		
 	public:
@@ -68,7 +69,7 @@ struct Block :
 		**************************************************/
 		Block(
 				const char *const newID,
-				int 							newVersion,
+				int newVersion,
 				const char *const newTimestamp,
 				const char *const newHeight,
 				const char *const newPreviousBlock,
@@ -101,7 +102,7 @@ struct Block :
 		const char* payload_length() const noexcept { return payloadLength_; }
 		const Hash& payload_hash() const noexcept { return payloadHash_; }
 		const Publickey& generator_public_key() const noexcept { return generatorPublicKey_; }
-		const Address& generator_id() const noexcept { return generatorId_; }
+		const Address generator_id() const noexcept { return generatorId_; }
 		const Signature& block_signature() const noexcept { return blockSignature_; }
 		const char* confirmations() const noexcept { return confirmations_; }
 		const Balance& total_forged() const noexcept { return totalForged_; }

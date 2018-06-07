@@ -26,14 +26,14 @@ Block::Block(
 		const char *const newTotalForged
 ) :
 		version_(newVersion),
-		totalAmount_(Balance(newTotalAmount)),
-		totalFee_(Balance(newTotalFee)),
-		reward_(Balance(newReward)),
-		payloadHash_(Hash(newPayloadHash)),
-		generatorPublicKey_(Publickey(newGeneratorPublickey)),
-		generatorId_(Address(newGeneratorID)),
-		blockSignature_(Signature(newBlockSignature)),
-		totalForged_(Balance(newTotalForged))
+		totalAmount_(newTotalAmount),
+		totalFee_(newTotalFee),
+		reward_(newReward),
+		payloadHash_(newPayloadHash),
+		generatorPublicKey_(newGeneratorPublickey),
+		generatorId_(newGeneratorID),
+		blockSignature_(newBlockSignature),
+		totalForged_(newTotalForged)
 {
 	strncpy(this->id_, newID, sizeof(id_) / sizeof(id_[0]));
 	strncpy(this->timestamp_, newTimestamp, sizeof(timestamp_) / sizeof(timestamp_[0]));
@@ -82,16 +82,16 @@ size_t Block::printTo(Print &p) const
 		size += p.print(this->payloadLength_);
 
 		size += p.print("\npayloadHash: ");
-		size += p.print(this->payloadHash_.getValue());
+		size += p.print(this->payloadHash_);
 
 		size += p.print("\ngeneratorPublicKey: ");
-		size += p.print(this->generatorPublicKey_.getValue());
+		size += p.print(this->generatorPublicKey_);
 
 		size += p.print("\ngeneratorId: ");
 		size += p.print(this->generatorId_.getValue());
 
 		size += p.print("\nblockSignature: ");
-		size += p.print(this->blockSignature_.getValue());
+		size += p.print(this->blockSignature_);
 
 		size += p.print("\nconfirmations: ");
 		size += p.print(this->confirmations_);

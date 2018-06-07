@@ -14,11 +14,11 @@ Fees::Fees(
 		const char *const newSS,
 		const char *const newMS
 )	:
-		send_(Balance(newSend)),
-		vote_(Balance(newVote)),
-		delegate_(Balance(newDelegate)),
-		secondsignature_(Balance(newSS)),
-		multisignature_(Balance(newMS)) {}
+		send_(newSend),
+		vote_(newVote),
+		delegate_(newDelegate),
+		secondsignature_(newSS),
+		multisignature_(newMS) {}
 /*************************************************/
 
 /*************************************************

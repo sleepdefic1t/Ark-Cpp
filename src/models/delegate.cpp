@@ -12,11 +12,11 @@ ARK::Delegate::Delegate(
 		const char *const newAddress,
 		const char *const newPublicKey,
 		const char *const newVote,
-		int 							newProducedblocks,
-		int 							newMissedblocks,
-		int 							newRate,
-		double 						newApproval,
-		double 						newProductivity
+		int newProducedblocks,
+		int newMissedblocks,
+		int newRate,
+		double newApproval,
+		double newProductivity
 )	:
 		address_(Address(newAddress)),
 		publicKey_(Publickey(newPublicKey)),
@@ -44,7 +44,7 @@ size_t ARK::Delegate::printTo(Print &p) const
 		size += p.print(this->address_.getValue());
 
 		size += p.print("\npublicKey: ");
-		size += p.print(this->publicKey_.getValue());
+		size += p.print(this->publicKey_);
 
 		size += p.print("\nvote: ");
 		size += p.print(this->vote_.ark());

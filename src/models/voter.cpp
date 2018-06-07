@@ -1,14 +1,23 @@
-#include "models/voter.h"
 
+
+#include "models/voter.h"
+	
+ARK::Voter::Voter() :
+		username_(),
+		address_(),
+		publicKey_(),
+		balance_() { }
 
 ARK::Voter::Voter(
-		const char* const u, 
-		const char* const a, 
-		const char* const pk,
-		const char* const b
-) : username_(), address_(a), publicKey_(pk), balance_(b)
+		const char* const newUsername, 
+		const char* const newAddress, 
+		const char* const newPublickey,
+		const char* const newBalance
+) : address_(newAddress),
+		publicKey_(newPublickey),
+		balance_(newBalance)
 {
-	strncpy(username_, u, sizeof(username_) / sizeof(username_[0]));
+	strncpy(username_, newUsername, strlen(newUsername));
 }
 
 size_t ARK::Voter::printTo(Print& p) const 
@@ -22,7 +31,7 @@ size_t ARK::Voter::printTo(Print& p) const
 	size += p.print(this->address_.getValue());
 
 	size += p.print("\npublicKey: ");
-	size += p.print(this->publicKey_.getValue());
+	size += p.print(this->publicKey_);
 
 	size += p.print("\nbalance.ark: ");
 	size += p.print(this->balance_.ark());

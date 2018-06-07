@@ -1,14 +1,16 @@
+
+
 #ifndef ACCOUNT_H
 #define ACCOUNT_H
 
 #include "utilities/platform.h"
-#include "bip39/bip39.h"
 #include "constants/networks.h"
+#include "bip39/bip39.h"
+
 #include "types/address.h"
 #include "types/balance.h"
-#include "types/hash.h"
-#include "types/publickey.h"
-#include "types/signature.h"
+#include "types/crypto/eckey.h"
+
 #include <cstring>
 #include <cstdio>
 
@@ -39,7 +41,7 @@ namespace ARK
 struct Account :
 		public Printable
 {
-	private:
+	protected:
 		Address		address_;
 		Balance		unconfirmedBalance_;
 		Balance		balance_;
@@ -59,8 +61,8 @@ struct Account :
 				const char *const newUnconfirmedBalance,
 				const char *const newBalance,
 				const char *const newPublickey,
-				int 							newUnconfirmedSignature,
-				int 							newSecondSignature,
+				int newUnconfirmedSignature,
+				int newSecondSignature,
 				const char *const newSecondPublickey//,
 				// Hash              newMultisignatures[], //	FIXME
 				// Hash							newU_Multisignatures[] //	FIXME
@@ -75,13 +77,13 @@ struct Account :
 		/*************************************************
 		*	Constructor
 		**************************************************/
-		const Address& address()							const noexcept { return address_; }
-		const Balance& unconfirmed_balance()	const noexcept { return unconfirmedBalance_; }
-		const Balance& balance()							const noexcept { return balance_; }
-		const Publickey& public_key()					const noexcept { return publicKey_; }
-		int		unconfirmed_signature()					const noexcept { return unconfirmedSignature_; }
-		int		second_signature()							const noexcept { return secondSignature_; }
-		const Publickey& second_public_key()	const noexcept { return secondPublicKey_; }
+		const Address address() const noexcept { return address_; };
+		const Balance& unconfirmed_balance() const noexcept { return unconfirmedBalance_; };
+		const Balance& balance() const noexcept { return balance_; };
+		const Publickey& public_key() const noexcept { return publicKey_; };
+		int	unconfirmed_signature() const noexcept { return unconfirmedSignature_; };
+		int second_signature() const noexcept { return secondSignature_; };
+		const Publickey& second_public_key() const noexcept { return secondPublicKey_; };
 		// const Hash& multi_signatures()		const noexcept { return *multisignatures_; }
 		// const Hash& u_multi_signatures()	const noexcept { return *u_multisignatures_; }
 		/*************************************************/
@@ -105,6 +107,6 @@ Account make_account(
 	const std::string& passphrase = ARK::Crypto::BIP39::generate_mnemonic()
 );
 
-}
+};
 
 #endif

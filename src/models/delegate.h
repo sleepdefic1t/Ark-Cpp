@@ -3,10 +3,10 @@
 #ifndef DELEGATE_H
 #define DELEGATE_H
 
+#include "utilities/platform.h"
 #include "types/address.h"
 #include "types/balance.h"
-#include "types/publickey.h"
-#include "utilities/platform.h"
+#include "types/crypto/eckey.h"
 #include <cstring>
 #include <cstdio>
 
@@ -34,15 +34,15 @@ struct Delegate :
 		public Printable
 {
 	protected:
-		char 			username_[20];
-		Address 	address_;
+		char username_[20];
+		Address address_;
 		Publickey publicKey_;
-		Balance 	vote_;
-		int 			producedblocks_;
-		int 			missedblocks_;
-		int 			rate_;
-		double 		approval_;
-		double 		productivity_;
+		Balance vote_;
+		int producedblocks_;
+		int missedblocks_;
+		int rate_;
+		double approval_;
+		double productivity_;
 
 	public:
 		/*************************************************
@@ -53,11 +53,11 @@ struct Delegate :
 				const char *const newAddress,
 				const char *const newPublicKey,
 				const char *const newVote,
-				int 							newProducedblocks,
-				int 							newMissedblocks,
-				int 							newRate,
-				double 						newApproval,
-				double 						newProductivity
+				int newProducedblocks,
+				int newMissedblocks,
+				int newRate,
+				double newApproval,
+				double newProductivity
 		);
 		/*************************************************/
 
@@ -65,8 +65,8 @@ struct Delegate :
 		*	Accessors
 		**************************************************/
 		const char* username() const noexcept { return username_; }
-		const Address& address() const noexcept { return address_; }
-		const Publickey& public_key() const noexcept { return publicKey_; }
+		const Address address() const noexcept { return address_; }
+		const Publickey public_key() const noexcept { return publicKey_; }
 		const Balance& vote() const noexcept { return vote_; }
 		int produced_blocks() const noexcept { return producedblocks_; }
 		int missed_blocks() const noexcept { return missedblocks_; }

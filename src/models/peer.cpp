@@ -9,13 +9,13 @@ namespace ARK
 **************************************************/
 Peer::Peer(
 		const char *const newIP,
-		int 							newPort,
+		int newPort,
 		const char *const newVersion,
-		int 							newErrors,
+		int newErrors,
 		const char *const newOS,
 		const char *const newHeight,
 		const char *const newStatus,
-		int 							newDelay
+		int newDelay
 )	:
 		port_(newPort),
 		errors_(newErrors),
