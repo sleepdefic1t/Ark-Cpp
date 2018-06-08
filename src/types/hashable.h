@@ -81,7 +81,7 @@ class Hashable :
 		{
 			if (this->bytes_[0] != '\0')
 			{
-				char hexBuffer[(COUNT * 2) + 1];
+				char hexBuffer[(COUNT * 2) + 1] = { '\0' };
 				BytesToHex(this->bytes_, hexBuffer, COUNT);
 				return std::string( hexBuffer );
 			}
