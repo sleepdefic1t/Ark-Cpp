@@ -68,8 +68,8 @@ set (uECC_SRC
 )
 
 set(PLATFORM_SRC 
-	${PROJECT_SOURCE_DIR}/platform/json.cpp
-	${PROJECT_SOURCE_DIR}/platform/http.cpp
+	${PROJECT_SOURCE_DIR}/platform/os/json.cpp
+	${PROJECT_SOURCE_DIR}/platform/os/http.cpp
 )
 
 add_library(Ark-Cpp-lib STATIC ${COMMON_SRC} ${PLATFORM_SRC} ${BCL_SRC} ${uECC_SRC})

@@ -12,7 +12,7 @@
 ![environment](https://img.shields.io/badge/environment-macOS-blue.svg?style=flat)  
 ![environment](https://img.shields.io/badge/environment-windows-blue.svg?style=flat)  
 
-[![Build Status](https://travis-ci.org/sleepdeficit/Ark-Cpp.svg?branch=improvements_preview)](https://travis-ci.org/sleepdeficit/Ark-Cpp)  
+[![Build Status](https://travis-ci.org/sleepdefic1t/Ark-Cpp.svg?branch=improvements_preview)](https://travis-ci.org/sleepdefic1t/Ark-Cpp)  
 
 [![Build status](https://ci.appveyor.com/api/projects/status/axh3d985qa1xas4i?svg=true)](https://ci.appveyor.com/project/sleepdefic1t/ark-cpp)
 
