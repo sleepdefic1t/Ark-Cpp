@@ -47,7 +47,7 @@ TEST(crypto, get_private_key)
 	auto phrase = "seven age job canoe call lonely case same bounce giggle pluck mouse";
 	std::vector<uint8_t> priv_key(ARK::Crypto::PRIVATE_KEY_SIZE);
 	ARK::Crypto::get_private_key(phrase, priv_key);
-	auto priv_key_str = HexStr(priv_key);
+	auto priv_key_str = BytesToHex(priv_key);
 	ASSERT_STREQ(
 		"391c39c785128986b8959d40aeb9698071d68ebd07967b8f7d3ed8a35d4433c6",
 		priv_key_str.c_str()
@@ -61,7 +61,7 @@ TEST(crypto, get_public_key)
 	/*std::vector<uint8_t> priv_key = ParseHex("0000000000000000000000000000000000000000000000000000000000000001");
 	std::vector<uint8_t> pub_key(ARK::Crypto::COMPRESSED_PUBLIC_KEY_SIZE);
 	ARK::Crypto::get_public_key(priv_key, pub_key, true);
-	auto pub_str = HexStr(pub_key);
+	auto pub_str = BytesToHex(pub_key);
 	ASSERT_STREQ(
 		"0279be667ef9dcbbac55a06295ce870b07029bfcdb2dce28d959f2815b16f81798",
 		pub_str.c_str()
@@ -69,7 +69,7 @@ TEST(crypto, get_public_key)
 
 	pub_key = std::vector<uint8_t>(ARK::Crypto::PUBLIC_KEY_SIZE);
 	ARK::Crypto::get_public_key(priv_key, pub_key, false);
-	pub_str = HexStr(pub_key);
+	pub_str = BytesToHex(pub_key);
 	ASSERT_STREQ(
 		"0479be667ef9dcbbac55a06295ce870b07029bfcdb2dce28d959f2815b16f81798483ada7726a3c4655da4fbfc0e1108a8fd17b448a68554199c47d08ffb10d4b8",
 		pub_str.c_str()
@@ -79,7 +79,7 @@ TEST(crypto, get_public_key)
 	auto priv_key = ParseHex("2BFE58AB6D9FD575BDC3A624E4825DD2B375D64AC033FBC46EA79DBAB4F69A3E");
 	auto pub_key = std::vector<uint8_t>(ARK::Crypto::COMPRESSED_PUBLIC_KEY_SIZE);
 	ARK::Crypto::get_public_key(priv_key, pub_key, true);
-	auto pub_str = HexStr(pub_key);
+	auto pub_str = BytesToHex(pub_key);
 	ASSERT_STREQ(
 		"02b80011a883a0fd621ad46dfc405df1e74bf075cbaf700fd4aebef6e96f848340",
 		pub_str.c_str()
@@ -89,7 +89,7 @@ TEST(crypto, get_public_key)
 	priv_key = ParseHex("6C4313B03F2E7324D75E642F0AB81B734B724E13FEC930F309E222470236D66B");
 	pub_key = std::vector<uint8_t>(ARK::Crypto::COMPRESSED_PUBLIC_KEY_SIZE);
 	ARK::Crypto::get_public_key(priv_key, pub_key, true);
-	pub_str = HexStr(pub_key);
+	pub_str = BytesToHex(pub_key);
 	ASSERT_STREQ(
 		"024289801366bcee6172b771cf5a7f13aaecd237a0b9a1ff9d769cabc2e6b70a34",
 		pub_str.c_str()
@@ -97,7 +97,7 @@ TEST(crypto, get_public_key)
 
 	pub_key = std::vector<uint8_t>(ARK::Crypto::PUBLIC_KEY_SIZE);
 	ARK::Crypto::get_public_key(priv_key, pub_key, false);
-	pub_str = HexStr(pub_key);
+	pub_str = BytesToHex(pub_key);
 	ASSERT_STREQ(
 		"044289801366bcee6172b771cf5a7f13aaecd237a0b9a1ff9d769cabc2e6b70a34cec320a0565fb7caf11b1ca2f445f9b7b012dda5718b3cface369ee3a034ded6",
 		pub_str.c_str()
@@ -159,7 +159,7 @@ TEST(crypto, from_wif)
 	ARK::Crypto::from_wif("S9aCCSFvm8kNeyFb1t6pLb5oJs9tv96ag6uA8Du6UM7zsmsNHQiz", version, priv_key, compressed);
 	ASSERT_STREQ(
 		"0000000000000000000000000000000000000000000000000000000000000001",
-		HexStr(priv_key, priv_key + ARK::Crypto::PRIVATE_KEY_SIZE).c_str()
+		BytesToHex(priv_key, priv_key + ARK::Crypto::PRIVATE_KEY_SIZE).c_str()
 	);
 	ASSERT_TRUE(compressed);
 	ASSERT_EQ(ARK::Constants::Networks::Network_ADV::main.wif, version);
@@ -167,7 +167,7 @@ TEST(crypto, from_wif)
 	ARK::Crypto::from_wif("SB3iDxYmKgjkhfDZSKgLaBrp3Ynzd3yd3ZZF2ujVBK7vLpv6hWKK", version, priv_key, compressed);
 	ASSERT_STRCASEEQ(
 		"2BFE58AB6D9FD575BDC3A624E4825DD2B375D64AC033FBC46EA79DBAB4F69A3E",  // DEC: "19898843618908353587043383062236220484949425084007183071220218307100305431102"
-		HexStr(priv_key, priv_key + ARK::Crypto::PRIVATE_KEY_SIZE).c_str()
+		BytesToHex(priv_key, priv_key + ARK::Crypto::PRIVATE_KEY_SIZE).c_str()
 	);
 	ASSERT_TRUE(compressed);
 	ASSERT_EQ(ARK::Constants::Networks::Network_ADV::main.wif, version);
@@ -176,7 +176,7 @@ TEST(crypto, from_wif)
 	ARK::Crypto::from_wif("SDCe8styqokHi4pSe5jVRiYVV63Mef2TGsE1D4HhtGAL1DytHLtd", version, priv_key, compressed);
 	ASSERT_STRCASEEQ(
 		"6C4313B03F2E7324D75E642F0AB81B734B724E13FEC930F309E222470236D66B",  // DEC: "48968302285117906840285529799176770990048954789747953886390402978935544927851"
-		HexStr(priv_key, priv_key + ARK::Crypto::PRIVATE_KEY_SIZE).c_str()
+		BytesToHex(priv_key, priv_key + ARK::Crypto::PRIVATE_KEY_SIZE).c_str()
 	);
 	ASSERT_TRUE(compressed);
 	ASSERT_EQ(ARK::Constants::Networks::Network_ADV::main.wif, version);
