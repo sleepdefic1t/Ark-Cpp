@@ -74,10 +74,10 @@ size_t ARK::Transaction::printTo(Print &p) const
 		size += p.print(this->vendorField_);
 
 		size += p.print("\nsenderId: ");
-		size += p.print(this->senderId_.getValue());
+		size += p.print(this->senderId_);
 
 		size += p.print("\nrecipientId: ");
-		size += p.print(this->recipientId_.getValue());
+		size += p.print(this->recipientId_);
 
 		size += p.print("\nsenderPublicKey: ");
 		size += p.print(this->senderPublicKey_);

@@ -10,7 +10,6 @@
 *	ECPair: 
 *	Elliptical Curve SECP256K1 Privatekey Publickey pair
 ********************************************************************************/
-
 struct ECPair
 {
 	const Privatekey d;

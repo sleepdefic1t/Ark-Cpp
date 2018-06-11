@@ -88,7 +88,7 @@ size_t Block::printTo(Print &p) const
 		size += p.print(this->generatorPublicKey_);
 
 		size += p.print("\ngeneratorId: ");
-		size += p.print(this->generatorId_.getValue());
+		size += p.print(this->generatorId_);
 
 		size += p.print("\nblockSignature: ");
 		size += p.print(this->blockSignature_);

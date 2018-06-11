@@ -4,8 +4,7 @@
 #define HASH_H
 
 #include "utilities/platform.h"
-#include "types/hashable.h"
-#include <cstring>
+#include "types/base/hexable.h"
 
 /********************************************************************************
 * hash: 
@@ -17,6 +16,7 @@
 #define HASH_STORAGE_BYTE_COUNT 32
 #define HASH_STRING_LENGTH 64
 
-#define Hash Hashable<HASH_STORAGE_BYTE_COUNT>
+#define Hash Hexable<HASH_STORAGE_BYTE_COUNT>
+
 
 #endif

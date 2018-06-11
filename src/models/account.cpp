@@ -66,7 +66,7 @@ size_t Account::printTo(Print& p) const
 {
 	size_t size = 0;
 		size += p.print("address: ");
-		size += p.print(this->address_.getValue());
+		size += p.print(this->address_);
 
 		size += p.print("\nunconfirmedBalance: ");
 		size += p.print(this->unconfirmedBalance_.ark());

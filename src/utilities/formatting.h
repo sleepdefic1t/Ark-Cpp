@@ -7,6 +7,7 @@
 #include "utilities/platform.h"
 #include <memory>
 #include <vector>
+#include <random>
 
 /**
  fill buffer with random data before deleting char/uint8_t array
@@ -23,15 +24,10 @@
 
 static uint8_t getRandomDigit()
 {	
-#ifdef USE_IOT
-	randomSeed(random(0, 1024));
-	return random(0, 255);
-#else
 	std::default_random_engine generator;
 	std::uniform_int_distribution<uint32_t> distribution(0, 255);
 	return distribution(generator);
-#endif
-}
+};
 
 static void Sanitize(uint8_t* buffer, size_t size)
 {
@@ -41,8 +37,6 @@ static void Sanitize(uint8_t* buffer, size_t size)
 	};
 };
 /**/
-
-
 
 
 static bool isHex(const char *const newHash)
@@ -74,13 +68,13 @@ static std::string BytesToHex(const T itbegin, const T itend, bool fSpaces = fal
 	}
 
 	return rv;
-}
+};
 
 template<typename T>
 static inline std::string BytesToHex(const T& vch, bool fSpaces = false)
 {
 	return BytesToHex(vch.begin(), vch.end(), fSpaces);
-}
+};
 
 
 
@@ -106,7 +100,7 @@ static const signed char p_util_hexdigit[256] =
 static signed char HexDigit(char c)
 {
 	return p_util_hexdigit[(unsigned char)c];
-}
+};
 
 static std::vector<unsigned char> ParseHex(const char* psz)
 {
@@ -127,25 +121,6 @@ static std::vector<unsigned char> ParseHex(const char* psz)
 		vch.push_back(n);
 	}
 	return vch;
-}
-
-static std::vector<unsigned char> ParseHex(const std::string& str)
-{
-	return ParseHex(str.c_str());
-}
-
-static void HexToBytes(const char *const hex, uint8_t *bytes)
-{
-	size_t len = strlen(hex);
-	char buffer[3];
-	buffer[2] = 0;
-	int length = len;
-	for (int i = 0; i < length - 1; i += 2)
-	{
-		buffer[0] = hex[i];
-		buffer[1] = hex[i + 1];
-		bytes[i/2] = (char)strtoul(buffer, NULL, 16);
-	}
 };
 
 #endif

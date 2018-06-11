@@ -111,7 +111,7 @@ size_t ARK::API::Delegate::Respondable::Search::printTo(Print &p) const
 		size += p.print(this->username_);
 
 		size += p.print("\naddress: ");
-		size += p.print(this->address_.getValue());
+		size += p.print(this->address_);
 
 		size += p.print("\npublicKey: ");
 		size += p.print(this->publicKey_);

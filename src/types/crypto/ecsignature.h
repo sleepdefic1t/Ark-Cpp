@@ -4,7 +4,7 @@
 #define ECSIGNATURE_H
 
 #include "utilities/platform.h"
-#include "types/hashable.h"
+#include "types/base/hexable.h"
 
 /********************************************************************************
 *	Signature: 
@@ -17,7 +17,8 @@
 
 #define SIGNATURE_BYTE_COUNT 71
 #define SIGNATURE_STRING_LENGTH 142
-#define Signature Hashable<SIGNATURE_BYTE_COUNT>
+
+#define Signature Hexable<SIGNATURE_BYTE_COUNT>
 
 
 #endif

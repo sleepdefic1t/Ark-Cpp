@@ -4,8 +4,7 @@
 #define ECKEY_H
 
 #include "utilities/platform.h"
-#include "types/hashable.h"
-
+#include "types/base/hexable.h"
 
 /********************************************************************************
 *	Privatekey: 
@@ -17,7 +16,8 @@
 
 #define PRIVKEY_STORAGE_BYTE_COUNT 32
 #define PRIVKEY_STRING_LENGTH 64
-#define Privatekey Hashable<PRIVKEY_STORAGE_BYTE_COUNT>
+
+#define Privatekey Hexable<PRIVKEY_STORAGE_BYTE_COUNT>
 
 
 /********************************************************************************
@@ -32,7 +32,8 @@
 
 #define PUBKEY_STORAGE_BYTE_COUNT 33
 #define PUBKEY_STRING_LENGTH 66
-#define Publickey Hashable<PUBKEY_STORAGE_BYTE_COUNT>
+
+#define Publickey Hexable<PUBKEY_STORAGE_BYTE_COUNT>
 
 
 #endif

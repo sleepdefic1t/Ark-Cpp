@@ -1,65 +1,43 @@
 
 
-#ifndef HASHABLE_H
-#define HASHABLE_H
+#ifndef HEXABLE_H
+#define HEXABLE_H
 
 #include "utilities/platform.h"
 #include "utilities/formatting.h"
+#include "types/base/byteable.h"
 #include <vector>
 #include <memory>
 
 template <size_t COUNT>
-class Hashable :
-		public Printable
+class Hexable :
+		public Printable,
+		virtual Byteable<COUNT>
 {
 	public:
 		/************************************************** 
-		*	Constructor 
+		* Constructor 
 		* @brief: default empty constructor
 		**************************************************/
-		Hashable() : bytes_() {};
+		Hexable() { this->bytes_[0] = '\0'; };
 		/*************************************************/
-
+		
 		/************************************************** 
-		*	Constructor 
-		*	@param: const char *const newHash
+		* Constructor 
+		* @param: const char *const newHash
 		* @brief: also checks if Hash is empty before storage
 		**************************************************/
-		Hashable(const char *const newHash)
+		Hexable(const char *const newValue)
 		{ 
-			strlen(newHash) != 0 ?
-					this->set(newHash) :
-					void(this->bytes_[0] = '\0');
-		};
-		/*************************************************/
-
-		/************************************************** 
-		*	Deconstructor 
-		* @brief: fill this->bytes_ with random data before deconstruction
-		**************************************************/
-		~Hashable() {
-			Sanitize(this->bytes_, COUNT);
-		};
-		/*************************************************/
-
-		/************************************************** 
-		* @brief: returns element count of Hashable object
-		**************************************************/
-		size_t count() const { return COUNT; };
-		/*************************************************/
-
-		/************************************************** 
-		* @brief: returns size of Hashable object
-		**************************************************/
-		size_t size() const { return sizeof(this->bytes_); };
-		/*************************************************/
-
-		/************************************************** 
-		* @brief: returns vector of stored bytes
-		**************************************************/
-		const inline std::vector<uint8_t> vBytes() const
-		{
-			return std::vector<uint8_t>(this->bytes_);
+			(isHex(newValue))
+				? void(
+					std::memmove(
+						this->bytes_,
+						&ParseHex(newValue).data()[0],
+						COUNT
+					)
+				)
+				: void(this->bytes_[0] = '\0');
 		};
 		/*************************************************/
 
@@ -98,33 +76,13 @@ class Hashable :
 
 		/**************************************************
 		* @param: Print& p 
-		* @brief: prints Hashable object
+		* @brief: prints Hexable object
 		**************************************************/
 		virtual size_t printTo(Print& p) const
 		{
 			size_t size = 0;
 			size += p.print( this->hex().c_str() );
 			return size;
-		};
-		/*************************************************/
-
-	protected:
-		uint8_t bytes_[COUNT];
-
-		/**************************************************
-		* @param: const char *const newHash 
-		* @brief: Sets new Hash, copying byte-values to internal storage
-		**************************************************/
-		void set(const char *const newHash)
-		{
-			if (isHex(newHash))
-			{ 
-				HexToBytes(newHash, this->bytes_);
-			}
-			else
-			{ 
-				std::memmove(this->bytes_, newHash, COUNT);
-			};
 		};
 		/*************************************************/
 
