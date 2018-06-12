@@ -14,15 +14,14 @@ namespace Peer
 {
 namespace Respondable
 {
-
 /*************************************************
-*	ARK::API::Peer::Respondable::Version
+* ARK::API::Peer::Respondable::Version
 *
-*	@param:	char version{32]
-*	@param:	char build[32]
-*	@methods:	printTo(Print& p)
+* @param: char version{32]
+* @param: char build[32]
+* @methods:	printTo(Print& p)
 *
-*	@brief:	Model for Loader Status API Response
+* @brief:	Model for Loader Status API Response
 **************************************************/
 struct Version :
 		public Printable
@@ -33,7 +32,7 @@ struct Version :
 
 	public:
 		/*************************************************
-		*	Constructor
+		* Constructor
 		**************************************************/
 		Version(
 				const char* const newVersion,
@@ -42,7 +41,7 @@ struct Version :
 		/*************************************************/
 
 		/*************************************************
-		*	Accessors
+		* Accessors
 		**************************************************/
 		const char* version() const noexcept { return version_; }
 		const char* build() const noexcept { return build_; }
@@ -51,7 +50,7 @@ struct Version :
 		/*************************************************
 		*
 		**************************************************/
-    virtual size_t printTo(Print& p) const;
+    	virtual size_t printTo(Print& p) const;
 		/*************************************************/
 
 };

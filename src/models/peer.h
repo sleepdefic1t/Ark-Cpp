@@ -10,7 +10,7 @@
 namespace ARK
 {
 /*************************************************
-*	ARK::Peer
+* ARK::Peer
 **************************************************/
 struct Peer :
 		public Printable
@@ -27,7 +27,7 @@ struct Peer :
 
 	public:
 		/*************************************************
-		*	Constructor
+		* Constructor
 		**************************************************/
 		Peer(
 				const char *const newIP,
@@ -42,7 +42,7 @@ struct Peer :
 		/*************************************************/
 
 		/*************************************************
-		*	Accessors
+		* Accessors
 		**************************************************/
 		const char* ip() const noexcept { return ip_; }
 		int port() const noexcept { return port_; }

@@ -9,7 +9,7 @@ namespace ARK
 **************************************************/
 Block::Block(
 		const char *const newID,
-		int 							newVersion,
+		int newVersion,
 		const char *const newTimestamp,
 		const char *const newHeight,
 		const char *const newPreviousBlock,
@@ -24,8 +24,7 @@ Block::Block(
 		const char *const newBlockSignature,
 		const char *const newConfirmations,
 		const char *const newTotalForged
-) :
-		version_(newVersion),
+)	:	version_(newVersion),
 		totalAmount_(newTotalAmount),
 		totalFee_(newTotalFee),
 		reward_(newReward),
@@ -82,16 +81,16 @@ size_t Block::printTo(Print &p) const
 		size += p.print(this->payloadLength_);
 
 		size += p.print("\npayloadHash: ");
-		size += p.print(this->payloadHash_);
+		size += p.print(this->payloadHash_.c_str());
 
 		size += p.print("\ngeneratorPublicKey: ");
-		size += p.print(this->generatorPublicKey_);
+		size += p.print(this->generatorPublicKey_.c_str());
 
 		size += p.print("\ngeneratorId: ");
-		size += p.print(this->generatorId_);
+		size += p.print(this->generatorId_.c_str());
 
 		size += p.print("\nblockSignature: ");
-		size += p.print(this->blockSignature_);
+		size += p.print(this->blockSignature_.c_str());
 
 		size += p.print("\nconfirmations: ");
 		size += p.print(this->confirmations_);

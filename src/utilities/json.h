@@ -15,27 +15,27 @@ namespace Utilities
 * ARK::Utilities::JSONInterface 
 *
 * The purpose of this class is to serve as an
-*	entry point for integrating and simplifying
-*	integration of a JSON library
+* entry point for integrating and simplifying
+* integration of a JSON library
 **************************************************/
 class JSONInterface
 {
 	protected:
 		/**************************************************
-		*	Constructor
+		* Constructor
 		**************************************************/
 		JSONInterface() { }
 		/*************************************************/
 
 	public:
 		/**************************************************
-		*	Deconstructor
+		* Deconstructor
 		**************************************************/
 		virtual ~JSONInterface() { }
 		/*************************************************/
 
 		/**************************************************
-		*	valueFor
+		* valueFor
 		**************************************************/
 		virtual std::string valueFor(
 				const char *const key
@@ -43,7 +43,7 @@ class JSONInterface
 		/*************************************************/
 
 		/**************************************************
-		*	valueIn
+		* valueIn
 		**************************************************/
 		virtual std::string valueIn(
 				const char *const key,
@@ -52,7 +52,7 @@ class JSONInterface
 		/*************************************************/
 
 		/**************************************************
-		*	subvalueFor
+		* subvalueFor
 		**************************************************/
 		virtual std::string subvalueFor(
 				const char *const key,
@@ -61,7 +61,7 @@ class JSONInterface
 		/*************************************************/
 
 		/**************************************************
-		*	subarrayValueIn
+		* subarrayValueIn
 		**************************************************/
 		virtual std::string subarrayValueIn(
 				const char *const key,
@@ -77,7 +77,7 @@ class JSONInterface
 /**************************************************
 *	JSON object factory
 **************************************************/
-std::unique_ptr<JSONInterface> make_json_string(std::string str);
+std::unique_ptr<JSONInterface> makeJSONString(std::string str);
 /*************************************************/
 
 };

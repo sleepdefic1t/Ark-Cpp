@@ -21,7 +21,7 @@ void constructFees()
     "2500000000",
     "500000000"
   );
-  Serial.println("Offline Instantiated Fees Description\n");
+  Serial.print("\nOffline Instantiated Fees Description\n");
   Serial.println(fees); 
 };
 

@@ -3,29 +3,28 @@
 #include "api/peerable/peerable.h"
 
 /*************************************************
-*	/api/peers/get?ip=167.114.29.55&port=4002
+* /api/peers/get?ip=167.114.29.55&port=4002
 *
-*	EXAMPLE:
-*	{ 
-*		"success":true,
-*		"peer":
-*		{
-*			"ip": "String",
-*			"port": int,
-*			"version":  "String",
-*			"errors": int,
-*			"os": "String",
-*			"height": String,
-*			"status": "String",
-*			"delay":  int
-*		}
+* EXAMPLE:
+* { 
+*	"success":true,
+*	"peer":
+*	{
+*		"ip": "String",
+*		"port": int,
+*		"version":  "String",
+*		"errors": int,
+*		"os": "String",
+*		"height": String,
+*		"status": "String",
+*		"delay":  int
 *	}
+* }
 **************************************************/
 ARK::Peer ARK::API::Peerable::peer(
 		const char* const ip,
 		int port
-)
-{
+) {
 	char uri[68 + 1] = { '\0' };
 		strcpy(uri, ARK::API::Paths::Peer::get_s);
 		strcat(uri, "?ip=");
@@ -34,7 +33,7 @@ ARK::Peer ARK::API::Peerable::peer(
 	const auto len = strlen(uri);
 		sprintf(uri + len, "%d", port);
 	auto callback = netConnector.callback(uri);
-	auto parser = ARK::Utilities::make_json_string(callback);
+	auto parser = ARK::Utilities::makeJSONString(callback);
 	return {
 		parser->valueIn("peer", "ip").c_str(),
 		convert_to_int(parser->valueIn("peer", "port").c_str()),
@@ -48,19 +47,19 @@ ARK::Peer ARK::API::Peerable::peer(
 };
 
 /*************************************************
-*	/api/peers/version
+* /api/peers/version
 *
 * EXAMPLE:
-*	{
-*		"success":true,
-*		"version":  "String",
-*		"build":  "String"
-*	}
+* {
+*	"success":true,
+*	"version": "String",
+*	"build": "String"
+* }
 **************************************************/
 ARK::API::Peer::Respondable::Version ARK::API::Peerable::peerVersion()
 {
 	auto callback = netConnector.callback(ARK::API::Paths::Peer::version_s);
-	auto parser = ARK::Utilities::make_json_string(callback);
+	auto parser = ARK::Utilities::makeJSONString(callback);
 	return {
 		parser->valueFor("version").c_str(),
 		parser->valueFor("build").c_str()

@@ -11,7 +11,7 @@ namespace ARK
 {
 /*************************************************
 * ARK::Fees
-*	/api/blocks/getFees
+* /api/blocks/getFees
 **************************************************/
 struct Fees :
 		public Printable

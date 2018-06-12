@@ -13,35 +13,35 @@ namespace ARK
 namespace API
 {
 /*************************************************
-*	PUBLIC: ARK::API::Loadable
-*	public Loader::Gettable
-*	virtual ARK::Utilities::Network::Connectable
+* PUBLIC: ARK::API::Loadable
+* public Loader::Gettable
+* virtual ARK::Utilities::Network::Connectable
 *    
-*	API's Network Loader Model
+* API's Network Loader Model
 **************************************************/
 class Loadable :
 		virtual ARK::Utilities::Network::Connectable
 {
 	public:
 		/*************************************************
-		*	/api/loader/autoconfigure 
+		* /api/loader/autoconfigure
 		*
-		*	@return:	ARK::Network
+		* @return: ARK::Network
 		*
-		*	@brief:	Returns an auto-configured network from a Networks NetHash from a Node via API. 
+		* @brief: Returns an auto-configured network from a Networks NetHash from a Node via API. 
 		*
-		*	EXAMPLE:
+		* EXAMPLE:
+		* {
+		*	"success":true,
+		*	"network":
 		*	{
-		*		"success":true,
-		*		"network":
-		*		{
-		*			"nethash":  "Hash",
-		*			"token":  "const char*",
-		*			"symbol": "const char*,
-		*			"explorer": "const char*",
-		*			"version":  int
-		*		}
+		*		"nethash":  "Hash",
+		*		"token":  "const char*",
+		*		"symbol": "const char*,
+		*		"explorer": "const char*",
+		*		"version":  int
 		*	}
+		* }
 		**************************************************/
 		ARK::Network loaderAutoconfigure();
 		/*************************************************/
@@ -49,19 +49,19 @@ class Loadable :
 		/**************************************************************************************************/
 
 		/*************************************************
-		*	/api/loader/status
+		* /api/loader/status
 		*
-		*	@return:	ARK::API::Loader::Respondable::Status
+		* @return: ARK::API::Loader::Respondable::Status
 		*
-		*	@brief:	Gets Ark Network Status from a Node via API.
+		* @brief: Gets Ark Network Status from a Node via API.
 		*
-		*	EXAMPLE:
-		*	{ 
-		*		"success":true,
-		*		"loaded": bool,
-		*		"now":  int,
-		*		"blocksCount":  const char*
-		*	}
+		* EXAMPLE:
+		* { 
+		*	"success":true,
+		*	"loaded": bool,
+		*	"now":  int,
+		*	"blocksCount":  const char*
+		* }
 		**************************************************/
 		ARK::API::Loader::Respondable::Status loaderStatus();
 		/*************************************************/
@@ -69,20 +69,20 @@ class Loadable :
 		/**************************************************************************************************/
 
 		/*************************************************
-		*	/api/loader/status/sync
+		* /api/loader/status/sync
 		*
-		*	@return:	ARK::API::Loader::Respondable::Sync
+		* @return: ARK::API::Loader::Respondable::Sync
 		*
-		*	@brief:	Gets Ark Network Sync Status from a Node via API. 
+		* @brief:	Gets Ark Network Sync Status from a Node via API. 
 		*
-		*	EXAMPLE:
-		*	{ 
-		*		"success":true,
-		*		"syncing":  bool,
-		*		"blocks": int,
-		*		"height": const char*,
-		*		"id": "const char*"
-		*	}
+		* EXAMPLE:
+		* { 
+		*	"success": bool,
+		*	"syncing":  bool,
+		*	"blocks": int,
+		*	"height": const char*,
+		*	"id": "const char*"
+		* }
 		**************************************************/
 		ARK::API::Loader::Respondable::Sync loaderSync();
 		/*************************************************/

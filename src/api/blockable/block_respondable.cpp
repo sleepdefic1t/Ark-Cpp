@@ -16,8 +16,7 @@ namespace Respondable
 Height::Height(
 		const char *const newHeight,
 		const char *const newID
-)
-{
+) {
 	strncpy(this->height_, newHeight, sizeof(height_) / sizeof(height_[0]));
 	strncpy(this->id_, newID, sizeof(id_) / sizeof(id_[0]));
 }
@@ -50,7 +49,7 @@ Status::Status(
 		const char *const newNethash,
 		const char *const newReward,
 		const char *const newSupply
-) :	fee_(newFee),
+)	:	fee_(newFee),
 		milestone_(newMilestone),
 		nethash_(newNethash),
 		reward_(newReward),
@@ -80,7 +79,7 @@ size_t Status::printTo(Print &p) const
 		size += p.print(this->milestone_);
 
 		size += p.print("\nnethash: ");
-		size += p.print(this->nethash_);
+		size += p.print(this->nethash_.c_str());
 
 		size += p.print("\nreward: ");
 		size += p.print(this->reward_.ark());

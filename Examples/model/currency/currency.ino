@@ -17,7 +17,7 @@ void constructCurrency()
     "ark",
     "Ѧ"
   );
-  Serial.println("Offline Instantiated Block Description\n"); 
+  Serial.print("\nOffline Instantiated Block Description\n"); 
   Serial.println(currency); 
 };
 

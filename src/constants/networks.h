@@ -13,7 +13,6 @@ namespace Constants
 {
 namespace Networks 
 {
-
 /*************************************************
  * Devnet
  * ARK::Network devnet = ARK::Constants::Networks::Devnet::model;

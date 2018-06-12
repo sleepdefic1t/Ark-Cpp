@@ -11,33 +11,35 @@ namespace Account
 namespace Respondable
 {
 /*************************************************
-*	ARK::API::Account::Respondable::Balances
+* ARK::API::Account::Respondable::Balances
 *
-*	@brief: Empty Initialization
+* @brief: Empty Initialization
 **************************************************/
 Balances::Balances() {};
 /*************************************************/
 
 /*************************************************
-*	ARK::API::Account::Respondable::Balances(const char* const, const char* const)
+* ARK::API::Account::Respondable::Balances(const char* const, const char* const)
 *
-*	@brief: Constructed API Balances Response Object
+* @brief: Constructed API Balances Response Object
 **************************************************/
 Balances::Balances(
 		const char *const newConfirmed,
 		const char *const newUnconfirmed
-) :	confirmed_(newConfirmed), unconfirmed_(newUnconfirmed) {}
+)	:	confirmed_(newConfirmed),
+		unconfirmed_(newUnconfirmed) {}
 /*************************************************/
 
 /*************************************************
-*	ARK::API::Account::Respondable::Balances(const Balance& c, const Balance& u)
+* ARK::API::Account::Respondable::Balances(const Balance& c, const Balance& u)
 *
-*	@brief: Constructed API Balances Response Object from Balances
+* @brief: Constructed API Balances Response Object from Balances
 **************************************************/
 Balances::Balances(
 		const Balance& newConfirmed,
 		const Balance& newUnconfirmed
-):	confirmed_(newConfirmed), unconfirmed_(newUnconfirmed) {}
+)	:	confirmed_(newConfirmed),
+		unconfirmed_(newUnconfirmed) {}
 /*************************************************/
 
 /*************************************************

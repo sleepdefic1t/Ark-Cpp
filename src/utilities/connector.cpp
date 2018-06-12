@@ -10,11 +10,11 @@ namespace Network
 {
 /**************************************************
 * ARK::Utilities::Network::Connector
-*	Default: Empty Constructor
+* Default: Empty Constructor
 **************************************************/
 Connector::Connector() : 
-    // network(nullptr),
-    // netType(ARK::NetworkType::INVALID),
+    network(nullptr),
+    netType(ARK::NetworkType::INVALID),
     networkPeer(),
     networkPort(-1) {}
 /*************************************************/
@@ -26,8 +26,7 @@ Connector::Connector() :
 **************************************************/
 Connector::Connector(
 		const ARK::Network& network
-)
-{
+) {
   this->connect(network);
 }
 /*************************************************/
@@ -39,11 +38,10 @@ Connector::Connector(
 **************************************************/
 Connector::Connector(
 		ARK::NetworkType networkType
-)
-{
-	(networkType == DEV) ?
-			(this->connect(ARK::Constants::Networks::Model::Devnet)) :
-			(this->connect(ARK::Constants::Networks::Model::Mainnet));
+) {
+	(networkType == DEV)
+		? (this->connect(ARK::Constants::Networks::Model::Devnet))
+		: (this->connect(ARK::Constants::Networks::Model::Mainnet));
 }
 /*************************************************/
 
@@ -54,8 +52,7 @@ Connector::Connector(
 **************************************************/
 Connector::Connector(
 		const Connector& other
-) :
-		network(other.network),
+)	:	network(other.network),
 		netType(other.netType),
 		networkPort(other.networkPort)
 {
@@ -86,8 +83,9 @@ Connector& Connector::operator=(const Connector& other)
 /**************************************************
 *
 **************************************************/
-Connector::Connector(Connector&& other) :
-		network(other.network),
+Connector::Connector(
+		Connector&& other
+)	:	network(other.network),
 		netType(other.netType),
 		networkPort(other.networkPort)
 {
@@ -120,22 +118,17 @@ Connector& Connector::operator=(Connector&& other)
 **************************************************/
 void Connector::connect(
 		const ARK::Network& network
-)
-{
-	if (strcmp(network.nethash(), ARK::Constants::Networks::Devnet::nethash) == 0)
+) {
+	if (strcmp(network.nethash().c_str(), ARK::Constants::Networks::Devnet::nethash.c_str()) == 0)
 	{
 		this->netType = ARK::NetworkType::DEV;
-	}
-	else if (strcmp(network.nethash(), ARK::Constants::Networks::Mainnet::nethash) == 0)
+	} else if (strcmp(network.nethash().c_str(), ARK::Constants::Networks::Mainnet::nethash.c_str()) == 0)
 	{
 		this->netType = ARK::NetworkType::MAIN;
-	}
-	else if (strcmp(network.nethash(), "") != 0)
+	} else if (strcmp(network.nethash().c_str(), "") != 0)
 	{
 		this->netType = ARK::NetworkType::CUSTOM;
-	}
-	else
-	{
+	} else {
 		this->netType = ARK::NetworkType::INVALID;
 	};
 	this->network = &network;
@@ -152,8 +145,7 @@ void Connector::connectCustom(
 		const ARK::Network& network,
 		const char* peer,
 		int port
-)
-{
+) {
 	this->netType = ARK::NetworkType::CUSTOM;
 	this->network = &network;
 	strncpy(this->networkPeer, peer, sizeof(this->networkPeer) / sizeof(this->networkPeer[0]));
@@ -165,13 +157,13 @@ void Connector::connectCustom(
 
 /**************************************************
 * Sets Random Peer based on this->NetworkType
-*	returns error String if error
+* returns error String if error
 **************************************************/
 const char* Connector::randomPeer() const
 {
 	if (
-			this->netType == ARK::NetworkType::DEV ||
-			this->netType == ARK::NetworkType::MAIN
+		this->netType == ARK::NetworkType::DEV
+		|| this->netType == ARK::NetworkType::MAIN
 	)
 	{
 		return ARK::Constants::Networks::randomPeer(this->netType);
@@ -188,13 +180,11 @@ const char* Connector::randomPeer() const
 **************************************************/
 void Connector::setNetworkPeer(
 		const char* peer
-)
-{
+) {
 	if (this->netType == ARK::NetworkType::DEV)
 	{
 		this->networkPort = ARK::Constants::Networks::Devnet::port;
-	}
-	else if (this->netType == ARK::NetworkType::MAIN)
+	} else if (this->netType == ARK::NetworkType::MAIN)
 	{
 		this->networkPort = ARK::Constants::Networks::Mainnet::port;
 	}
@@ -206,13 +196,12 @@ void Connector::setNetworkPeer(
 
 /**************************************************
 * Manages directing the callback from
-*	the devices HTTPClient Library
+* the devices HTTPClient Library
 **************************************************/
 // TODO: add proper check for callback.
 std::string Connector::callback(
 		const char *const request
-)
-{
+) {
 	std::string httpGet = this->http->get(this->networkPeer, this->networkPort, request);
 	while (strlen(httpGet.data()) < 10)
 	{

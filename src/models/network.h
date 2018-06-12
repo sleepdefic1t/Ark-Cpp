@@ -11,16 +11,16 @@
 
 /********************************************************************************
 * Network: 
-*	578e820911f24e039733b45e4882b73e301f813a0d2c31330dafda84534ffa23
-*	DARK
-*	DѦ
-*	https://dexplorer.ark.io/
-*	30
+* 578e820911f24e039733b45e4882b73e301f813a0d2c31330dafda84534ffa23
+* DARK
+* DѦ
+* https://dexplorer.ark.io/
+* 30
 ********************************************************************************/
 namespace ARK
 {
 /*************************************************
-*	ARK::NetworkType
+* ARK::NetworkType
 **************************************************/
 enum NetworkType
 {
@@ -34,7 +34,7 @@ enum NetworkType
 /**************************************************************************************************/
 
 /*************************************************
-*	ARK::Network
+* ARK::Network
 **************************************************/
 struct Network :
 		public Printable
@@ -48,13 +48,13 @@ struct Network :
 
 	public:
 		/*************************************************
-		*	Default: Empty Constructor
+		* Default: Empty Constructor
 		**************************************************/
 		Network() = default;
 		/*************************************************/
 
 		/*************************************************
-		*	Constructor
+		* Constructor
 		**************************************************/
 		Network(
 				const char *const newNethash,
@@ -66,7 +66,7 @@ struct Network :
 		/*************************************************/
 
 		/*************************************************
-		*	Accessors
+		* Accessors
 		**************************************************/
 		const Hash& nethash() const noexcept { return nethash_; }
 		const char* token() const noexcept { return token_; }
@@ -76,17 +76,17 @@ struct Network :
 		/*************************************************/
 
 		/*************************************************
-		*	ARK::Network::Network::operator==
+		* ARK::Network::Network::operator==
 		*
-		*	@brief:	Comparison of two Network Models for equality.
+		* @brief:	Comparison of two Network Models for equality.
 		**************************************************/
 		bool operator==(const Network &rhs) const;
 		/*************************************************/
 
 		/*************************************************
-		*	ARK::Network::Network::operator!=
+		* ARK::Network::Network::operator!=
 		*
-		*	@brief:	Comparison of two Network Models for inequality.
+		* @brief:	Comparison of two Network Models for inequality.
 		**************************************************/
 		bool operator!=(const Network &rhs) const;
 		/*************************************************/
@@ -103,7 +103,7 @@ struct Network :
 /**************************************************************************************************/
 
 /*************************************************
-*	ARK::Network_ADV
+* ARK::Network_ADV
 **************************************************/
 namespace Network_ADV
 {
@@ -130,9 +130,9 @@ struct network_t
 };
 /*************************************************/
 
-}
+};
 /*************************************************/
-
+;
 }
 
 #endif

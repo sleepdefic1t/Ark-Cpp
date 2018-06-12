@@ -5,7 +5,7 @@ namespace ARK
 {
 
 /*************************************************
-*	Constructor
+* Constructor
 **************************************************/
 Peer::Peer(
 		const char *const newIP,
@@ -16,8 +16,7 @@ Peer::Peer(
 		const char *const newHeight,
 		const char *const newStatus,
 		int newDelay
-)	:
-		port_(newPort),
+)	:	port_(newPort),
 		errors_(newErrors),
 		delay_(newDelay)
 {

@@ -31,7 +31,7 @@ TEST(api, test_peer_version)
 /*  ==================================  */
 /*	BROKEN: fix for large callbacks  */
 /*	Peers callback is ~10,000 bytes  */
-//  String peersDescription = _arkManager.peers().getValue();
+//  String peersDescription = _arkManager.peers();
 //	Serial.println("peersDescription: ");
 //	Serial.println(peersDescription);
 //	Serial.println("\n=====\n");

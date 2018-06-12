@@ -19,23 +19,23 @@ namespace ARK
 namespace API
 {
 /*************************************************
-*	PUBLIC: ARK::API::Blockable
-*	public Block::Gettable
-*	virtual ARK::Utilities::Network::Connectable
+* PUBLIC: ARK::API::Blockable
+* public Block::Gettable
+* virtual ARK::Utilities::Network::Connectable
 *    
-*	API's Block Model
+* API's Block Model
 **************************************************/
 class Blockable :
 		virtual ARK::Utilities::Network::Connectable
 {
 	public:
 		/*************************************************
-		*	/api/blocks/get?id=_blockID
+		* /api/blocks/get?id=_blockID
 		*
-		*	@param:	const char *const blockId
-		*	@return:	ARK::Block
+		* @param: const char *const blockId
+		* @return: ARK::Block
 		*
-		*	@brief:	Uses Block ID to get that Blocks information from a Node via API.
+		* @brief: Uses Block ID to get that Blocks information from a Node via API.
 		**************************************************/
 		ARK::Block block(const char *const blockId);
 		/*************************************************/
@@ -43,11 +43,11 @@ class Blockable :
 		/**************************************************************************************************/
 
 		/*************************************************
-		*	/api/blocks/getEpoch
+		* /api/blocks/getEpoch
 		*
-		*	@param:	char buffer[]
+		* @param: char buffer[]
 		*
-		*	@brief:	Gets the Block Epoch from a Node via API.
+		* @brief: Gets the Block Epoch from a Node via API.
 		**************************************************/
 		void blockEpoch(char buffer[]);
 		/*************************************************/
@@ -55,11 +55,11 @@ class Blockable :
 		/**************************************************************************************************/
 
 		/*************************************************
-		*	/api/blocks/getHeight
+		* /api/blocks/getHeight
 		*
-		*	@return:	ARK::API::Block::Respondable::Height
+		* @return: ARK::API::Block::Respondable::Height
 		*
-		*	@brief:	Gets the Block-Height from a Node via API.
+		* @brief: Gets the Block-Height from a Node via API.
 		**************************************************/
 		ARK::API::Block::Respondable::Height blockHeight();
 		/*************************************************/
@@ -67,11 +67,10 @@ class Blockable :
 		/**************************************************************************************************/
 
 		/*************************************************
-		*	/api/blocks/getNethash
+		* /api/blocks/getNethash
 		*
-		*	@return:	Hash
-		*
-		*	@brief:	Gets the Networks Hash from a Node via API.
+		* @return: Hash
+		* @brief: Gets the Networks Hash from a Node via API.
 		**************************************************/
 		Hash blockNethash();
 		/*************************************************/
@@ -79,12 +78,12 @@ class Blockable :
 		/**************************************************************************************************/
 
 		/*************************************************
-		*	/api/blocks/getFee
+		* /api/blocks/getFee
 		*
-		*	EXAMPLE:
+		* EXAMPLE:
 		* {
 		*   "success":true,
-		*   "fee":  Balance
+		*   "fee": Balance
 		* }
 		**************************************************/
 		Balance blockFee();
@@ -93,11 +92,11 @@ class Blockable :
 		/**************************************************************************************************/
 
 		/*************************************************
-		*	/api/blocks/getFees
+		* /api/blocks/getFees
 		*
-		*	@return:	ARK::Fees
+		* @return: ARK::Fees
 		*
-		*	@brief:	Gets Ark Network Fees from a Node via API.
+		* @brief: Gets Ark Network Fees from a Node via API.
 		**************************************************/
 		ARK::Fees blockFees();
 		/*************************************************/
@@ -105,11 +104,11 @@ class Blockable :
 		/**************************************************************************************************/
 
 		/*************************************************
-		*	/api/blocks/getMilestone
+		* /api/blocks/getMilestone
 		*
-		*	@return:	const char*
+		* @return: const char*
 		*
-		*	@brief:	Gets the Block Milestone from a Node via API.
+		* @brief: Gets the Block Milestone from a Node via API.
 		**************************************************/
 		const char *blockMilestone();
 		/*************************************************/
@@ -117,11 +116,11 @@ class Blockable :
 		/**************************************************************************************************/
 
 		/*************************************************
-		*	/api/blocks/getReward
+		* /api/blocks/getReward
 		*
-		*	@return:	Balance
+		* @return: Balance
 		*
-		*	@brief:	Gets the Block Reward from a Node via API.
+		* @brief:	Gets the Block Reward from a Node via API.
 		**************************************************/
 		Balance blockReward();
 		/*************************************************/
@@ -129,11 +128,11 @@ class Blockable :
 		/**************************************************************************************************/
 
 		/*************************************************
-		*	/api/blocks/getSupply
+		* /api/blocks/getSupply
 		*
-		*	@return:	Balance
+		* @return: Balance
 		*
-		*	@brief:	Gets the current Ark Supply from a Node via API.
+		* @brief: Gets the current Ark Supply from a Node via API.
 
 		**************************************************/
 		Balance blockSupply();
@@ -142,11 +141,11 @@ class Blockable :
 		/**************************************************************************************************/
 
 		/*************************************************
-		*	/api/blocks/getStatus
+		* /api/blocks/getStatus
 		*
-		*	@return:	ARK::API::Block::Respondable::Status
+		* @return: ARK::API::Block::Respondable::Status
 		*
-		*	@brief:	Gets the Ark Networks Status from a Node via API.
+		* @brief: Gets the Ark Networks Status from a Node via API.
 		**************************************************/
 		ARK::API::Block::Respondable::Status blockStatus();
 		/*************************************************/
@@ -161,7 +160,6 @@ class Blockable :
 
 
 /**************************************************************************************************/
-
 /*************************************************/
 /*************************************************
 *	BROKEN: fix for large callbacks
@@ -175,5 +173,4 @@ class Blockable :
 // { return ARK::API::Block::Gettable::blocks(this->netConnector); };
 /*************************************************/
 /*************************************************/
-
 /**************************************************************************************************/

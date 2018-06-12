@@ -13,7 +13,7 @@
 namespace ARK
 {
 /*************************************************
-*	ARK::Transaction
+* ARK::Transaction
 **************************************************/
 class Transaction :
 		public Printable
@@ -35,13 +35,13 @@ class Transaction :
 
 	public:
 		/*************************************************
-		*	Default: Empty Constructor
+		* Default: Empty Constructor
 		**************************************************/
 		Transaction();
 		/*************************************************/
 
 		/*************************************************
-		*	Constructor
+		* Constructor
 		**************************************************/
 		Transaction(
 				const char *const newID,
@@ -61,7 +61,7 @@ class Transaction :
 		/*************************************************/
 
 		/*************************************************
-		*	Accessors
+		* Accessors
 		**************************************************/
 		const Hash& id() const noexcept { return id_; };
 		const char* block_id() const noexcept { return blockID_; };

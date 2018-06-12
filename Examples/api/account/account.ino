@@ -19,41 +19,36 @@ void checkAPI() {
 
   /*************************************************/
   auto balances = arkManager.accountBalance(darkAddress);
-    Serial.println("balanceDescription: ");
+    Serial.print("\nbalanceDescription: ");
     Serial.println(balances);
-    Serial.println("\n=====\n");
     delay(50); 
   /*************************************************/
 
   /*************************************************/
   auto publicKey = arkManager.accountPublickey(darkAddress);
-    Serial.println("publicKey: ");
-    Serial.println(publicKey);
-    Serial.println("\n=====\n");
+    Serial.print(\n"publicKey: ");
+    Serial.println(publicKey.c_str());
     delay(50);
   /*************************************************/
 
   /*************************************************/
   Balance delegatesFee = arkManager.accountDelegatesFee(darkAddress);
-    Serial.println("delegatesFee: ");
+    Serial.print("\ndelegatesFee: ");
     Serial.println(delegatesFee.ark());
-    Serial.println("\n=====\n");
     delay(50);
   /*************************************************/
   
   /*************************************************/
   ARK::Delegate delegate = arkManager.accountDelegates(darkAddress);
-    Serial.println("delegate: ");
+    Serial.print("\ndelegate: ");
     Serial.println(delegate);
-    Serial.println("\n=====\n");
   delay(50);
   /*************************************************/
 
   /*************************************************/
   auto account = arkManager.account(darkAddress);
-    Serial.println("account: ");
+    Serial.print("\naccount: ");
     Serial.println(account);
-    Serial.println("\n=====\n");
   /*************************************************/
 }
 /*************************************************/

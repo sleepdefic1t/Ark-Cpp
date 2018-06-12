@@ -24,15 +24,14 @@ namespace Delegate
 {
 namespace Respondable
 {
-
 /*************************************************
-*	ARK::API::Delegate::Respondable::ForgedByAccount
+* ARK::API::Delegate::Respondable::ForgedByAccount
 *
-*	@param:	const Balance
-*	@param:	const Balance
-*	@param:	const Balance
+* @param: const Balance
+* @param: const Balance
+* @param: const Balance
 *
-*	@brief:	Model for Delegate Forging Totals API Response
+* @brief: Model for Delegate Forging Totals API Response
 **************************************************/
 struct ForgedByAccount :
 		public Printable
@@ -41,9 +40,10 @@ struct ForgedByAccount :
 		Balance fees_;
 		Balance rewards_;
 		Balance forged_;
+
 	public:
 		/*************************************************
-		*	Constructor
+		* Constructor
 		**************************************************/
 		ForgedByAccount(
 				const char *const newFees,
@@ -53,7 +53,7 @@ struct ForgedByAccount :
 		/*************************************************/
 
 		/*************************************************
-		*	Accessors
+		* Accessors
 		**************************************************/
 		const Balance& fees() const noexcept { return fees_; }
 		const Balance& rewards() const noexcept { return rewards_; }
@@ -72,13 +72,13 @@ struct ForgedByAccount :
 /**************************************************************************************************/
 
 /*************************************************
-*	ARK::API::Delegate::Respondable::NextForgers
+* ARK::API::Delegate::Respondable::NextForgers
 *
-*	@param: char[64]
-*	@param: char[64]
-*	@param:	Publickey* const
+* @param: char[64]
+* @param: char[64]
+* @param: Publickey* const
 *
-*	@brief:	Model for Next 10 Forging Delegate Publickeys API Response
+* @brief: Model for Next 10 Forging Delegate Publickeys API Response
 **************************************************/
 struct NextForgers :
 		public Printable
@@ -90,7 +90,7 @@ struct NextForgers :
 
 	public:
 		/*************************************************
-		*	Constructor
+		* Constructor
 		**************************************************/
 		NextForgers(
 				int newCB,
@@ -100,7 +100,7 @@ struct NextForgers :
 		/*************************************************/
 
 		/*************************************************
-		*	Accessors
+		* Accessors
 		**************************************************/
 		int current_block() const noexcept { return currentBlock_; }
 		int current_slot() const noexcept { return currentSlot_; }
@@ -119,14 +119,13 @@ struct NextForgers :
 /**************************************************************************************************/
 
 /*************************************************
-*	ARK::API::Delegate::Respondable::Search
+* ARK::API::Delegate::Respondable::Search
 *
-*	@brief:	Model for Delegate Search API Response
+* @brief:	Model for Delegate Search API Response
 **************************************************/
 struct Search :
 		public Printable
 {
-
 	protected:
 		char username_[20 + 1];
 		Address address_;
@@ -137,7 +136,7 @@ struct Search :
 
 	public:
 		/*************************************************
-		*	Constructor
+		* Constructor
 		**************************************************/
 		Search(
 				const char *const newUsername,
@@ -150,7 +149,7 @@ struct Search :
 		/*************************************************/
 
 		/*************************************************
-		*	Accessors
+		* Accessors
 		**************************************************/
 		const char* username() const noexcept { return username_; }
 		const Address& address() const noexcept { return address_; }
@@ -172,12 +171,12 @@ struct Search :
 /**************************************************************************************************/
 
 /*************************************************
-*	ARK::API::Delegate::Respondable::Voters
+* ARK::API::Delegate::Respondable::Voters
 *
-*	@param:	size_t
-*	@param:	ARK::Voter* const
+* @param: size_t
+* @param: ARK::Voter* const
 *
-*	@brief:	Model for Delegate Voters API Response
+* @brief: Model for Delegate Voters API Response
 **************************************************/
 struct Voters :
 		public Printable
@@ -189,7 +188,7 @@ struct Voters :
 
 	public:
 		/*************************************************
-		*	Constructor
+		* Constructor
 		**************************************************/
 		Voters(size_t c) : count_(c), voters_(new ARK::Voter[c]) {}
 		/*************************************************/

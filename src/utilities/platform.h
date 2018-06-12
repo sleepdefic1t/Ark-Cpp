@@ -31,7 +31,7 @@
 
 inline int convert_to_int(const std::string& s)
 {
-	return atoi(s.c_str());
+return atoi(s.c_str());
 }
 
 inline float convert_to_float(const std::string& s)
@@ -42,10 +42,13 @@ inline float convert_to_float(const std::string& s)
 /*************************************************
 * substringCount(const char *str, const char* substr)
 *
-*		Returns number of times a substring(subStr)
-*   appears in a provided string(str)
+* Returns number of times a substring(subStr)
+* appears in a provided string(str)
 **************************************************/
-inline int substringCount(const char* str, const char* subStr) {
+inline int substringCount(
+		const char* str,
+		const char* subStr
+) {
 	if (strlen(subStr) == 0) { return -1; }
 	int count = 0;
 	for (const auto* s = str; (s = strstr(s, subStr)); ++s) {
@@ -55,7 +58,11 @@ inline int substringCount(const char* str, const char* subStr) {
 }
 /*************************************************/
 
-inline uint32_t generate_random_number(uint32_t min, uint32_t max, bool /* static_seed */ = false) {
+inline uint32_t generate_random_number(
+		uint32_t min,
+		uint32_t max,
+		bool /* static_seed */ = false
+) {
 	return random(min, max);
 }
 
@@ -71,18 +78,26 @@ inline uint32_t generate_random_number(uint32_t min, uint32_t max, bool /* stati
 #include <cstring>
 #include <stdexcept>
 
-inline int convert_to_int(const std::string& s) {
+inline int convert_to_int(const std::string& s)
+{
 	return std::stoi(s);
 }
 
-inline float convert_to_float(const std::string& s) {
+inline float convert_to_float(const std::string& s)
+{
 	return std::stof(s);
 }
 
-uint32_t generate_random_number(uint32_t min, uint32_t max, bool static_seed = false);
+uint32_t generate_random_number(
+		uint32_t min,
+		uint32_t max,
+		bool static_seed = false
+);
 
-inline int substringCount(const std::string &str, const std::string &sub)
-{
+inline int substringCount(
+		const std::string &str,
+		const std::string &sub
+) {
   if (sub.length() == 0)
     return 0;
   int count = 0;

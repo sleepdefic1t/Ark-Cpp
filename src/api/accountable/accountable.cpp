@@ -15,14 +15,13 @@
 **************************************************/
 ARK::API::Account::Respondable::Balances ARK::API::Accountable::accountBalance(
 		const Address &arkAddress
-)
-{
+) {
 	char uri[68 + 1] = { '\0' };
 		strcpy(uri, ARK::API::Paths::Account::getBalance_s);
 		strcat(uri, "?address=");
-		strcat(uri, arkAddress.getValue());
+		strcat(uri, arkAddress.c_str());
 	auto callback = netConnector.callback(uri);
-	auto parser = ARK::Utilities::make_json_string(callback);
+	auto parser = ARK::Utilities::makeJSONString(callback);
 	return {
 		parser->valueFor("balance").c_str(),
 		parser->valueFor("unconfirmedBalance").c_str()
@@ -43,14 +42,13 @@ ARK::API::Account::Respondable::Balances ARK::API::Accountable::accountBalance(
 **************************************************/
 Publickey ARK::API::Accountable::accountPublickey(
 		const Address &arkAddress
-)
-{
+) {
 	char uri[94 + 1] = { '\0' };
 		strcpy(uri, ARK::API::Paths::Account::getPublickey_s);
 		strcat(uri, "?address=");
-		strcat(uri, arkAddress.getValue());
+		strcat(uri, arkAddress.c_str());
 	auto callback = netConnector.callback(uri);
-	auto parser = ARK::Utilities::make_json_string(callback);
+	auto parser = ARK::Utilities::makeJSONString(callback);
 	return {
 		parser->valueFor("publicKey").c_str()
 	};
@@ -60,24 +58,23 @@ Publickey ARK::API::Accountable::accountPublickey(
 /**************************************************************************************************/
 
 /*************************************************
-*	/api/accounts/delegates/fee?address=arkAddress
+* /api/accounts/delegates/fee?address=arkAddress
 *
-*	EXAMPLE:
-*	{
-*		"success":true,
-*		"fee":2500000000
-*	}
+* EXAMPLE:
+* {
+* 	"success":true,
+* 	"fee":2500000000
+* }
 **************************************************/
 Balance ARK::API::Accountable::accountDelegatesFee(
 		const Address &arkAddress
-)
-{
+) {
 	char uri[95 + 1] = { '\0' };
 		strcpy(uri, ARK::API::Paths::Account::delegatesFee_s);
 		strcat(uri, "?address=");
-		strcat(uri, arkAddress.getValue());
+		strcat(uri, arkAddress.c_str());
 	auto callback = netConnector.callback(uri);
-	auto parser = ARK::Utilities::make_json_string(callback);
+	auto parser = ARK::Utilities::makeJSONString(callback);
 	return Balance(parser->valueFor("fee").c_str());
 };
 /*************************************************/
@@ -85,9 +82,9 @@ Balance ARK::API::Accountable::accountDelegatesFee(
 /**************************************************************************************************/
 
 /*************************************************
-*	/api/accounts/delegates?address=arkAddress
+* /api/accounts/delegates?address=arkAddress
 *
-*	EXAMPLE:
+* EXAMPLE:
 *	{
 *		"success":true,
 *		"delegates":
@@ -108,14 +105,13 @@ Balance ARK::API::Accountable::accountDelegatesFee(
 **************************************************/
 ARK::Delegate ARK::API::Accountable::accountDelegates(
 		const Address &arkAddress
-)
-{
+) {
 	char uri[91 + 1] = { '\0' };
 		strcpy(uri, ARK::API::Paths::Account::delegates_s);
 		strcat(uri, "?address=");
-		strcat(uri, arkAddress.getValue());
+		strcat(uri, arkAddress.c_str());
 	auto callback = netConnector.callback(uri);
-	auto parser = ARK::Utilities::make_json_string(callback);
+	auto parser = ARK::Utilities::makeJSONString(callback);
 	return {
 		parser->subarrayValueIn("delegates", 0, "username").c_str(),
 		parser->subarrayValueIn("delegates", 0, "address").c_str(),
@@ -154,14 +150,13 @@ ARK::Delegate ARK::API::Accountable::accountDelegates(
 **************************************************/
 ARK::Account ARK::API::Accountable::account(
 		const Address &arkAddress
-)
-{
+) {
 	char uri[81 + 1] = { '\0' };
 		strcpy(uri, ARK::API::Paths::Account::accounts_s);
 		strcat(uri, "?address=");
-		strcat(uri, arkAddress.getValue());
+		strcat(uri, arkAddress.c_str());
 	auto callback = netConnector.callback(uri);
-	auto parser = ARK::Utilities::make_json_string(callback);
+	auto parser = ARK::Utilities::makeJSONString(callback);
 		/********************
 		*	FIXME 
 		* multisignatures & u_multisignatures returns an array of Transaction ID's (Hash type)

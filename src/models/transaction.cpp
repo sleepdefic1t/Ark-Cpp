@@ -3,13 +3,13 @@
 namespace ARK
 {
 /*************************************************
-*	Default: Empty Constructor
+* Default: Empty Constructor
 **************************************************/
 ARK::Transaction::Transaction() {};
 /*************************************************/
 
 /*************************************************
-*	Constructor
+* Constructor
 **************************************************/
 ARK::Transaction::Transaction(
 		const char *const newID,
@@ -25,7 +25,7 @@ ARK::Transaction::Transaction(
 		const char *const newSenderPublickey,
 		const char *const newSignature,
 		const char *const newConfirmations
-) :	id_(newID),
+)	:	id_(newID),
 		type_(newType),
 		amount_(newAmount),
 		fee_(newFee), 
@@ -50,7 +50,7 @@ size_t ARK::Transaction::printTo(Print &p) const
 {
 	size_t size = 0;
 		size += p.print("\nid: ");
-		size += p.print(this->id_);
+		size += p.print(this->id_.c_str());
 
 		size += p.print("\nblockID: ");
 		size += p.print(this->blockID_);
@@ -74,16 +74,16 @@ size_t ARK::Transaction::printTo(Print &p) const
 		size += p.print(this->vendorField_);
 
 		size += p.print("\nsenderId: ");
-		size += p.print(this->senderId_);
+		size += p.print(this->senderId_.c_str());
 
 		size += p.print("\nrecipientId: ");
-		size += p.print(this->recipientId_);
+		size += p.print(this->recipientId_.c_str());
 
 		size += p.print("\nsenderPublicKey: ");
-		size += p.print(this->senderPublicKey_);
+		size += p.print(this->senderPublicKey_.c_str());
 
 		size += p.print("\nsignature: ");
-		size += p.print(this->signature_);
+		size += p.print(this->signature_.c_str());
 
 		size += p.print("\nconfirmations: ");
 		size += p.print(this->confirmations_);

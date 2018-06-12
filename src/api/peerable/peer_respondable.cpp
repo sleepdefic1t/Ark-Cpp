@@ -10,9 +10,8 @@ namespace Peer
 {
 namespace Respondable
 {
-
 /*************************************************
-*	Constructor
+* Constructor
 **************************************************/
 Version::Version(
 		const char* const newVersion,

@@ -13,21 +13,9 @@
     ARK::API::MultiSignaturable  
     ARK::API::Peerable  
     ARK::API::Signaturable  
-    ARK::API::Transactionable  
+    ARK::API::Transactionable   
 
-2) Gettable
-> These methods return API Respondables to their corresponding API Modelables  
-
-    ARK::API::Account::Gettable  
-    ARK::API::Block::Gettable  
-    ARK::API::Delegate::Gettable  
-    ARK::API::Loader::Gettable  
-    ARK::API::MultiSignature::Gettable  
-    ARK::API::Peer::Gettable  
-    ARK::API::Signature::Gettable  
-    ARK::API::Transaction::Gettable  
-
-3) Respondable
+2) Respondable
 > These are structs that model certain API Responses  
 
     ARK::API::Account::Respondable  
@@ -42,25 +30,23 @@
 ```
 ======================= Accounts ====================  
 
-
 /api/accounts/getBalance?address=arkAddress
- ARK::API::Account::Respondable::Balances accountBalance(Address arkAddress)
+ ARK::API::Account::Respondable::Balances accountBalance(const Address arkAddress)
 
 /api/accounts/getPublickey?address=arkAddress
- Publickey accountPublickey(String arkAddress)
+ Publickey accountPublickey(const Address arkAddress)
 
 /api/accounts/delegates/fee?address=arkAddress
- Balance accountDelegatesFee(String arkAddress)
+ Balance accountDelegatesFee(const Address  arkAddress)
 
 /api/accounts/delegates?address=arkAddress
- ARK::Delegate accountDelegates(String arkAddress)
+ ARK::Delegate accountDelegates(const Address arkAddress)
 
 /api/accounts?address=arkAddress
- ARK::Account account(String _arkAddress)
+ ARK::Account account(const Address  arkAddress)
 
 ===================== /Accounts =====================
 ```
-
 
 ```
 ======================= Blocks ======================  

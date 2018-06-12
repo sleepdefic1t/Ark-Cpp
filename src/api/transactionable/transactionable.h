@@ -19,24 +19,24 @@ namespace ARK
 namespace API
 {
 /*************************************************
-*	PUBLIC: ARK::API::Transactionable
-*	public Transaction::Gettable
-*	virtual ARK::Utilities::Network::Connectable
+* PUBLIC: ARK::API::Transactionable
+* public Transaction::Gettable
+* virtual ARK::Utilities::Network::Connectable
 *    
-*	API's Peer Model
+* API's Peer Model
 **************************************************/
 class Transactionable :
 		virtual ARK::Utilities::Network::Connectable
 {
 public:
 	/*************************************************
-	*	/api/transactions/get?id=
+	* /api/transactions/get?id=
 	*
-	*	@method:	transaction(Hash id)
-	*	@return:	ARK::Transaction
-	*	@param:	Hash id
+	* @method: transaction(Hash id)
+	* @return: ARK::Transaction
+	* @param: Hash id
 	*
-	*	@brief: Gets Transaction by Hash ID from a Node via API.
+	* @brief: Gets Transaction by Hash ID from a Node via API.
 	**************************************************/
 	ARK::Transaction transaction(const Hash &id);
 	/*************************************************/
@@ -44,13 +44,13 @@ public:
 	/**************************************************************************************************/
 
 	/*************************************************
-	*	/api/transactions/unconfirmed/get?id=
+	* /api/transactions/unconfirmed/get?id=
 	*
-	*	@method:	transactionUnconfirmed(Hash id)
-	*	@return:	const char*
-	*	@param:	Hash id
+	* @method: transactionUnconfirmed(Hash id)
+	* @return: const char*
+	* @param: Hash id
 	*
-	*	@brief: Gets Unconfirmed Transaction by Hash ID from a Node via API.
+	* @brief: Gets Unconfirmed Transaction by Hash ID from a Node via API.
 	**************************************************/
 	ARK::API::Transaction::Respondable::Unconfirmed transactionUnconfirmed(const Hash &id);
 	/*************************************************/
@@ -58,12 +58,12 @@ public:
 	/**************************************************************************************************/
 
 	/*************************************************
-	*	/api/transactions/unconfirmed
+	* /api/transactions/unconfirmed
 	*
-	*	@method:	transactionsUnconfirmed()
-	*	@return:	const char*
+	* @method: transactionsUnconfirmed()
+	* @return: const char*
 	*
-	*	@brief:	Gets Unconfirmed Transactions from a Node via API.
+	* @brief: Gets Unconfirmed Transactions from a Node via API.
 	**************************************************/
 	ARK::API::Transaction::Respondable::Unconfirmed transactionsUnconfirmed();
 	/*************************************************/
@@ -71,12 +71,12 @@ public:
 	/**************************************************************************************************/
 
 	/*************************************************
-	*	/api/transactions/get?id=
+	* /api/transactions/get?id=
 	*
-	*	@method:	getVendorField(Hash txID)
-	*	@param:	Hash txID
+	* @method: getVendorField(Hash txID)
+	* @param: Hash txID
 	*
-	*	@brief: Gets vendorField for a given Transaction by  txID from a Node via API.
+	* @brief: Gets vendorField for a given Transaction by  txID from a Node via API.
 	**************************************************/
 	const char *getVendorField(const Hash &txID);
 	/*************************************************/
@@ -90,12 +90,12 @@ public:
 #endif
 
 
-	/*************************************************/
-	/*************************************************/
-	/*	BROKEN: fix for large callbacks  */
-	/*	Peers callback is ~28,908 bytes  */
-	/*  /api/transactions  */
-	// String transactions()
-	// { return ARK::API::Transaction::Gettable::transactions(this->netConnector); };
-	/*************************************************/
-	/*************************************************/
+/*************************************************/
+/*************************************************/
+/*	BROKEN: fix for large callbacks  */
+/*	Peers callback is ~28,908 bytes  */
+/*  /api/transactions  */
+// String transactions()
+// { return ARK::API::Transaction::Gettable::transactions(this->netConnector); };
+/*************************************************/
+/*************************************************/

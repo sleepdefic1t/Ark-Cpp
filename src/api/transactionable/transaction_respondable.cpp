@@ -11,12 +11,12 @@ namespace Transaction
 namespace Respondable 
 {
 /*************************************************
-*	Constructor
+* Constructor
 **************************************************/
 Unconfirmed::Unconfirmed(
 		const ARK::Transaction* const newTx,
 		int newCount
-) : count_(newCount)
+)	:	count_(newCount)
 {
 	assert((unsigned int)this->count_ <= transactions_.size());
 	for (int i = 0u; i < this->count_; ++i)
@@ -27,7 +27,7 @@ Unconfirmed::Unconfirmed(
 /*************************************************/
 
 // /*************************************************
-// *	  Deconstructor
+// * Deconstructor
 // **************************************************/
 // Unconfirmed::~Unconfirmed() { delete[] transactions_; }
 // /*************************************************/
@@ -41,9 +41,7 @@ size_t Unconfirmed::printTo(Print &p) const
 	if (this->count_ == 0)
 	{
 		size += p.print("There are currently no Unconfirmed Transactions");
-	}
-	else
-	{
+	} else {
 		for (int i = 0; i < this->count_; i++)
 		{
 			size += p.print("\ntransaction ");

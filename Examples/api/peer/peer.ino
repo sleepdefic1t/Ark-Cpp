@@ -20,9 +20,8 @@ void checkAPI()
 
    /*************************************************/
   auto peer = arkManager.peer("167.114.29.55", 4002);
-    Serial.println("peer: ");
+    Serial.print("\npeer: ");
     Serial.println(peer);
-    Serial.println("\n=====\n");
     delay(50);
   /*************************************************/
 
@@ -40,9 +39,8 @@ void checkAPI()
 
   /*************************************************/
   auto peerVersion = arkManager.peerVersion();
-    Serial.println("peerVersion: ");
+    Serial.print("\npeerVersion: ");
     Serial.println(peerVersion);
-    Serial.println("\n=====\n");
     delay(50);
   /*************************************************/
 }

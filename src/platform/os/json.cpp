@@ -7,7 +7,6 @@
 #include "utilities/json.h"
 #include "nlohmann/json.hpp"
 using json = nlohmann::json;
-
 #include <cstring>
 
 namespace ARK
@@ -27,11 +26,11 @@ struct JSON :
 
 	public:
 		/**************************************************
-		*	Constructor
+		* Constructor
 		**************************************************/
 		JSON(
 				std::string _jsonStr
-		) : _json(json::parse(_jsonStr)) {}
+		)	:	_json(json::parse(_jsonStr)) {}
 		/*************************************************/
 
 		/*************************************************/
@@ -43,10 +42,9 @@ struct JSON :
 		**************************************************/
 		std::string valueFor(
 				const char *const key
-		) override
-		{
+		) override {
 			const auto& forKey = _json[key];
-			return get_value(forKey);
+			return getValue(forKey);
 		};
 		/*************************************************/
 
@@ -58,10 +56,9 @@ struct JSON :
 		std::string valueIn(
 				const char *const key,
 				const char *const subkey
-		) override
-		{
+		) override {
 			const auto& forKey = _json[key][subkey];
-			return get_value(forKey);
+			return getValue(forKey);
 		};
 		/*************************************************/
 
@@ -73,10 +70,9 @@ struct JSON :
 		std::string subvalueFor(
 				const char *const key,
 				int pos
-		) override
-		{
+		) override {
 			const auto& forKey = _json[key][pos];
-			return get_value(forKey);
+			return getValue(forKey);
 		};
 		/*************************************************/
 		
@@ -89,19 +85,17 @@ struct JSON :
 				const char *const key,
 				int pos,
 				const char *const subkey
-		) override
-		{
+		) override {
 			const auto& forKey = _json[key][pos][subkey];
-			return get_value(forKey);
+			return getValue(forKey);
 		};
 		/*************************************************/
 		
 	private:
 		/*************************************************/
-		std::string get_value(
+		std::string getValue(
 				const json& j
-		) const
-		{
+		) const {
 			if ( j.is_string() )
 			{
 				return j.get<std::string>();
@@ -118,10 +112,9 @@ struct JSON :
 };
 
 /*************************************************/
-std::unique_ptr<JSONInterface> make_json_string(
+std::unique_ptr<JSONInterface> makeJSONString(
 		std::string json_str
-)
-{
+) {
 	return std::unique_ptr<JSONInterface>(new JSON(json_str));
 }
 /*************************************************/

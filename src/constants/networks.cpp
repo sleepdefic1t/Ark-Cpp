@@ -23,19 +23,6 @@ namespace Devnet
 };
 /**************************************************************************************************/
 
-// template<size_t SIZE>
-// class Seeds
-// {
-// 	protected:
-// 		uint8_t bytes_[SIZE][4];
-// 	public:
-// 		Seeds( uint8_t newSeeds[SIZE][4] )
-// 		{
-// 			for (int i = 0; i < SIZE - 1; i++)
-// 			std::memcpy( this->bytes_, newSeeds, SIZE );
-// 		};
-// };
-
 /**************************************************************************************************/
 namespace Mainnet
 {
@@ -96,7 +83,7 @@ namespace Model
 {
 	const ARK::Network Devnet =
 	{
-		Devnet::nethash,
+		Devnet::nethash.c_str(),
 		"DARK",
 		"DѦ",
 		"https://dexplorer.ark.io/",
@@ -105,7 +92,7 @@ namespace Model
 /************************************************/
 	const ARK::Network Mainnet =
 	{
-		Mainnet::nethash,
+		Mainnet::nethash.c_str(),
 		"ARK",
 		"Ѧ",
 		"https://explorer.ark.io/",
@@ -170,6 +157,19 @@ namespace Network_ADV
 };
 
 
+
+// template<size_t SIZE>
+// class Seeds
+// {
+// 	protected:
+// 		uint8_t bytes_[SIZE][4];
+// 	public:
+// 		Seeds( uint8_t newSeeds[SIZE][4] )
+// 		{
+// 			for (int i = 0; i < SIZE - 1; i++)
+// 			std::memcpy( this->bytes_, newSeeds, SIZE );
+// 		};
+// };
 
 // // #define SEED_SIZE 4
 

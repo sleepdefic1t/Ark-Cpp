@@ -32,7 +32,6 @@ class Connector :
 	private:
 		const ARK::Network* network;
 		ARK::NetworkType netType;
-
 		char networkPeer[16];
 		int networkPort;
 

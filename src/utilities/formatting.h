@@ -29,8 +29,10 @@ static uint8_t getRandomDigit()
 	return distribution(generator);
 };
 
-static void Sanitize(uint8_t* buffer, size_t size)
-{
+static void Sanitize(
+		uint8_t* buffer,
+		size_t size
+) {
 	for (unsigned int i = 0; i < size; i++)
 	{
 		buffer[i] = getRandomDigit();
@@ -75,8 +77,6 @@ static inline std::string BytesToHex(const T& vch, bool fSpaces = false)
 {
 	return BytesToHex(vch.begin(), vch.end(), fSpaces);
 };
-
-
 
 
 static const signed char p_util_hexdigit[256] =

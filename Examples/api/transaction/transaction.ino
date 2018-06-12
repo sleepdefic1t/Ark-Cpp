@@ -19,9 +19,8 @@ void checkAPI() {
 
   /*************************************************/
 	auto transactionFromID = arkManager.transaction(transactionID);
-    Serial.println("transactionFromID: ");
+    Serial.print("\ntransactionFromID: ");
     Serial.println(transactionFromID);
-    Serial.println("\n=====\n");
     delay(50);
   /*************************************************/
 
@@ -39,17 +38,15 @@ void checkAPI() {
 
   /*************************************************/
 	auto transactionUnconfirmedFromId = arkManager.transactionUnconfirmed(transactionID);
-    Serial.println("transactionUnconfirmedFromId: ");
+    Serial.print("\ntransactionUnconfirmedFromId: ");
     Serial.println(transactionUnconfirmedFromId);
-    Serial.println("\n=====\n");
     delay(50);
   /*************************************************/
 
   /*************************************************/
 	auto transactionsUnconfirmed = arkManager.transactionsUnconfirmed();
-    Serial.println("transactionsUnconfirmed: ");
+    Serial.print("\ntransactionsUnconfirmed: ");
     Serial.println(transactionsUnconfirmed);
-    Serial.println("\n=====\n");
     delay(50);
   /*************************************************/
 }

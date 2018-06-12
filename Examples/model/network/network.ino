@@ -22,7 +22,7 @@ void constructNetwork()
     "http://dexplorer.ark.io",
     30
   );
-  Serial.println("Offline Instantiated Network Description\n"); 
+  Serial.print("\nOffline Instantiated Network Description\n"); 
   Serial.println(network); 
 };
 

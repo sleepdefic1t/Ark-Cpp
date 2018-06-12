@@ -18,7 +18,7 @@ namespace ARK
 namespace API
 {
 /*************************************************
-*	ARK::API::Manager
+* ARK::API::Manager
 **************************************************/
 class Manager :
 		public Accountable,
@@ -33,15 +33,15 @@ class Manager :
 {
 	public:
 		/*************************************************
-		*	ARK::API::Manager
+		* ARK::API::Manager
 		**************************************************/
 		Manager();
 		/*************************************************/
 
 		/*************************************************
-		*	ARK::API::Manager
+		* ARK::API::Manager
 		*
-		*	@param: const ARK::Network& network 
+		* @param: const ARK::Network& network 
 		* @brief: Creates API Manager instance using an Ark-based network.
 		**************************************************/
 		explicit Manager(const ARK::Network& network);
@@ -49,10 +49,10 @@ class Manager :
 
 	private:
 		/*************************************************
-		*	ARK::API::Manager::connect
+		* ARK::API::Manager::connect
 		*
-		*	@param: const ARK::Network& network 
-		*	@brief:	Private internal method. Connects APIManager to an Ark-based network.
+		* @param: const ARK::Network& network 
+		* @brief: Private internal method. Connects APIManager to an Ark-based network.
 		**************************************************/
 		void connect(const ARK::Network& network);
 		/*************************************************/

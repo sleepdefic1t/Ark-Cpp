@@ -7,8 +7,8 @@
 #include "types/crypto/eckey.h"
 
 /********************************************************************************
-*	ECPair: 
-*	Elliptical Curve SECP256K1 Privatekey Publickey pair
+* ECPair: 
+* Elliptical Curve SECP256K1 Privatekey Publickey pair
 ********************************************************************************/
 struct ECPair
 {

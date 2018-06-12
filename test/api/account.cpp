@@ -16,17 +16,17 @@ TEST(api, test_account)
 {
 	ARK::API::Manager arkManager(ARK::Constants::Networks::Model::Devnet);	
 	const auto account = arkManager.account(darkAddress);
-	ASSERT_STREQ("DHQ4Fjsyiop3qBR4otAjAu6cBHkgRELqGA", account.address().getValue() );
+	ASSERT_STREQ("DHQ4Fjsyiop3qBR4otAjAu6cBHkgRELqGA", account.address().c_str());
 	ASSERT_STRNE("0.0", account.balance().ark());
 	ASSERT_STRNE("0", account.balance().arktoshi());
 	ASSERT_STRNE("0.0", account.unconfirmed_balance().ark());
 	ASSERT_STRNE("0", account.unconfirmed_balance().arktoshi());
-	ASSERT_STREQ("0275776018638e5c40f1b922901e96cac2caa734585ef302b4a2801ee9a338a456", account.public_key() );
+	ASSERT_STREQ("0275776018638e5c40f1b922901e96cac2caa734585ef302b4a2801ee9a338a456", account.public_key().c_str());
 	ASSERT_EQ(1, account.unconfirmed_signature());
 	ASSERT_EQ(1, account.second_signature());
-	ASSERT_STREQ("03ad2a481719c80571061f0c941d57e91c928700d8dd132726edfc0bf9c4cb2869", account.second_public_key() );
-	// ASSERT_STREQ("", account.multi_signatures().getValue());
-	// ASSERT_STREQ("", account.u_multi_signatures().getValue());
+	ASSERT_STREQ("03ad2a481719c80571061f0c941d57e91c928700d8dd132726edfc0bf9c4cb2869", account.second_public_key().c_str());
+	// ASSERT_STREQ("", account.multi_signatures());
+	// ASSERT_STREQ("", account.u_multi_signatures());
 }
 
 TEST(api, test_account_balance)
@@ -44,8 +44,8 @@ TEST(api, test_account_delegates)
 	ARK::API::Manager arkManager(ARK::Constants::Networks::Model::Devnet);
 	const auto delegate = arkManager.accountDelegates(darkAddress);
 	ASSERT_STREQ("sleepdeficit", delegate.username());
-	ASSERT_STREQ("DHQ4Fjsyiop3qBR4otAjAu6cBHkgRELqGA", delegate.address().getValue());
-	ASSERT_STREQ("0275776018638e5c40f1b922901e96cac2caa734585ef302b4a2801ee9a338a456", delegate.public_key());
+	ASSERT_STREQ("DHQ4Fjsyiop3qBR4otAjAu6cBHkgRELqGA", delegate.address().c_str());
+	ASSERT_STREQ("0275776018638e5c40f1b922901e96cac2caa734585ef302b4a2801ee9a338a456", delegate.public_key().c_str());
 }
 
 TEST(api, test_account_delegates_fee)
@@ -73,5 +73,5 @@ TEST(api, test_account_public_key)
 {
 	ARK::API::Manager arkManager(ARK::Constants::Networks::Model::Devnet);
 	const auto pubkey = arkManager.accountPublickey(darkAddress);
-	ASSERT_STREQ("0275776018638e5c40f1b922901e96cac2caa734585ef302b4a2801ee9a338a456",  pubkey);
+	ASSERT_STREQ("0275776018638e5c40f1b922901e96cac2caa734585ef302b4a2801ee9a338a456",  pubkey.c_str());
 }

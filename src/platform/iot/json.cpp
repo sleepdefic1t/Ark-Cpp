@@ -42,8 +42,7 @@ struct JSON :
 		**************************************************/
 		std::string valueFor(
 				const char *const key
-		) override
-		{
+		) override {
 			DynamicJsonBuffer jsonBuffer(capacity);
 			JsonObject &root = jsonBuffer.parseObject(this->jsonStr.c_str());
 			return std::string(root[key].as<const char*>());
@@ -58,8 +57,7 @@ struct JSON :
 		std::string valueIn(
 				const char *const key,
 				const char *const subkey
-		) override
-		{
+		) override {
 			DynamicJsonBuffer jsonBuffer(capacity);
 			JsonObject &root = jsonBuffer.parseObject(this->jsonStr.c_str());
 			return std::string(root[key][subkey].as<const char*>());
@@ -74,8 +72,7 @@ struct JSON :
 		std::string subvalueFor(
 				const char *const key,
 				int pos
-		) override
-		{
+		) override {
 			DynamicJsonBuffer jsonBuffer(capacity);
 			JsonObject &root = jsonBuffer.parseObject(this->jsonStr.c_str());
 			return std::string(root[key][pos].as<const char*>());
@@ -91,8 +88,7 @@ struct JSON :
 				const char *const key,
 				int pos,
 				const char *const subkey
-		) override
-		{
+		) override {
 			DynamicJsonBuffer jsonBuffer(capacity);
 			JsonObject &root = jsonBuffer.parseObject(this->jsonStr.c_str());
 			return std::string(root[key][pos][subkey].as<const char*>());
@@ -104,12 +100,11 @@ struct JSON :
 }
 
 /**************************************************
-* make_json_string
+* makeJSONString
 **************************************************/
-std::unique_ptr<JSONInterface> make_json_string(
+std::unique_ptr<JSONInterface> makeJSONString(
 		std::string json_str
-)
-{
+) {
 	return std::unique_ptr<JSONInterface>(new JSON(json_str));
 }
 /*************************************************/

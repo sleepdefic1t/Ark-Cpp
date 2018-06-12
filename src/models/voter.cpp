@@ -13,7 +13,7 @@ ARK::Voter::Voter(
 		const char* const newAddress, 
 		const char* const newPublickey,
 		const char* const newBalance
-) : address_(newAddress),
+) 	:	address_(newAddress),
 		publicKey_(newPublickey),
 		balance_(newBalance)
 {
@@ -28,10 +28,10 @@ size_t ARK::Voter::printTo(Print& p) const
 	size += p.print(this->username_);
 
 	size += p.print("\naddress: ");
-	size += p.print(this->address_);
+	size += p.print(this->address_.c_str());
 
 	size += p.print("\npublicKey: ");
-	size += p.print(this->publicKey_);
+	size += p.print(this->publicKey_.c_str());
 
 	size += p.print("\nbalance.ark: ");
 	size += p.print(this->balance_.ark());

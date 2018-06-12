@@ -28,7 +28,7 @@ void constructPeer()
     "OK",
     9
   );
-  Serial.println("Offline Instantiated Peer Description\n"); 
+  Serial.print("\nOffline Instantiated Peer Description\n"); 
   Serial.println(peer); 
 };
 

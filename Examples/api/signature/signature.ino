@@ -20,18 +20,16 @@ void checkAPI()
 
   /*************************************************/
   Balance signaturesFee = arkManager.signaturesFee();
-    Serial.print("signaturesFee: ");
+    Serial.print("\nsignaturesFee: ");
     Serial.println(signaturesFee.ark());
-    Serial.println();
     delay(50);
   /*************************************************/
 
 
   /*************************************************/
   auto multisignaturesPending = arkManager.multisignaturesPending(darkPubkey);
-    Serial.print("multisignaturesPending: ");
+    Serial.print("\nmultisignaturesPending: ");
     Serial.println(multisignaturesPending);
-    Serial.println("\n=====\n");
     delay(50);
   /*************************************************/
 

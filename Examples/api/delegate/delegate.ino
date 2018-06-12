@@ -19,41 +19,36 @@ void checkAPI() {
 
   /*************************************************/
   const int delegatesCount = arkManager.delegatesCount();
-    Serial.println("delegatesCount: ");
+    Serial.printl(\n"delegatesCount: ");
     Serial.println(delegatesCount);
-    Serial.println("\n=====\n");
     delay(50);
   /*************************************************/
 
   /*************************************************/
   auto delegateSearch = arkManager.delegateSearch("sleepdeficit");
-    Serial.println("delegateSearch: ");
+    Serial.print("\ndelegateSearch: ");
     Serial.println(delegateSearch);
-    Serial.println("\n=====\n");
     delay(50);
   /*************************************************/
 
   /*************************************************/
   auto delegateVoters = arkManager.delegateVoters(darkPubkey);
-    Serial.println("delegateVoters: ");
+    Serial.print("\ndelegateVoters: ");
     Serial.println(delegateVoters);
-    Serial.println("\n=====\n");
     delay(50);
   /*************************************************/
 
   /*************************************************/
   ARK::Delegate delegateByUsername = arkManager.delegate("sleepdeficit");
-    Serial.println("delegateByUsername: ");
+    Serial.print("\ndelegateByUsername: ");
     Serial.println(delegateByUsername);
-    Serial.println("\n=====\n");
     delay(50);
   /*************************************************/
 
   /*************************************************/
   ARK::Delegate delegateByPublickey = arkManager.delegate(darkPubkey);
-    Serial.println("delegateByPublickey: ");
-    Serial.println(delegateByPublickey);
-    Serial.println("\n=====\n");
+    Serial.print("\ndelegateByPublickey: ");
+    Serial.println(delegateByPublickey.c_str());
     delay(50);
   /*************************************************/
 
@@ -71,25 +66,22 @@ void checkAPI() {
 
   /*************************************************/
 	Balance delegateFee = arkManager.delegateFee();
-    Serial.println("delegateFee: ");
+    Serial.print("\ndelegateFee: ");
     Serial.println(delegateFee.ark());
-    Serial.println("\n=====\n");
     delay(50);
   /*************************************************/
 
   /*************************************************/
   auto delegateForgedByAccount = arkManager.delegateForgedByAccount(darkPubkey);
-    Serial.println("delegateForgedByAccount: ");
+    Serial.print("\ndelegateForgedByAccount: ");
     Serial.println(delegateForgedByAccount);
-    Serial.println("\n=====\n");
     delay(50);
   /*************************************************/
 
   /*************************************************/
   auto delegateNextForgers = arkManager.delegateNextForgers();
-    Serial.println("delegateNextForgers: ");
+    Serial.print("\ndelegateNextForgers: ");
     Serial.println(delegateNextForgers);
-    Serial.println("\n=====\n");
     delay(50);
   /*************************************************/
 }

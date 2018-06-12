@@ -7,19 +7,19 @@ namespace ARK
 namespace API
 {
 /*************************************************
-*	Default: Empty Constructor
+* Default: Empty Constructor
 **************************************************/
 Manager::Manager() {}
 /*************************************************/
 
 /*************************************************
-*	Constructor
+* Constructor
 **************************************************/
 Manager::Manager(const ARK::Network& network){ this->connect(network); }
 /*************************************************/
 
 /*************************************************
-*	ARK::API::Manager::connect
+* ARK::API::Manager::connect
 **************************************************/
 void Manager::connect(const ARK::Network& network)
 {

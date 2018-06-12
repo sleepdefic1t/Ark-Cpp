@@ -14,12 +14,12 @@ void createAccount()
 	Serial.print("\nPassphrase: ");
 	Serial.println(passphrase);
   
-	const auto account = ARK::Crypto::create_account(network_id, passphrase);
+	const auto account = ARK::Crypto::createAccount(network_id, passphrase);
 	Serial.print("\nAddress: ");
-	Serial.println(account.address());
+	Serial.println(account.address().c_str());
 
 	Serial.print("\nPublic Key: ");
-	Serial.println(account.public_key()));
+	Serial.println(account.public_key().c_str());
 }
 
 void setup()

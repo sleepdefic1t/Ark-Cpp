@@ -17,7 +17,7 @@ ARK::API::Delegate::Respondable::ForgedByAccount::ForgedByAccount(
 		const char *const newFees,
 		const char *const newRewards,
 		const char *const newForged
-) :	fees_(newFees),
+)	:	fees_(newFees),
 		rewards_(newRewards),
 		forged_(newForged) {}
 /*************************************************/
@@ -47,7 +47,7 @@ ARK::API::Delegate::Respondable::NextForgers::NextForgers(
 		int newCB,
 		int newCS,
 		const Publickey *const newDelegateKeys
-) :	currentBlock_(newCB),
+)	:	currentBlock_(newCB),
 		currentSlot_(newCS)
 {
 	for (auto i = 0; i < 10; ++i)
@@ -67,13 +67,12 @@ size_t ARK::API::Delegate::Respondable::NextForgers::printTo(Print &p) const
 	size += p.print(this->currentBlock_);
 	size += p.print("\ncurrentSlot: ");
 	size += p.print(this->currentSlot_);
-
 	for (int i = 0; i < 9; i++)
 	{
 		size += p.print("\ndelegate #");
 		size += p.print(i + 1);
 		size += p.print(" publicKey: ");
-		size += p.print(delegate_keys_[i]);
+		size += p.print(delegate_keys_[i].c_str());
 	};
 	return size;
 }
@@ -91,7 +90,7 @@ ARK::API::Delegate::Respondable::Search::Search(
 		const char *const newVote,
 		int newProducedBlocks,
 		int newMissedBlocks
-) :	address_(Address(newAddress)),
+)	:	address_(Address(newAddress)),
 		publicKey_(Publickey(newPublickey)),
 		vote_(Balance(newVote)),
 		producedblocks_(newProducedBlocks),
@@ -111,10 +110,10 @@ size_t ARK::API::Delegate::Respondable::Search::printTo(Print &p) const
 		size += p.print(this->username_);
 
 		size += p.print("\naddress: ");
-		size += p.print(this->address_);
+		size += p.print(this->address_.c_str());
 
 		size += p.print("\npublicKey: ");
-		size += p.print(this->publicKey_);
+		size += p.print(this->publicKey_.c_str());
 
 		size += p.print("\nvote: ");
 		size += p.print(this->vote_.ark());
@@ -156,7 +155,6 @@ size_t ARK::API::Delegate::Respondable::Voters::printTo(Print &p) const
 	if (this->count_ > 0)
 	{
 		size += p.print("\n\0");
-
 		for (int i = 0; i < static_cast<int>(this->count_); i++)
 		{
 			size += p.print("\nvoter ");

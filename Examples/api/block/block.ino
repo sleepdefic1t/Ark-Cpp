@@ -17,9 +17,8 @@ void checkAPI() {
 
   /*************************************************/
   ARK::Block block = arkManager.block("4367122150875693402");
-    Serial.println("block: ");
+    Serial.print("\nblock: ");
     Serial.println(block);
-    Serial.println("\n=====\n");
     delay(50);
   /*************************************************/
 
@@ -37,71 +36,63 @@ void checkAPI() {
 
   /*************************************************/
   auto blockEpoch = arkManager.blockEpoch();
-    Serial.println("blockEpoch: ");
+    Serial.print("\nblockEpoch: ");
     Serial.println(blockEpoch);
-    Serial.println("\n=====\n");
     delay(50);
   /*************************************************/
 
   /*************************************************/
   auto blockHeight =  arkManager.blockHeight();
-    Serial.println("blockHeight: ");
+    Serial.print("\nblockHeight: ");
     Serial.println(blockHeight);
-    Serial.println("\n=====\n");
     delay(50);
   /*************************************************/
 
   /*************************************************/
   Hash blockNethash = arkManager.blockNethash();
-    Serial.println("blockNethash: ");
-    Serial.println(blockNethash);
-    Serial.println("\n=====\n");
+    Serial.print("\nblockNethash: ");
+    Serial.println(blockNethash.c_str());
     delay(50);
   /*************************************************/
 
   /*************************************************/
   Balance blockFee = arkManager.blockFee();
-    Serial.println("blockFee: ");
+    Serial.print("\nblockFee: ");
     Serial.println(blockFee.ark());
-    Serial.println("\n=====\n");
     delay(100);
   /*************************************************/
 
   /*************************************************/
   ARK::Fees blockFees = arkManager.blockFees();
-    Serial.println("blockFees: ");
+    Serial.print("\nblockFees: ");
     Serial.println(blockFees);
-    Serial.println("\n=====\n");
     delay(100);
   /*************************************************/
 
   /*************************************************/
   auto blockMilestone = arkManager.blockMilestone();
-    Serial.println("blockMilestone: ");
+    Serial.print("\nblockMilestone: ");
     Serial.println(blockMilestone);
-    Serial.println("\n=====\n");
     delay(50);
   /*************************************************/
 
   /*************************************************/
   Balance blockReward = arkManager.blockReward();
-    Serial.println("blockReward: ");
+    Serial.print("\nblockReward: ");
     Serial.println(blockReward.ark());
-    Serial.println("\n=====\n");
     delay(50);
   /*************************************************/
 
   /*************************************************/
   Balance blockSupply = arkManager.blockSupply();
-    Serial.println("blockSupply: ");
+    Serial.print("\nblockSupply: ");
     Serial.println(blockSupply.ark());
-    Serial.println("\n=====\n");
     delay(50);
   /*************************************************/
 
   /*************************************************/
   auto blockStatus = arkManager.blockStatus();
-    Serial.println("blockStatus: ");
+    Serial.print("\nblockStatus: ");
     Serial.println(blockStatus);
     delay(50);
   /*************************************************/

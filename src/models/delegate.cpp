@@ -5,7 +5,7 @@
 namespace ARK
 {
 /*************************************************
-*	Constructor
+* Constructor
 **************************************************/
 ARK::Delegate::Delegate(
 		const char *const newUsername,
@@ -17,8 +17,7 @@ ARK::Delegate::Delegate(
 		int newRate,
 		double newApproval,
 		double newProductivity
-)	:
-		address_(Address(newAddress)),
+)	:	address_(Address(newAddress)),
 		publicKey_(Publickey(newPublicKey)),
 		vote_(Balance(newVote)),
 		producedblocks_(newProducedblocks),
@@ -41,10 +40,10 @@ size_t ARK::Delegate::printTo(Print &p) const
 		size += p.print(this->username_);
 
 		size += p.print("\naddress: ");
-		size += p.print(this->address_);
+		size += p.print(this->address_.c_str());
 
 		size += p.print("\npublicKey: ");
-		size += p.print(this->publicKey_);
+		size += p.print(this->publicKey_.c_str());
 
 		size += p.print("\nvote: ");
 		size += p.print(this->vote_.ark());

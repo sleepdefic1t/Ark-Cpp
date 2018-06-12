@@ -29,7 +29,7 @@ void constructDelegate()
     0.06,
     91.88
   );
-  Serial.println("Offline Instantiated Delegate Description\n"); 
+  Serial.print("\nOffline Instantiated Delegate Description\n"); 
   Serial.println(delegate); 
 };
 

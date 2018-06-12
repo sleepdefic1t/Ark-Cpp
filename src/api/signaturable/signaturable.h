@@ -13,27 +13,26 @@ namespace ARK
 namespace API
 {
 /*************************************************
-*	PUBLIC: ARK::API::Signaturable
-*	public Signature::Gettable
-*	virtual ARK::Utilities::Network::Connectable
+* PUBLIC: ARK::API::Signaturable
+* public Signature::Gettable
+* virtual ARK::Utilities::Network::Connectable
 *    
-*	API's Signature Loader Model
+* API's Signature Loader Model
 **************************************************/
 class Signaturable :
 		virtual ARK::Utilities::Network::Connectable
 {
 	public:
 		/*************************************************
-		*	/api/signatures/fee
+		* /api/signatures/fee
 		*
-		*	@method:	signaturesFee()
-		*	@return:	Balance
+		* @method: signaturesFee()
+		* @return: Balance
 		*
-		*	@brief:	Gets cost of Signature from a Node via API.
+		* @brief: Gets cost of Signature from a Node via API.
 		**************************************************/
 		Balance signaturesFee();
 		/*************************************************/
-		
 };
 /*************************************************/
 

@@ -5,7 +5,7 @@
 namespace ARK
 {
 /*************************************************
-*	Constructor
+* Constructor
 **************************************************/
 Fees::Fees(
 		const char *const newSend,
@@ -13,8 +13,7 @@ Fees::Fees(
 		const char *const newDelegate,
 		const char *const newSS,
 		const char *const newMS
-)	:
-		send_(newSend),
+)	:	send_(newSend),
 		vote_(newVote),
 		delegate_(newDelegate),
 		secondsignature_(newSS),

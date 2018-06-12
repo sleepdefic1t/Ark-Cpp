@@ -24,7 +24,6 @@ namespace Network
 {
 namespace
 {
-
 /*************************************************
 *
 **************************************************/
@@ -45,8 +44,7 @@ class HTTP :
 				const char *const peer,
 				int port,
 				const char *const request
-		)
-		{
+		) {
 			Serial.print("\nOpening HTTP connection to:\n");
 			Serial.print(peer); Serial.print(":");
 			Serial.print(port);
@@ -62,10 +60,8 @@ class HTTP :
 				const char *const peer,
 				int port,
 				const char *const request
-		)
-		{
+		) {
 			printConnection(peer, port, request);
-
 			if (!client.begin(peer, port, request)) {
 				// error
 				Serial.println("\nbad HTTP begin");
@@ -99,8 +95,7 @@ class HTTP :
 				const char *const peer,
 				int port,
 				const char *const request
-		)
-		{
+		) {
 			HTTPClient http;
 			http.setReuse(true);
 			http.setTimeout(2000);
@@ -136,7 +131,7 @@ class HTTP :
 /*************************************************
 *		HTTP object factory
 **************************************************/
-std::unique_ptr<HTTPInterface> make_http() {
+std::unique_ptr<HTTPInterface> makeHTTP() {
 	return std::unique_ptr<HTTPInterface>(new HTTP());
 }
 /*************************************************/

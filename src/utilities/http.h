@@ -14,7 +14,7 @@ namespace Network
 {
 /**************************************************
 * ARK::Utilities::Network::Connectable 
-*   Inheritable HTTPConnectable object
+*    Inheritable HTTPConnectable object
 **************************************************/
 class HTTPConnectable;
 /*************************************************/
@@ -23,11 +23,11 @@ class HTTPConnectable;
 
 /**************************************************
 * ARK::Utilities::Network::HTTP 
-*	Currently using ESP8266 libs
+* Currently using ESP8266 libs
 *
 * The purpose of this class is to serve as an
-*	entry point for integrating the HTTPClient
-*	library for different boards/chipsets
+* entry point for integrating the HTTPClient
+* library for different boards/chipsets
 **************************************************/
 class HTTPInterface
 {
@@ -38,10 +38,10 @@ class HTTPInterface
     virtual ~HTTPInterface() { }
 
     virtual std::string get(
-				const char *const peer,
-				int port,
-				const char *const request
-		) = 0;
+			const char *const peer,
+			int port,
+			const char *const request
+	) = 0;
 };
 /*************************************************/
 
@@ -50,7 +50,7 @@ class HTTPInterface
 /**************************************************
 *	HTTP object factory
 **************************************************/
-std::unique_ptr<HTTPInterface> make_http();
+std::unique_ptr<HTTPInterface> makeHTTP();
 /*************************************************/
 
 };
@@ -65,7 +65,7 @@ class ARK::Utilities::Network::HTTPConnectable
 {
 	public:
 		std::unique_ptr<ARK::Utilities::Network::HTTPInterface> http;
-		HTTPConnectable() : http(make_http()) { }
+		HTTPConnectable() : http(makeHTTP()) { }
 };
 /*************************************************/
 

@@ -11,9 +11,9 @@
 void constructHash()
 {
   Hash hash("578e820911f24e039733b45e4882b73e301f813a0d2c31330dafda84534ffa23");
-    Serial.println("hash: 578e820911f24e039733b45e4882b73e301f813a0d2c31330dafda84534ffa23\n");
-    Serial.println("hash: ");
-    Serial.println(hash);
+    Serial.print("\nhash: 578e820911f24e039733b45e4882b73e301f813a0d2c31330dafda84534ffa23\n");
+    Serial.print("\nhash: ");
+    Serial.println(hash.c_str());
 };
 
 void setup() {

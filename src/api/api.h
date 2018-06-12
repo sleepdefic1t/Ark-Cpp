@@ -6,8 +6,8 @@
 *	MIT | Copyright S. Downey 2017-2018
 ***************************************/
 
-#ifndef api_h
-#define api_h
+#ifndef API_H
+#define API_H
 
 #include "api/paths.h"
 

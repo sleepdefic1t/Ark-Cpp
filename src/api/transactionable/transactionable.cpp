@@ -3,10 +3,10 @@
 #include "api/transactionable/transactionable.h"
 
 /*************************************************
-*	/api/transactions/get?id=
+* /api/transactions/get?id=
 *
-*	EXAMPLE:
-*{
+* EXAMPLE:
+* {
 *  "success": true,
 *  "transaction": {
 *    "id": "4e68a917d06382ce335656eef5560a537fc806ecadf3972c5221b86babecc63e",
@@ -23,16 +23,16 @@
 *    "signature": "3045022100dc9590c6c6fce66a523481f13237d95518056387076de9a9534cb4a039fbede90220322e7f17b227f8fe9401460980b7b3c1baacf076b9020620ec5c4388673e7e12",
 *    "confirmations": "1868079"
 *  }
-*}
+* }
 **************************************************/
 ARK::Transaction ARK::API::Transactionable::transaction(const Hash &id)
 {
 	char uri[114 + 1] = { '\0' };
 		strcpy(uri, ARK::API::Paths::Transaction::getSingle_s);
 		strcat(uri, "?id=");
-		strcat(uri, id);
+		strcat(uri, id.c_str());
 	auto callback = netConnector.callback(uri);
-	auto parser = ARK::Utilities::make_json_string(callback);
+	auto parser = ARK::Utilities::makeJSONString(callback);
 	return {
 		parser->valueIn("transaction", "id").c_str(),
 		parser->valueIn("transaction", "blockid").c_str(),
@@ -53,60 +53,45 @@ ARK::Transaction ARK::API::Transactionable::transaction(const Hash &id)
 
 /**************************************************************************************************/
 
-/*************************************************/
-/*************************************************/
-/*	BROKEN: fix for large callbacks  */
-/*	Peers callback is ~28,908 bytes  */
-/*  /api/transactions  */
-// String transactions()
-// { return ARK::API::Transaction::Gettable::transactions(this->netConnector); };
-/*************************************************/
-/*************************************************/
-
-/**************************************************************************************************/
-
 /*************************************************
-*	/api/transactions/unconfirmed/get?id=
+* /api/transactions/unconfirmed/get?id=
 *
-*	EXAMPLE:
-*
-*	{ 
-*		"success":true,
-*		"transaction":
-*		{
-*			"id":"_txID",
-*			"blockid":"_blockID",
-*			"height":_height,
-*			"type":_type,
-*			"timestamp":_timestamp,
-*			"amount":_amount,
-*			"fee":_fee,
-*			"vendorField":_vendorField,
-*			"senderId":"_senderId",
-*			"recipientId":"_recipientId",
-*			"senderPublicKey":_senderPubkey,
-*			"signature":"_txSig",
-*			"confirmations":_confirmations
-*		}
-*	}
-*		| or |
+* EXAMPLE:
+* { 
+*	"success":true,
+*	"transaction":
 *	{
-*		"success":false,
-*		"error":"Transaction not found"
+*		"id": Hash,
+*		"blockid":"_blockID",
+*		"height":_height,
+*		"type":_type,
+*		"timestamp":_timestamp,
+*		"amount":_amount,
+*		"fee":_fee,
+*		"vendorField":_vendorField,
+*		"senderId":"_senderId",
+*		"recipientId":"_recipientId",
+*		"senderPublicKey":_senderPubkey,
+*		"signature":"_txSig",
+*		"confirmations":_confirmations
 *	}
+* }
+*	| or |
+* {
+*	"success":false,
+*	"error":"Transaction not found"
+* }
 **************************************************/
 ARK::API::Transaction::Respondable::Unconfirmed ARK::API::Transactionable::transactionUnconfirmed(const Hash &id)
 {
 	char uri[126 + 1] = { '\0' };
 		strcpy(uri, ARK::API::Paths::Transaction::getSingleUnconfirmed_s);
 		strcat(uri, "?id=");
-		strcat(uri, id);
+		strcat(uri, id.c_str());
 	auto callback = netConnector.callback(uri);
-	auto parser = ARK::Utilities::make_json_string(callback);
-
+	auto parser = ARK::Utilities::makeJSONString(callback);
 	int txCount = substringCount(callback.c_str(), "id");
 	std::unique_ptr<ARK::Transaction[]> transactions(new ARK::Transaction[txCount]);
-
 	for (int i = 0; i < txCount; i++)
 	{
 		transactions[i] = ARK::Transaction(
@@ -132,23 +117,20 @@ ARK::API::Transaction::Respondable::Unconfirmed ARK::API::Transactionable::trans
 /**************************************************************************************************/
 
 /*************************************************
-*	/api/transactions/unconfirmed
+* /api/transactions/unconfirmed
 *
 * EXAMPLE:
-*
-*	{
-*		"success":true,
-*		"transactions":[]
-*	}
+* {
+*	"success":true,
+*	"transactions":[]
+* }
 **************************************************/
 ARK::API::Transaction::Respondable::Unconfirmed ARK::API::Transactionable::transactionsUnconfirmed()
 {
 	auto callback = netConnector.callback(ARK::API::Paths::Transaction::unconfirmed_s);
-	auto parser = ARK::Utilities::make_json_string(callback);
-
+	auto parser = ARK::Utilities::makeJSONString(callback);
 	int txCount = substringCount(callback.c_str(), "id");
 	std::unique_ptr<ARK::Transaction[]> transactions(new ARK::Transaction[txCount]);
-
 	for (int i = 0; i < txCount; ++i)
 	{
 		transactions[i] = ARK::Transaction(
@@ -174,18 +156,31 @@ ARK::API::Transaction::Respondable::Unconfirmed ARK::API::Transactionable::trans
 /**************************************************************************************************/
 
 /*************************************************
-*	/api/transactions/get?id=
+* /api/transactions/get?id=
 *
-*	@brief: Gets vendorField for a given Transaction by  txID from a Node via API.
+* @brief: Gets vendorField for a given Transaction by  txID from a Node via API.
 **************************************************/
 const char *ARK::API::Transactionable::getVendorField(const Hash &txID)
 {
 	char uri[114 + 1] = { '\0' };
 		strcpy(uri, ARK::API::Paths::Transaction::getSingle_s);
 		strcat(uri, "?id=");
-		strcat(uri, txID);
+		strcat(uri, txID.c_str());
 	auto callback = netConnector.callback(uri);
-	auto parser = ARK::Utilities::make_json_string(callback);
+	auto parser = ARK::Utilities::makeJSONString(callback);
 	return parser->valueIn("transaction", "vendorField").c_str();
 };
 /*************************************************/
+
+
+/**************************************************************************************************/
+/*************************************************/
+/*************************************************/
+/*	BROKEN: fix for large callbacks  */
+/*	Peers callback is ~28,908 bytes  */
+/*  /api/transactions  */
+// String transactions()
+// { return ARK::API::Transaction::Gettable::transactions(this->netConnector); };
+/*************************************************/
+/*************************************************/
+/**************************************************************************************************/

@@ -4,9 +4,9 @@
 #include "api/blockable/blockable.h"
 
 /*************************************************
-*	/api/blocks/get?id=_blockID
+* /api/blocks/get?id=_blockID
 *
-*	EXAMPLE:
+* EXAMPLE:
 * {
 *   "success":true,
 *   "block":
@@ -32,14 +32,13 @@
 **************************************************/
 ARK::Block ARK::API::Blockable::block(
 		const char *const blockId
-)
-{
+) {
 	char uri[80] = { '\0' };
 		strcpy(uri, ARK::API::Paths::Block::get_s);
 		strcat(uri, "?id=");
 		strcat(uri, blockId);
 	auto callback = netConnector.callback(uri);
-	auto parser = ARK::Utilities::make_json_string(callback);
+	auto parser = ARK::Utilities::makeJSONString(callback);
 	return {
 		parser->valueIn("block", "id").c_str(),
 		convert_to_int(parser->valueIn("block", "version").c_str()),
@@ -64,9 +63,9 @@ ARK::Block ARK::API::Blockable::block(
 /**************************************************************************************************/
 
 /*************************************************
-*	/api/blocks/getEpoch
+* /api/blocks/getEpoch
 *
-*	EXAMPLE:
+* EXAMPLE:
 * {
 *   "success":true,
 *   "epoch":  "String"
@@ -74,10 +73,9 @@ ARK::Block ARK::API::Blockable::block(
 **************************************************/
 void ARK::API::Blockable::blockEpoch(
 		char buffer[]
-)
-{
+) {
 	auto callback = netConnector.callback(ARK::API::Paths::Block::getEpoch_s);
-	auto parser = ARK::Utilities::make_json_string(callback);
+	auto parser = ARK::Utilities::makeJSONString(callback);
 	strcpy(buffer, parser->valueFor("epoch").c_str());
 };
 /*************************************************/
@@ -85,9 +83,9 @@ void ARK::API::Blockable::blockEpoch(
 /**************************************************************************************************/
 
 /*************************************************
-*	/api/blocks/getHeight
+* /api/blocks/getHeight
 *
-*	EXAMPLE:
+* EXAMPLE:
 * {
 *   "success":true,
 *   "height": String,
@@ -97,7 +95,7 @@ void ARK::API::Blockable::blockEpoch(
 ARK::API::Block::Respondable::Height ARK::API::Blockable::blockHeight()
 {
 	auto callback = netConnector.callback(ARK::API::Paths::Block::getHeight_s);
-	auto parser = ARK::Utilities::make_json_string(callback);
+	auto parser = ARK::Utilities::makeJSONString(callback);
 	return { parser->valueFor("height").c_str(), parser->valueFor("id").c_str() };
 };
 /*************************************************/
@@ -105,9 +103,9 @@ ARK::API::Block::Respondable::Height ARK::API::Blockable::blockHeight()
 /**************************************************************************************************/
 
 /*************************************************
-*	/api/blocks/getNethash
+* /api/blocks/getNethash
 *
-*	EXAMPLE:
+* EXAMPLE:
 * {
 *   "success":true,
 *   "nethash":  "Hash"
@@ -116,7 +114,7 @@ ARK::API::Block::Respondable::Height ARK::API::Blockable::blockHeight()
 Hash ARK::API::Blockable::blockNethash()
 {
 	auto callback = netConnector.callback(ARK::API::Paths::Block::getNethash_s);
-	auto parser = ARK::Utilities::make_json_string(callback);
+	auto parser = ARK::Utilities::makeJSONString(callback);
 	return Hash(parser->valueFor("nethash").c_str());
 };
 /*************************************************/
@@ -124,9 +122,9 @@ Hash ARK::API::Blockable::blockNethash()
 /**************************************************************************************************/
 
 /*************************************************
-*	/api/blocks/getFee
+* /api/blocks/getFee
 *
-*	EXAMPLE:
+* EXAMPLE:
 * {
 *   "success":true,
 *   "fee":  Balance
@@ -135,7 +133,7 @@ Hash ARK::API::Blockable::blockNethash()
 Balance ARK::API::Blockable::blockFee()
 {
 	auto callback = netConnector.callback(ARK::API::Paths::Block::getFee_s);
-	auto parser = ARK::Utilities::make_json_string(callback);
+	auto parser = ARK::Utilities::makeJSONString(callback);
 	return Balance(parser->valueFor("fee").c_str());
 };
 /*************************************************/
@@ -143,9 +141,9 @@ Balance ARK::API::Blockable::blockFee()
 /**************************************************************************************************/
 
 /*************************************************
-*	/api/blocks/getFees
+* /api/blocks/getFees
 *
-*	EXAMPLE:
+* EXAMPLE:
 *
 * {
 *   "success":true,
@@ -162,7 +160,7 @@ Balance ARK::API::Blockable::blockFee()
 ARK::Fees ARK::API::Blockable::blockFees()
 {
 	auto callback = netConnector.callback(ARK::API::Paths::Block::getFees_s);
-	auto parser = ARK::Utilities::make_json_string(callback);
+	auto parser = ARK::Utilities::makeJSONString(callback);
 	return {
 		parser->valueIn("fees", "send").c_str(),
 		parser->valueIn("fees", "vote").c_str(),
@@ -176,9 +174,9 @@ ARK::Fees ARK::API::Blockable::blockFees()
 /**************************************************************************************************/
 
 /*************************************************
-*	/api/blocks/getMilestone
+* /api/blocks/getMilestone
 *
-*	EXAMPLE:
+* EXAMPLE:
 * {
 *   "success":true,
 *   "milestone": String
@@ -187,7 +185,7 @@ ARK::Fees ARK::API::Blockable::blockFees()
 const char *ARK::API::Blockable::blockMilestone()
 {
 	auto callback = netConnector.callback(ARK::API::Paths::Block::getMilestone_s);
-	auto parser = ARK::Utilities::make_json_string(callback);
+	auto parser = ARK::Utilities::makeJSONString(callback);
 	return parser->valueFor("milestone").c_str();
 };
 /*************************************************/
@@ -195,9 +193,9 @@ const char *ARK::API::Blockable::blockMilestone()
 /**************************************************************************************************/
 
 /*************************************************
-*	/api/blocks/getReward
+* /api/blocks/getReward
 *
-*	EXAMPLE:
+* EXAMPLE:
 * { 
 *   "success":true,
 *   "reward": Balance
@@ -206,7 +204,7 @@ const char *ARK::API::Blockable::blockMilestone()
 Balance ARK::API::Blockable::blockReward()
 {
 	auto callback = netConnector.callback(ARK::API::Paths::Block::getReward_s);
-	auto parser = ARK::Utilities::make_json_string(callback);
+	auto parser = ARK::Utilities::makeJSONString(callback);
 	return Balance(parser->valueFor("reward").c_str());
 };
 /*************************************************/
@@ -214,9 +212,9 @@ Balance ARK::API::Blockable::blockReward()
 /**************************************************************************************************/
 
 /*************************************************
-*	/api/blocks/getSupply
+* /api/blocks/getSupply
 *
-*	EXAMPLE:
+* EXAMPLE:
 * {
 *   "success":true,
 *   "supply": Balance
@@ -225,7 +223,7 @@ Balance ARK::API::Blockable::blockReward()
 Balance ARK::API::Blockable::blockSupply()
 {
 	auto callback = netConnector.callback(ARK::API::Paths::Block::getSupply_s);
-	auto parser = ARK::Utilities::make_json_string(callback);
+	auto parser = ARK::Utilities::makeJSONString(callback);
 	return Balance(parser->valueFor("supply").c_str());
 };
 /*************************************************/
@@ -233,9 +231,9 @@ Balance ARK::API::Blockable::blockSupply()
 /**************************************************************************************************/
 
 /*************************************************
-*	/api/blocks/getStatus
+* /api/blocks/getStatus
 *
-*	EXAMPLE:
+* EXAMPLE:
 * {
 *   "success":true,
 *   "epoch":  "String",
@@ -250,7 +248,7 @@ Balance ARK::API::Blockable::blockSupply()
 ARK::API::Block::Respondable::Status ARK::API::Blockable::blockStatus()
 {
 	auto callback = netConnector.callback(ARK::API::Paths::Block::getStatus_s);
-	auto parser = ARK::Utilities::make_json_string(callback);
+	auto parser = ARK::Utilities::makeJSONString(callback);
 	return {
 		parser->valueFor("epoch").c_str(),
 		parser->valueFor("height").c_str(),

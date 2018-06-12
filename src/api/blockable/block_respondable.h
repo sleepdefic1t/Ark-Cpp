@@ -19,12 +19,12 @@ namespace Block
 namespace Respondable
 {
 /*************************************************
-*	ARK::API::Block::Respondable::height_t 
+* ARK::API::Block::Respondable::height_t 
 *
-*	@param: char height[64]
-*	@param:	char id[64]
+* @param: char height[64]
+* @param: char id[64]
 *
-*	@brief: Model for Height API Response
+* @brief: Model for Height API Response
 **************************************************/
 struct Height :
 		public Printable
@@ -35,7 +35,7 @@ struct Height :
 		
 	public:
 		/*************************************************
-		*	Constructor
+		* Constructor
 		**************************************************/
 		Height(
 				const char *const newHeight,
@@ -44,11 +44,11 @@ struct Height :
 		/*************************************************/
 
 		/*************************************************
-		*	Accessors
+		* Accessors
 		**************************************************/
 		const char* height() const noexcept { return height_; }
 		const char* id() const noexcept { return id_; }
-	/*************************************************/
+		/*************************************************/
 
 		/*************************************************
 		*
@@ -62,17 +62,17 @@ struct Height :
 /**************************************************************************************************/
 
 /*************************************************
-*	ARK::API::Block::Respondable::Status 
+* ARK::API::Block::Respondable::Status 
 *
-*	@param: const char* epoch
-*	@param: const char* height
-*	@param: const Balance fee
-*	@param: int milestone
-*	@param: Hash nethash
-*	@param: const Balance reward
-*	@param: const Balance supply
+* @param: const char* epoch
+* @param: const char* height
+* @param: const Balance fee
+* @param: int milestone
+* @param: Hash nethash
+* @param: const Balance reward
+* @param: const Balance supply
 *
-*	@brief:	Model for Block Status API Response
+* @brief: Model for Block Status API Response
 **************************************************/
 struct Status :
 		public Printable
@@ -88,7 +88,7 @@ struct Status :
 		Balance supply_;
 	public:
 		/*************************************************
-		*	Constructor
+		* Constructor
 		**************************************************/
 		Status(
 				const char *const newEpoch,
@@ -102,7 +102,7 @@ struct Status :
 		/*************************************************/
 
 		/*************************************************
-		*	Accessors
+		* Accessors
 		**************************************************/
 		const char* epoch() const noexcept { return epoch_; }
 		const char* height() const noexcept { return height_; }

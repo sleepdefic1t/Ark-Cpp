@@ -5,7 +5,6 @@
 #ifndef USE_IOT
 
 #include "utilities/http.h"
-
 #include "Poco/Net/HTTPClientSession.h"
 #include "Poco/Net/HTTPRequest.h"
 #include "Poco/Net/HTTPResponse.h"
@@ -31,11 +30,9 @@ class HTTP :
 
 		std::string get(
 				const char *const	peer,
-				\
-				int								port,
+				int port,
 				const char *const	request_str
-		) override
-		{
+		) override {
 			std::ostringstream ss;
 			ss << peer << ":" << port;
 			Poco::Net::HTTPClientSession session(Poco::Net::SocketAddress(ss.str()));
@@ -62,7 +59,7 @@ class HTTP :
 }
 
 // HTTP object factory
-std::unique_ptr<HTTPInterface> make_http() {
+std::unique_ptr<HTTPInterface> makeHTTP() {
 	return std::unique_ptr<HTTPInterface>(new HTTP());
 }
 

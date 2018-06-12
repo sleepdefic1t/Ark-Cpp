@@ -12,23 +12,23 @@
 
 /********************************************************************************
 * delegate: 
-*		{  
-*			"username": String,
-*			"address":	Address,
-*			"publicKey":	Publickey,
-*			"vote":	Balance,
-*			"producedblocks": uint,
-*			"missedblocks":	uint,
-*			"rate":	int,
-*			"approval": double,
-*			"productivity":	double
-*		}
+* {  
+*	"username": String,
+*	"address":	Address,
+*	"publicKey":	Publickey,
+*	"vote":	Balance,
+*	"producedblocks": uint,
+*	"missedblocks":	uint,
+*	"rate":	int,
+*	"approval": double,
+*	"productivity":	double
+* }
 ********************************************************************************/
 
 namespace ARK
 {
 /*************************************************
-*	ARK::Delegate
+* ARK::Delegate
 **************************************************/
 struct Delegate :
 		public Printable
@@ -46,7 +46,7 @@ struct Delegate :
 
 	public:
 		/*************************************************
-		*	Constructor
+		* Constructor
 		**************************************************/
 		Delegate(
 				const char *const newUsername,
@@ -62,7 +62,7 @@ struct Delegate :
 		/*************************************************/
 
 		/*************************************************
-		*	Accessors
+		* Accessors
 		**************************************************/
 		const char* username() const noexcept { return username_; }
 		const Address address() const noexcept { return address_; }

@@ -17,44 +17,44 @@
 /********************************************************************************
 *
 * account: 
-*    {  
-*      "success":true,
-*      "account":{  
-*         "address":  Address,
-*         "unconfirmedBalance": Balance,
-*         "balance":  Balance,
-*         "publicKey":  Publickey,
-*         "unconfirmedSignature": int,
-*         "secondSignature":  int,
-*         "secondPublicKey":  Publickey,
-*         "multisignatures":  [ Signature ],
-*         "u_multisignatures":  [ Signature ]
-*      }
-*    }
-*
+* {  
+*	"success":true,
+*	"account":
+*	{  
+*		"address":  Address,
+*		"unconfirmedBalance": Balance,
+*		"balance":  Balance,
+*		"publicKey":  Publickey,
+*		"unconfirmedSignature": int,
+*		"secondSignature":  int,
+*		"secondPublicKey":  Publickey,
+*		"multisignatures":  [ Signature ],
+*		"u_multisignatures":  [ Signature ]
+*	}
+* }
 ********************************************************************************/
 namespace ARK
 {
 /*************************************************
-*   ARK::Account
+* ARK::Account
 **************************************************/
 struct Account :
 		public Printable
 {
 	protected:
-		Address		address_;
-		Balance		unconfirmedBalance_;
-		Balance		balance_;
-		Publickey	publicKey_;
-		int				unconfirmedSignature_;
-		int				secondSignature_;
-		Publickey	secondPublicKey_;
-		// Hash			*multisignatures_;		//	FIXME
-		// Hash			*u_multisignatures_;	//	FIXME
+		Address address_;
+		Balance unconfirmedBalance_;
+		Balance balance_;
+		Publickey publicKey_;
+		int unconfirmedSignature_;
+		int secondSignature_;
+		Publickey secondPublicKey_;
+		// Hash *multisignatures_;		//	FIXME
+		// Hash *u_multisignatures_;	//	FIXME
 
 	public:
 		/*************************************************
-		*	Constructor
+		* Constructor
 		**************************************************/
 		Account(
 				const char *const newAddress,
@@ -75,7 +75,7 @@ struct Account :
 		/*************************************************/
 
 		/*************************************************
-		*	Constructor
+		* Constructor
 		**************************************************/
 		const Address address() const noexcept { return address_; };
 		const Balance& unconfirmed_balance() const noexcept { return unconfirmedBalance_; };

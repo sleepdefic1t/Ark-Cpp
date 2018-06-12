@@ -16,23 +16,23 @@ namespace ARK
 namespace API
 {
 /*************************************************
-*	PUBLIC: ARK::API::Delegatable
-*	public API::Delegate::Gettable
-*	virtual ARK::Utilities::Network::Connectable
+* PUBLIC: ARK::API::Delegatable
+* public API::Delegate::Gettable
+* virtual ARK::Utilities::Network::Connectable
 *    
-*	API's Delegate Model
+* API's Delegate Model
 **************************************************/
 class Delegatable :
 		virtual ARK::Utilities::Network::Connectable
 {
 	public:
 		/*************************************************
-		*	/api/delegates/get?username=sleepdeficit
+		* /api/delegates/get?username=sleepdeficit
 		*
-		*	@param:	const char* const parameter
-		*	@return:	ARK::API::Delegate::Respondable::Voters
+		* @param: const char* const parameter
+		* @return: ARK::API::Delegate::Respondable::Voters
 		*
-		*	@brief:	Returns Delegate by username from a Node via API.
+		* @brief: Returns Delegate by username from a Node via API.
 		**************************************************/
 		ARK::Delegate delegate(const char *const parameter);
 		/*************************************************/
@@ -40,11 +40,11 @@ class Delegatable :
 		/**************************************************************************************************/
 		
 		/*************************************************
-		*	/api/delegates/count
+		* /api/delegates/count
 		*
-		*	@return:	int
+		* @return: int
 		*
-		*	@brief:	Gets current number of registered Delegates from a Node via API.
+		* @brief: Gets current number of registered Delegates from a Node via API.
 		**************************************************/
 		int delegatesCount();
 		/*************************************************/
@@ -52,12 +52,12 @@ class Delegatable :
 		/**************************************************************************************************/
 
 		/*************************************************
-		*	/api/delegates/search?q=sleepdeficit 
+		* /api/delegates/search?q=sleepdeficit 
 		*
-		*	@param:	const char* const username
-		*	@return:	ARK::API::Delegate::Respondable::Search
+		* @param: const char* const username
+		* @return: ARK::API::Delegate::Respondable::Search
 		*
-		*	@brief:	Searches for Delegate by username from a Node via API.
+		* @brief: Searches for Delegate by username from a Node via API.
 		**************************************************/
 		ARK::API::Delegate::Respondable::Search delegateSearch(const char *const username);
 		/*************************************************/
@@ -65,12 +65,12 @@ class Delegatable :
 		/**************************************************************************************************/
 
 		/*************************************************
-		*	/api/delegates/voters?publicKey=_pubKey
+		* /api/delegates/voters?publicKey=_pubKey
 		*
-		*	@param:	const Publickey &publicKey
-		*	@return:	ARK::API::Delegate::Respondable::Voters
+		* @param: const Publickey &publicKey
+		* @return: ARK::API::Delegate::Respondable::Voters
 		*
-		*	@brief:	Returns Voters list for Delegate by Publickey from a Node via API.
+		* @brief:	Returns Voters list for Delegate by Publickey from a Node via API.
 		**************************************************/
 		ARK::API::Delegate::Respondable::Voters delegateVoters(const Publickey &publicKey);
 		/*************************************************/
@@ -78,11 +78,11 @@ class Delegatable :
 		/**************************************************************************************************/
 
 		/*************************************************
-		*	/api/delegates/fee
+		* /api/delegates/fee
 		*
-		*	@return:	Balance
+		* @return: Balance
 		*
-		*	@brief:	Returns Delegate Registration Fee from a Node via API.
+		* @brief: Returns Delegate Registration Fee from a Node via API.
 		**************************************************/
 		Balance delegateFee();
 		/*************************************************/
@@ -90,12 +90,12 @@ class Delegatable :
 		/**************************************************************************************************/
 
 		/*************************************************
-		*	/api/delegates/forging/getForgedByAccount?generatorPublicKey=_genPubkey
+		* /api/delegates/forging/getForgedByAccount?generatorPublicKey=_genPubkey
 		*
-		*	@param:	const Publickey& generatorPublicKey
-		*	@return:	ARK::API::Delegate::Respondable::ForgedByAccount
+		* @param: const Publickey& generatorPublicKey
+		* @return: ARK::API::Delegate::Respondable::ForgedByAccount
 		*
-		*	@brief:	Returns Totals of Amounts Forged by Delegate by Publickey from a Node via API.
+		* @brief:	Returns Totals of Amounts Forged by Delegate by Publickey from a Node via API.
 		**************************************************/
 		ARK::API::Delegate::Respondable::ForgedByAccount delegateForgedByAccount(const Publickey &generatorPublicKey);
 		/*************************************************/
@@ -103,11 +103,11 @@ class Delegatable :
 		/**************************************************************************************************/
 
 		/*************************************************
-		*	/api/delegates/getNextForgers
+		* /api/delegates/getNextForgers
 		*
-		*	@return:	ARK::API::Delegate::Respondable::NextForgers
+		* @return: ARK::API::Delegate::Respondable::NextForgers
 		*
-		*	@brief:	Returns next 10 Forging-Delegates from a Node via API.
+		* @brief:	Returns next 10 Forging-Delegates from a Node via API.
 		**************************************************/
 		ARK::API::Delegate::Respondable::NextForgers delegateNextForgers();
 		/*************************************************/

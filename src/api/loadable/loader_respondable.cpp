@@ -12,13 +12,13 @@ namespace Respondable
 {
 
 /*************************************************
-*	Constructor
+* Constructor
 **************************************************/
 Status::Status(
 		bool newLoaded,
 		int	 newNow,
 		int	 newBlocksCount
-) : loaded_(newLoaded),
+)	:	loaded_(newLoaded),
 		now_(newNow),
 		blocksCount_(newBlocksCount) {}
 /*************************************************/
@@ -49,7 +49,7 @@ Sync::Sync(
 		int newBlocks,
 		const char *const newHeight,
 		const char *const newID
-) : syncing_(newSyncing),
+)	:	syncing_(newSyncing),
 		blocks_(newBlocks)
 {
 	strncpy(height_, newHeight, sizeof(height_) / sizeof(height_[0]));

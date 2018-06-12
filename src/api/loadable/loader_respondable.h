@@ -16,13 +16,13 @@ namespace Loader
 namespace Respondable
 {
 /*************************************************
-*	ARK::API::Loader::Respondable::Status
+* ARK::API::Loader::Respondable::Status
 *
-*	@param: bool loaded
-*	@param: int now
-*	@param: char blocksCount[64]
+* @param: bool loaded
+* @param: int now
+* @param: char blocksCount[64]
 *
-*	@brief:	Model for Loader Status API Response
+* @brief:	Model for Loader Status API Response
 **************************************************/
 struct Status :
 		public Printable
@@ -34,7 +34,7 @@ struct Status :
 
 public:
 	/*************************************************
-	*	Constructor
+	* Constructor
 	**************************************************/
 	Status(
 			bool newLoaded,
@@ -44,7 +44,7 @@ public:
 	/*************************************************/
 
 	/*************************************************
-	*	Accessors
+	* Accessors
 	**************************************************/
 	bool loaded() const noexcept { return loaded_; }
 	int now() const noexcept { return now_; }
@@ -63,14 +63,14 @@ public:
 /**************************************************************************************************/
 
 /*************************************************
-*	ARK::API::Loader::Respondable::Sync 
+* ARK::API::Loader::Respondable::Sync 
 *
-*	@param:	bool syncing
-*	@param:	int blocks
-*	@param:	char height[32]
-*	@param:	char id[32]
+* @param: bool syncing
+* @param: int blocks
+* @param: char height[32]
+* @param: char id[32]
 *
-*	@brief:	Model for Loader Sync API Response
+* @brief: Model for Loader Sync API Response
 **************************************************/
 struct Sync :
 		public Printable
@@ -83,7 +83,7 @@ struct Sync :
 		
 	public:
 		/*************************************************
-		*	Constructor
+		* Constructor
 		**************************************************/
 		Sync(
 				bool newSyncing,
@@ -94,7 +94,7 @@ struct Sync :
 		/*************************************************/
 
 		/*************************************************
-		*	Accessors
+		* Accessors
 		**************************************************/
 		bool syncing() const noexcept { return syncing_; }
 		int blocks() const noexcept { return blocks_; }

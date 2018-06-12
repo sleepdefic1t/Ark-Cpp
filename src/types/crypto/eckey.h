@@ -7,11 +7,11 @@
 #include "types/base/hexable.h"
 
 /********************************************************************************
-*	Privatekey: 
-*	Elliptical Curve SECP256K1 Privatekey (essentially a SHA256 in this instance)
-*	32 bytes
-*	64 Characters
-*	@brief Represents a 256-bit number
+* Privatekey: 
+* Elliptical Curve SECP256K1 Privatekey (essentially a SHA256 in this instance)
+* 32 bytes
+* 64 Characters
+* @brief Represents a 256-bit number
 ********************************************************************************/
 
 #define PRIVKEY_STORAGE_BYTE_COUNT 32
@@ -21,13 +21,13 @@
 
 
 /********************************************************************************
-*	Publickey: 
-*	Elliptical Curve SECP256K1 Compressed Publickey
-*	ex: "0275776018638e5c40f1b922901e96cac2caa734585ef302b4a2801ee9a338a456"
+* Publickey: 
+* Elliptical Curve SECP256K1 Compressed Publickey
+* ex: "0275776018638e5c40f1b922901e96cac2caa734585ef302b4a2801ee9a338a456"
 *
-*	33 bytes
-*	66 Characters
-*	@brief Represents a 257-bit number
+* 33 bytes
+* 66 Characters
+* @brief Represents a 257-bit number
 ********************************************************************************/
 
 #define PUBKEY_STORAGE_BYTE_COUNT 33

@@ -15,24 +15,24 @@
 
 /********************************************************************************
 * block: 
-*		{  
-*			"id":	String(lluint),
-*			"version":	int,
-*			"timestamp":	String(lluint),
-*			"height":	uint,
-*			"previousBlock":	String(lluint),
-*			"numberOfTransactions": int,
-*			"totalAmount": Balance,
-*			"totalFee":	Balance::arktoshi,
-*			"reward":	Balance::arktoshi,
-*			"payloadLength": int,
-*			"payloadHash":	Hash,
-*			"generatorPublicKey":	Publickey,
-*			"generatorId": Address,
-*			"blockSignature": Signature,
-*			"confirmations":	int,
-*			"totalForged":	Balance
-*		}
+* {  
+*	"id":	String(lluint),
+*	"version":	int,
+*	"timestamp":	String(lluint),
+*	"height":	uint,
+*	"previousBlock":	String(lluint),
+*	"numberOfTransactions": int,
+*	"totalAmount": Balance,
+*	"totalFee":	Balance::arktoshi,
+*	"reward":	Balance::arktoshi,
+*	"payloadLength": int,
+*	"payloadHash":	Hash,
+*	"generatorPublicKey":	Publickey,
+*	"generatorId": Address,
+*	"blockSignature": Signature,
+*	"confirmations":	int,
+*	"totalForged":	Balance
+* }
 ********************************************************************************/
 
 #define MAX_UINT128_CHARS 40
@@ -40,7 +40,7 @@
 namespace ARK
 {
 /*************************************************
-*	ARK::Block 
+* ARK::Block 
 **************************************************/
 struct Block :
 		public Printable
@@ -61,11 +61,11 @@ struct Block :
 		Address generatorId_;
 		Signature blockSignature_;
 		char confirmations_[64];
-		Balance 	totalForged_;
+		Balance totalForged_;
 		
 	public:
 		/*************************************************
-		*	ARK::Block 
+		* ARK::Block 
 		**************************************************/
 		Block(
 				const char *const newID,
@@ -88,7 +88,7 @@ struct Block :
 		/*************************************************/
 
 		/*************************************************
-		*	Accessors
+		* Accessors
 		**************************************************/
 		const char* id() const noexcept { return id_; }
 		int version() const noexcept { return version_; }
