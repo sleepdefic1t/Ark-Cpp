@@ -46,33 +46,21 @@ class Hexable :
 		**************************************************/
 		const inline std::vector<char> vHex() const
 		{
-			return (this->bytes_[0] != '\0') ?
-					std::vector<char>(this->hex().c_str()) :
-					std::vector<char>(1);
+			return (this->bytes_[0] != '\0')
+				? std::vector<char>(this->hex().c_str())
+				: std::vector<char>(1);
 		};
 		/*************************************************/
 
-		/************************************************** 
-		* @brief: returns hex-string representation of stored bytes
+		/**************************************************
+		* @brief: return hex-cstring of Hexable type
 		**************************************************/
-		std::string hex() const
+		const char* c_str() const
 		{
-			if (this->bytes_[0] != '\0')
-			{
-				return BytesToHex(this->bytes_, this->bytes_ + COUNT);
-			}
-			else { return std::string(""); };
-		}
-		/*************************************************/
-
-		/************************************************** 
-		* @brief: returns hex c-string ('\0' or NULL Terminated string) representation of stored bytes
-		**************************************************/
-		operator const char *() const
-		{
-			return this->hex().c_str();
+			return (this->bytes_[0] != '\0')
+				? BytesToHex(this->bytes_, this->bytes_ + COUNT).c_str()
+				: std::string("").c_str();
 		};
-		/*************************************************/
 
 		/**************************************************
 		* @param: Print& p 
@@ -81,7 +69,7 @@ class Hexable :
 		virtual size_t printTo(Print& p) const
 		{
 			size_t size = 0;
-			size += p.print( this->hex().c_str() );
+			size += p.print( this->c_str() );
 			return size;
 		};
 		/*************************************************/

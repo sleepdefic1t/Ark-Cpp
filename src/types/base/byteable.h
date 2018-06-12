@@ -38,15 +38,14 @@ class Byteable
 		* Deconstructor 
 		* @brief: fill this->bytes_ with random data before deconstruction
 		**************************************************/
-		~Byteable() {
-			Sanitize(this->bytes_, COUNT);
-		};
+		~Byteable() { Sanitize(this->bytes_, COUNT); };
 		/*************************************************/
 
 		/************************************************** 
 		* @brief: returns size of Byteable object
 		**************************************************/
-		size_t size() const {
+		size_t size() const
+		{
 			return (sizeof(this->bytes_) == COUNT)
 					? COUNT
 					: 0;
