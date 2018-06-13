@@ -11,21 +11,21 @@
 *   "success":true,
 *   "block":
 *   {
-*     "id": "const char*",
-*     "version":  int,
-*     "timestamp":  const char*,
-*     "height": const char*,
-*     "previousBlock":  "const char*",
-*     "numberOfTransactions": const char*,
-*     "totalAmount":  Balance,
+*     "id": char[],
+*     "version": int,
+*     "timestamp": char[],
+*     "height": char[],
+*     "previousBlock": char[],
+*     "numberOfTransactions": char[],
+*     "totalAmount": Balance,
 *     "totalFee": Balance,
 *     "reward": Balance,
-*     "payloadLength":  const char*,
+*     "payloadLength": char[],
 *     "payloadHash":  "Hash",
 *     "generatorPublicKey": "Publickey",
 *     "generatorId":  "Address",
 *     "blockSignature": "Signature",
-*     "confirmations":  const char*,
+*     "confirmations":   char[],
 *     "totalForged":" Balance"
 *   }
 * }
