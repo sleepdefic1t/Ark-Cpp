@@ -22,7 +22,7 @@ TEST(api, test_peer_version)
 {
 	ARK::API::Manager _arkManager(ARK::Constants::Networks::Model::Devnet);
 	const auto version = _arkManager.peerVersion();
-	ASSERT_STREQ("1.1.1", version.version());
+	ASSERT_STREQ("2.0.0", version.version());
 	ASSERT_STREQ("", version.build());
 }
 
