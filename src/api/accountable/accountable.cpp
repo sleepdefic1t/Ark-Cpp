@@ -4,14 +4,14 @@
 
 
 /*************************************************
-*	/api/accounts/getBalance?address=arkAddress
+* /api/accounts/getBalance?address=arkAddress
 *
-*	EXAMPLE:
-*	{
-*		"success":true,
-*		"balance":  "Balance",
-*		"unconfirmedBalance": "Balance"
-*	}
+* EXAMPLE:
+* {
+*	"success":true,
+*	"balance":  "Balance",
+*	"unconfirmedBalance": "Balance"
+* }
 **************************************************/
 ARK::API::Account::Respondable::Balances ARK::API::Accountable::accountBalance(
 		const Address &arkAddress
@@ -32,13 +32,13 @@ ARK::API::Account::Respondable::Balances ARK::API::Accountable::accountBalance(
 /**************************************************************************************************/
 
 /*************************************************
-*	api/accounts/getPublickey?address=arkAddress
+* api/accounts/getPublickey?address=arkAddress
 *
-*	EXAMPLE:
-*	{
-*		"success":true,
-*		"publicKey":  "Publickey"
-*	}
+* EXAMPLE:
+* {
+*	"success":true,
+*	"publicKey":  "Publickey"
+* }
 **************************************************/
 Publickey ARK::API::Accountable::accountPublickey(
 		const Address &arkAddress
@@ -85,23 +85,23 @@ Balance ARK::API::Accountable::accountDelegatesFee(
 * /api/accounts/delegates?address=arkAddress
 *
 * EXAMPLE:
-*	{
-*		"success":true,
-*		"delegates":
-*		[
-*			{
-*				"username": "sleepdeficit",
-*				"address":  "Address",
-*				"publicKey":  "Publickey",
-*				"vote": "Balance",
-*				"producedblocks": const char*,
-*				"missedblocks": String,
-*				"rate": int,
-*				"approval": double,
-*				"productivity": double
-*			}
-*		]
-*	}
+* {
+*	"success":true,
+*	"delegates":
+*	[
+*		{
+*			"username": "sleepdeficit",
+*			"address":  "Address",
+*			"publicKey":  "Publickey",
+*			"vote": "Balance",
+*			"producedblocks": const char*,
+*			"missedblocks": String,
+*			"rate": int,
+*			"approval": double,
+*			"productivity": double
+*		}
+*	]
+* }
 **************************************************/
 ARK::Delegate ARK::API::Accountable::accountDelegates(
 		const Address &arkAddress
@@ -129,24 +129,24 @@ ARK::Delegate ARK::API::Accountable::accountDelegates(
 /**************************************************************************************************/
 
 /*************************************************
-*	/api/accounts?address=arkAddress
+* /api/accounts?address=arkAddress
 *
-*	EXAMPLE:
+* EXAMPLE:
+* {
+*	"success":true,
+*	"account":
 *	{
-*		"success":true,
-*		"account":
-*		{
-*			"address":  "Address",
-*			"unconfirmedBalance": "Balance",
-*			"balance":  "Balance",
-*			"publicKey":  "Publickey",
-*			"unconfirmedSignature": int,
-*			"secondSignature":  int,
-*			"secondPublicKey":  "Publickey",
-*			"multisignatures":[],
-*			"u_multisignatures":[]
-*		}
+*		"address":  "Address",
+*		"unconfirmedBalance": "Balance",
+*		"balance":  "Balance",
+*		"publicKey":  "Publickey",
+*		"unconfirmedSignature": int,
+*		"secondSignature":  int,
+*		"secondPublicKey":  "Publickey",
+*		"multisignatures":[],
+*		"u_multisignatures":[]
 *	}
+* }
 **************************************************/
 ARK::Account ARK::API::Accountable::account(
 		const Address &arkAddress
