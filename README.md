@@ -19,7 +19,7 @@
 Not production ready.  
 
 # Supported Boards
-- [X] ESP8266 https://www.adafruit.com/product/2821   // Development board
+- [X] ESP8266 https://www.adafruit.com/product/2821  
 - [X] ESP32 https://www.adafruit.com/product/3405
 
 
@@ -35,32 +35,35 @@ Create Signed transaction for broadcast to the Ark Ecosystem.
 # How to use this
 
 1) Define the network  
->  ARK::Network devnet = ARK::Constants::Networks::Devnet::model;  
+```ARK::Network devnet = ARK::Constants::Networks::Model::Devnet;```  
 
-or  
+or 
 
-> ARK::Network devnet {  
+```
+ARK::Network devnet
+{  
   "578e820911f24e039733b45e4882b73e301f813a0d2c31330dafda84534ffa23",  
   "DARK",  
   "DѦ",  
   "https://dexplorer.ark.io/",  
   30  
-};  
+};
+```
 
 
 
 2) Create the manager instance  
-> ARK::API::Manager arkManager(devnet)  
+```ARK::API::Manager arkManager(devnet)```  
 
 3) Use manager to get info from the Ark Blockchain  
-> auto status = arkManager.loaderStatus()
-> Serial.print(status) 
-> prints {  
-  "success":true,  
+```
+auto status = arkManager.loaderStatus()
+Serial.print(status) 
+```
+> "success":true,  
   "loaded":false,  
   "now":2348744,  
   "blocksCount":0  
-}  
 
 
 
@@ -109,7 +112,7 @@ void setup()
 void loop(){}
 
 ```
-> vendorField: 1ARK-GOLang is saying whoop whooop  
+```vendorField: 1ARK-GOLang is saying whoop whooop```  
 
 
 #
@@ -121,17 +124,18 @@ Get Ark Account from a given Ark Address
     Serial.print("\naccount: ");
     Serial.println(account);
 ```
-> account:  
-> address: DHQ4Fjsyiop3qBR4otAjAu6cBHkgRELqGA  
-> unconfirmedBalance: 106914.85341862  
-> balance: 106914.85341862  
-> publicKey: 0275776018638e5c40f1b922901e96cac2caa734585ef302b4a2801ee9a338a456  
-> unconfirmedSignature: 1  
-> secondSignature: 1  
-> secondPublicKey: 03ad2a481719c80571061f0c941d57e91c928700d8dd132726edfc0bf9c4cb2869  
-> multisignatures:  
-> u_multisignatures:  
-
+```
+account:  
+ address: DHQ4Fjsyiop3qBR4otAjAu6cBHkgRELqGA  
+ unconfirmedBalance: 106914.85341862  
+ balance: 106914.85341862  
+ publicKey: 0275776018638e5c40f1b922901e96cac2caa734585ef302b4a2801ee9a338a456  
+ unconfirmedSignature: 1  
+ secondSignature: 1  
+ secondPublicKey: 03ad2a481719c80571061f0c941d57e91c928700d8dd132726edfc0bf9c4cb2869  
+ multisignatures:  
+ u_multisignatures:  
+```
 
 ## todo
 
