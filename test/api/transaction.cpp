@@ -24,7 +24,6 @@ TEST(api, test_transaction)
 	ASSERT_STREQ("DFTzLwEHKKn3VGce6vZSueEmoPWpEZswhB", transaction.recipient_id().c_str());
 	ASSERT_STREQ("03a151b47a5779949a47dd9c17e05c832304721a242b535f36528cd7e547dac439", transaction.sender_publickey().c_str() );
 	ASSERT_STREQ("3045022100dc9590c6c6fce66a523481f13237d95518056387076de9a9534cb4a039fbede90220322e7f17b227f8fe9401460980b7b3c1baacf076b9020620ec5c4388673e7e12", transaction.signature().c_str());
-	ASSERT_STREQ("1868079", transaction.confirmations());
 
 	//ASSERT_STREQ("There are currently No unconfirmed transactions by that transactionID", _arkManager.transactionUnconfirmed(transactionID).c_str());
 	//ASSERT_STREQ("There are currently No Unconfirmed Transactions", _arkManager.transactionsUnconfirmed().c_str());
