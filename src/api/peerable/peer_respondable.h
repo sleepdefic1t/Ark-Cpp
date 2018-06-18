@@ -4,7 +4,7 @@
 #define PEER_RESPONDABLE_H
 
 #include "utilities/platform.h"
-#include "models/peer"
+#include "models/peer.h"
 #include <cstring>
 #include <memory>
 
