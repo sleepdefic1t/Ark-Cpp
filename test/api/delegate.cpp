@@ -9,6 +9,26 @@ namespace
 	const Publickey darkPubkey("0275776018638e5c40f1b922901e96cac2caa734585ef302b4a2801ee9a338a456");
 }
 
+TEST(api, test_delegate)
+{
+	ARK::API::Manager _arkManager(ARK::Constants::Networks::Model::Devnet);
+	const auto delegate = _arkManager.delegate("sleepdeficit");
+	ASSERT_STREQ("sleepdeficit", delegate.username());
+	ASSERT_STREQ("DHQ4Fjsyiop3qBR4otAjAu6cBHkgRELqGA", delegate.address().c_str());
+	ASSERT_STREQ("0275776018638e5c40f1b922901e96cac2caa734585ef302b4a2801ee9a338a456", delegate.public_key().c_str());
+	// "vote":"13378155341862",
+	// "producedblocks":62081,
+	// "missedblocks":4273,
+	// "rate":35,"approval":0.1,
+	// "productivity":93.56
+}
+
+TEST(api, test_delegates)
+{
+	ARK::API::Manager _arkManager(ARK::Constants::Networks::Model::Devnet);
+	const auto delegate = _arkManager.delegates();
+}
+
 TEST(api, test_delegate_fee)
 {
 	ARK::API::Manager _arkManager(ARK::Constants::Networks::Model::Devnet);

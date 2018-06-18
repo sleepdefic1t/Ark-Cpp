@@ -50,7 +50,8 @@ namespace Delegate
 	const auto search_s = "/api/delegates/search";
 	const auto voters_s = "/api/delegates/voters";
 	const auto get_s = "/api/delegates/get";
-	const auto delegates_s = "/api/delegates";
+	// const auto delegates_s = "/api/delegates";
+	const auto delegates_s = "/api/delegates?limit=20";
 	const auto fee_s = "/api/delegates/fee";
 	const auto getForgedByAccount_s = "/api/delegates/forging/getForgedByAccount";
 	const auto getNextForgers_s = "/api/delegates/getNextForgers";

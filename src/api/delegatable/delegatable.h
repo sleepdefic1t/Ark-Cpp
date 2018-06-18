@@ -27,7 +27,7 @@ class Delegatable :
 {
 	public:
 		/*************************************************
-		* /api/delegates/get?username=sleepdeficit
+		* /api/delegates/get?username="username"
 		*
 		* @param: const char* const parameter
 		* @return: ARK::API::Delegate::Respondable::Voters
@@ -39,6 +39,18 @@ class Delegatable :
 
 		/**************************************************************************************************/
 		
+		/*************************************************
+		* /api/delegates?limit=20
+		*
+		* @return: ARK::API::Delegate::Respondable::Delegates
+		*
+		* @brief: Returns Delegates list, limited to top 20 to fit MCU.
+		**************************************************/
+		ARK::API::Delegate::Respondable::Delegates delegates();
+		/*************************************************/
+
+		/**************************************************************************************************/
+
 		/*************************************************
 		* /api/delegates/count
 		*
@@ -60,19 +72,6 @@ class Delegatable :
 		* @brief: Searches for Delegate by username from a Node via API.
 		**************************************************/
 		ARK::API::Delegate::Respondable::Search delegateSearch(const char *const username);
-		/*************************************************/
-
-		/**************************************************************************************************/
-
-		/*************************************************
-		* /api/delegates/voters?publicKey=_pubKey
-		*
-		* @param: const Publickey &publicKey
-		* @return: ARK::API::Delegate::Respondable::Voters
-		*
-		* @brief:	Returns Voters list for Delegate by Publickey from a Node via API.
-		**************************************************/
-		ARK::API::Delegate::Respondable::Voters delegateVoters(const Publickey &publicKey);
 		/*************************************************/
 
 		/**************************************************************************************************/
@@ -112,6 +111,18 @@ class Delegatable :
 		ARK::API::Delegate::Respondable::NextForgers delegateNextForgers();
 		/*************************************************/
 
+		/**************************************************************************************************/
+
+		/*************************************************
+		* /api/delegates/voters?publicKey=_pubKey
+		*
+		* @param: const Publickey &publicKey
+		* @return: ARK::API::Delegate::Respondable::Voters
+		*
+		* @brief:	Returns Voters list for Delegate by Publickey from a Node via API.
+		**************************************************/
+		ARK::API::Delegate::Respondable::Voters delegateVoters(const Publickey &publicKey);
+		/*************************************************/
 	};
 	/*************************************************/
 
@@ -121,48 +132,4 @@ class Delegatable :
 #endif
 
 
-/*************************************************/
-/*	BROKEN: fix for large callbacks    */
-/*  Delegates callback is ~13,564 bytes  */
-/*  /api/delegates  */
-/*************************************************
-	* /api/blocks/get?id=_blockID
-	**************************************************/
-// String getDelegates()
-// { return ARK::API::DelegateGettable::delegates(this->netConnector); };
-// /*  =====================  */
-// /*  ARK::DelegateResponse  */
-// struct DelegatesResponse
-// {
-// public:
-// 	int count;
-// 	ARK::Delegate list[5]; // = {{}};
-// 	DelegatesResponse(int);
-// 	String description();
-// };
-// /*  =====================  */
-/*  =============  */
-/*  ARK::DelegatesResponse  */
-/*  Constructor  */
-// ARK::DelegatesResponse::DelegatesResponse(int _count)
-// {
-//         this->count = _count;
-// }
-/*  =====  */
-/*  Description  */
-// String ARK::DelegatesResponse::DelegatesResponse::description()
-// {
-//		String resp;
-//		if (this->count > 0)
-//		{
-//			for (int i = 0; i < this->count; i++)
-//			{
-//				resp += "\ndelegate ";
-//				resp += i + 1;
-//				resp += ":\n";
-//				resp += this->list[i].description();
-//				resp += "\n";
-//			};
-//		};
-//		return resp;
-// }
+

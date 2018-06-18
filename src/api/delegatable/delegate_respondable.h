@@ -6,6 +6,7 @@
 #include "utilities/platform.h"
 #include "utilities/json.h"
 
+#include "models/delegate.h"
 #include "models/voter.h"
 #include "types/address.h"
 #include "types/balance.h"
@@ -24,6 +25,30 @@ namespace Delegate
 {
 namespace Respondable
 {
+
+/*************************************************
+* Constructor
+**************************************************/
+struct Delegates :
+		public Printable
+{
+	private:
+		size_t totalCount_;
+    	std::unique_ptr<ARK::Delegate[]> delegates_;
+
+	public:
+		Delegates(size_t newCount);
+
+		size_t totalCount() const;
+		void setTotalCount(int newCount);
+
+		const ARK::Delegate &operator[](size_t index) const;
+		ARK::Delegate &operator[](size_t index);
+
+		virtual size_t printTo(Print &p) const;
+};
+/*************************************************/
+
 /*************************************************
 * ARK::API::Delegate::Respondable::ForgedByAccount
 *
@@ -42,30 +67,17 @@ struct ForgedByAccount :
 		Balance forged_;
 
 	public:
-		/*************************************************
-		* Constructor
-		**************************************************/
 		ForgedByAccount(
 				const char *const newFees,
 				const char *const newRewards,
 				const char *const newForged
 		);
-		/*************************************************/
 
-		/*************************************************
-		* Accessors
-		**************************************************/
 		const Balance& fees() const noexcept { return fees_; }
 		const Balance& rewards() const noexcept { return rewards_; }
 		const Balance& forged() const noexcept { return forged_; }
-		/*************************************************/
 
-		/*************************************************
-		*
-		**************************************************/
 		virtual size_t printTo(Print &p) const;
-		/*************************************************/
-
 };
 /*************************************************/
 
@@ -89,30 +101,17 @@ struct NextForgers :
 		Publickey delegate_keys_[10];
 
 	public:
-		/*************************************************
-		* Constructor
-		**************************************************/
 		NextForgers(
 				int newCB,
 				int newCS,
 				const Publickey *const newDelegateKeys
 		);
-		/*************************************************/
 
-		/*************************************************
-		* Accessors
-		**************************************************/
 		int current_block() const noexcept { return currentBlock_; }
 		int current_slot() const noexcept { return currentSlot_; }
 		const Publickey *delegate_keys() const noexcept { return delegate_keys_; }
-		/*************************************************/
 
-		/*************************************************
-		*
-		**************************************************/
 		virtual size_t printTo(Print &p) const;
-		/*************************************************/
-
 };
 /*************************************************/
 
@@ -135,9 +134,6 @@ struct Search :
 		int missedblocks_;
 
 	public:
-		/*************************************************
-		* Constructor
-		**************************************************/
 		Search(
 				const char *const newUsername,
 				const char *const newAddress,
@@ -146,25 +142,15 @@ struct Search :
 				int newProducedBlocks,
 				int newMissedBlocks
 		);
-		/*************************************************/
 
-		/*************************************************
-		* Accessors
-		**************************************************/
 		const char* username() const noexcept { return username_; }
 		const Address& address() const noexcept { return address_; }
 		const Publickey& public_key() const noexcept { return publicKey_; }
 		const Balance& vote() const noexcept { return vote_; }
 		int produced_blocks() const noexcept { return producedblocks_; }
 		int missed_blocks() const noexcept { return missedblocks_; }
-		/*************************************************/
 
-		/*************************************************
-		*
-		**************************************************/
-		virtual size_t printTo(Print &p) const;
-		/*************************************************/
-	
+		virtual size_t printTo(Print &p) const;	
 };
 /*************************************************/
 
@@ -181,42 +167,19 @@ struct Search :
 struct Voters :
 		public Printable
 {
-
 	private:
 		size_t count_;
-    std::unique_ptr<ARK::Voter[]> voters_;
+    	std::unique_ptr<ARK::Voter[]> voters_;
 
 	public:
-		/*************************************************
-		* Constructor
-		**************************************************/
 		Voters(size_t c) : count_(c), voters_(new ARK::Voter[c]) {}
-		/*************************************************/
-		
-		/*************************************************
-		*
-		**************************************************/
+
 		size_t count() const;
-		/*************************************************/
 
-		/*************************************************
-		*
-		**************************************************/
 		const Voter &operator[](size_t index) const;
-		/*************************************************/
-
-		/*************************************************
-		*
-		**************************************************/
 		Voter &operator[](size_t index);
-		/*************************************************/
 
-		/*************************************************
-		*
-		**************************************************/
 		virtual size_t printTo(Print &p) const;
-		/*************************************************/
-
 };
 /*************************************************/
 

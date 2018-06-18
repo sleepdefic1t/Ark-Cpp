@@ -47,6 +47,78 @@ ARK::Delegate ARK::API::Delegatable::delegate(
 		convert_to_float(parser->valueIn("delegate", "productivity").c_str())
 	};
 };
+/*************************************************/
+
+/**************************************************************************************************/
+		
+/*************************************************
+* /api/delegates?limit=20
+*
+* @return: ARK::API::Delegate::Respondable::Delegates
+*
+* @brief: Returns Delegates list, limited to top 20 to fit MCU.
+*
+*
+* EXAMPLE:
+* { 
+*	"success":true,
+*	"delegates":
+*	[
+*		{
+*			"username": "string",
+*			"address":  "Address",
+*			"publicKey":  "Publickey",
+*			"vote": "Balance",
+*			"producedblocks": const char*,
+*			"missedblocks": const char*,
+*			"rate": int,
+*			"approval": double,
+*			"productivity": double
+* 		},
+*		...
+*		{
+*			"username": "string",
+*			"address":  "Address",
+*			"publicKey":  "Publickey",
+*			"vote": "Balance",
+*			"producedblocks": const char*,
+*			"missedblocks": const char*,
+*			"rate": int,
+*			"approval": double,
+*			"productivity": double
+* 		}
+*	]
+*	totalCount: 227
+* }
+**************************************************/
+ARK::API::Delegate::Respondable::Delegates ARK::API::Delegatable::delegates()
+{
+	char uri[43] = { '\0' };
+		strcpy(uri, ARK::API::Paths::Delegate::delegates_s);
+	auto callback = netConnector.callback(uri);
+	auto parser = ARK::Utilities::makeJSONString(callback);
+
+	const size_t maxCapacity = 20; // last 20 recent blocks
+	ARK::API::Delegate::Respondable::Delegates delegates(maxCapacity);
+
+	for (int i = 0; i < maxCapacity; i++)
+	{
+		delegates[i] = {
+			parser->subarrayValueIn("delegates", i, "username").c_str(),
+			parser->subarrayValueIn("delegates", i, "address").c_str(),
+			parser->subarrayValueIn("delegates", i, "publicKey").c_str(),
+			parser->subarrayValueIn("delegates", i, "vote").c_str(),
+			convert_to_int(parser->subarrayValueIn("delegates", i, "producedblocks").c_str()),
+			convert_to_int(parser->subarrayValueIn("delegates", i, "missedblocks").c_str()),
+			convert_to_int(parser->subarrayValueIn("delegates", i, "rate").c_str()),
+			convert_to_float(parser->subarrayValueIn("delegates", i, "approval").c_str()),
+			convert_to_float(parser->subarrayValueIn("delegates", i, "productivity").c_str())
+		};
+	};
+	delegates.setTotalCount( std::atoi(parser->valueFor("totalCount").c_str()) );
+	return delegates;
+};
+/*************************************************/
 
 /**************************************************************************************************/
 

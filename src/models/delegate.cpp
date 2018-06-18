@@ -5,6 +5,21 @@
 namespace ARK
 {
 /*************************************************
+* Constructor: default empty
+**************************************************/
+ARK::Delegate::Delegate()	:
+		username_(),
+		address_(),
+		publicKey_(),
+		vote_(),
+		producedblocks_(),
+		missedblocks_(),
+		rate_(),
+		approval_(),
+		productivity_() {}
+/*************************************************/
+
+/*************************************************
 * Constructor
 **************************************************/
 ARK::Delegate::Delegate(

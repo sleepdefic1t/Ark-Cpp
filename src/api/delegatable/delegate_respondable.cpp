@@ -11,6 +11,39 @@ namespace Delegate
 namespace Respondable
 {
 /*************************************************
+* Delegates
+**************************************************/
+Delegates::Delegates(size_t newCount) :
+		totalCount_(newCount),
+		delegates_(new ARK::Delegate[newCount]) {}
+
+size_t ARK::API::Delegate::Respondable::Delegates::totalCount() const { return this->totalCount_; }
+void ARK::API::Delegate::Respondable::Delegates::setTotalCount(int newCount) { this->totalCount_ = newCount; }
+
+const ARK::Delegate &ARK::API::Delegate::Respondable::Delegates::operator[](size_t index) const { return this->delegates_[index]; }
+ARK::Delegate &ARK::API::Delegate::Respondable::Delegates::operator[](size_t index) { return this->delegates_[index]; }
+
+size_t ARK::API::Delegate::Respondable::Delegates::printTo(Print &p) const
+{
+	size_t size = 0;
+
+	size += p.print("\n\0");
+	for (int i = 0; i < 20; i++)
+	{
+		size += p.print("\ndelegate: ");
+		size += p.print(i + 1);
+		size += p.print(":\n");
+		size += p.println(delegates_[i].printTo(p));
+	};
+	size += p.print("\ntotalCount: ");
+	size += p.print(this->totalCount());
+	return size;
+}
+/*************************************************/
+
+/**************************************************************************************************/
+
+/*************************************************
 *	Constructor
 **************************************************/
 ARK::API::Delegate::Respondable::ForgedByAccount::ForgedByAccount(
