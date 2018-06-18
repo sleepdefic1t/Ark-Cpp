@@ -33,7 +33,7 @@ TEST(api, test_blocks)
 	const auto blocks = _arkManager.blocks();
 	for (int i = 0; i < 20; i++) // Full-list too large for MCU; limit to last 20 blocks.
 	{
-		ASSERT_NO_THROW( ARK::Block(blocks[i]) );
+		ASSERT_NO_THROW( { ARK::Block(blocks[i]) } );
 		ASSERT_EQ(0, blocks[i].version());
 	}
 	ASSERT_NEAR(3642845, blocks.count(), 10000000);
