@@ -14,12 +14,12 @@ namespace Respondable
 * Peers
 **************************************************/
 Peers::Peers(size_t newCapacity) :
-		peers_(new ARK::Delegate[newCapacity]) {}
+		peers_(new ARK::Peer[newCapacity]) {}
 
 const ARK::Peer &ARK::API::Peer::Respondable::Peers::operator[](size_t index) const { return this->peers_[index]; }
-ARK::Delegate &ARK::API::Peer::Respondable::Peers::operator[](size_t index) { return this->peers_[index]; }
+ARK::Peer &ARK::API::Peer::Respondable::Peers::operator[](size_t index) { return this->peers_[index]; }
 
-size_t ARK::API::Delegate::Respondable::Delegates::printTo(Print &p) const
+size_t ARK::API::Peer::Respondable::Peers::printTo(Print &p) const
 {
 	size_t size = 0;
 	size += p.print("\n\0");

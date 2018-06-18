@@ -3,6 +3,7 @@
 #ifndef PEERABLE_H
 #define PEERABLE_H
 
+#include "utilities/platform.h"
 #include "api/peerable/peer_respondable.h"
 #include "models/peer.h"
 #include "utilities/connector.h"
@@ -54,7 +55,7 @@ class Peerable :
 		*
 		*	@brief:	Gets Ark Network Peers list, limited to 20 for MCU.
 		**************************************************/
-    ARK::Peer peers();
+    ARK::API::Peer::Respondable::Peers peers();
     /*************************************************/
 
 		/**************************************************************************************************/
