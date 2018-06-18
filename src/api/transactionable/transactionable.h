@@ -44,6 +44,16 @@ public:
 	/**************************************************************************************************/
 
 	/*************************************************
+	* /api/transactions?limit=20
+	*
+	* @brief: Gets Transactions list, limited to last 20.
+	**************************************************/
+	ARK::API::Transaction::Respondable::Transactions transactions();
+	/*************************************************/
+
+	/**************************************************************************************************/
+
+	/*************************************************
 	* /api/transactions/unconfirmed/get?id=
 	*
 	* @method: transactionUnconfirmed(Hash id)
@@ -88,14 +98,3 @@ public:
 };
 
 #endif
-
-
-/*************************************************/
-/*************************************************/
-/*	BROKEN: fix for large callbacks  */
-/*	Peers callback is ~28,908 bytes  */
-/*  /api/transactions  */
-// String transactions()
-// { return ARK::API::Transaction::Gettable::transactions(this->netConnector); };
-/*************************************************/
-/*************************************************/

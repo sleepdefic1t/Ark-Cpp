@@ -106,7 +106,8 @@ namespace MultiSignatures
 namespace Transaction
 {
 	const auto getSingle_s = "/api/transactions/get";
-	const auto transactions_s = "/api/transactions";
+	// const auto transactions_s = "/api/transactions";
+	const auto transactions_s = "/api/transactions?orderBy=timestamp:desc&limit=20";
 	const auto getSingleUnconfirmed_s = "/api/transactions/unconfirmed/get";
 	const auto unconfirmed_s = "/api/transactions/unconfirmed";
 };

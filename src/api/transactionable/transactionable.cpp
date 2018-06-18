@@ -54,6 +54,84 @@ ARK::Transaction ARK::API::Transactionable::transaction(const Hash &id)
 /**************************************************************************************************/
 
 /*************************************************
+* /api/transactions/get?id=
+*
+* EXAMPLE:
+* {
+*  "success": true,
+*  "transactions":
+*	[
+*		{
+*			"id": "string",
+*			"blockid": "string",
+*			"height": int,
+*			"type": ing,
+*			"timestamp": ing,
+*			"amount": Balance,
+*			"fee": Balance,
+*			"vendorField": "string",
+*			"senderId": "Address",
+*			"recipientId": "Address",
+*			"senderPublicKey": "Publickey",
+*			"signature": "Signature",
+*			"confirmations": "string"
+*		},
+*		...
+*		{
+*			"id": "string",
+*			"blockid": "string",
+*			"height": int,
+*			"type": ing,
+*			"timestamp": ing,
+*			"amount": Balance,
+*			"fee": Balance,
+*			"vendorField": "string",
+*			"senderId": "Address",
+*			"recipientId": "Address",
+*			"senderPublicKey": "Publickey",
+*			"signature": "Signature",
+*			"confirmations": "string"
+*		}
+*	]
+*	"count": "int"
+* }
+**************************************************/
+ARK::API::Transaction::Respondable::Transactions ARK::API::Transactionable::transactions()
+{
+	char uri[69] = { '\0' };
+		strcpy(uri, ARK::API::Paths::Transaction::transactions_s);
+	auto callback = netConnector.callback(uri);
+	auto parser = ARK::Utilities::makeJSONString(callback);
+
+	const size_t maxCapacity = 20; // limit to 20 peers
+	ARK::API::Transaction::Respondable::Transactions transactions(maxCapacity);
+
+	for (int i = 0; i < maxCapacity; i++)
+	{
+		transactions[i] = {
+		parser->subarrayValueIn("transactions", i, "id").c_str(),
+		parser->subarrayValueIn("transactions", i, "blockid").c_str(),
+		parser->subarrayValueIn("transactions", i, "height").c_str(),
+		convert_to_int(parser->subarrayValueIn("transactions", i, "type").c_str()),
+		parser->subarrayValueIn("transactions", i, "timestamp").c_str(),
+		parser->subarrayValueIn("transactions", i, "amount").c_str(),
+		parser->subarrayValueIn("transactions", i, "fee").c_str(),
+		parser->subarrayValueIn("transactions", i, "vendorField").c_str(),
+		parser->subarrayValueIn("transactions", i, "senderId").c_str(),
+		parser->subarrayValueIn("transactions", i, "recipientId").c_str(),
+		parser->subarrayValueIn("transactions", i, "senderPublicKey").c_str(),
+		parser->subarrayValueIn("transactions", i, "signature").c_str(),
+		parser->subarrayValueIn("transactions", i, "confirmations").c_str()
+		};
+	};
+	transactions.setCount( convert_to_int(parser->valueFor("count").c_str()));
+	return transactions;
+};
+/*************************************************/
+
+/**************************************************************************************************/
+
+/*************************************************
 * /api/transactions/unconfirmed/get?id=
 *
 * EXAMPLE:
@@ -171,16 +249,3 @@ const char *ARK::API::Transactionable::getVendorField(const Hash &txID)
 	return parser->valueIn("transaction", "vendorField").c_str();
 };
 /*************************************************/
-
-
-/**************************************************************************************************/
-/*************************************************/
-/*************************************************/
-/*	BROKEN: fix for large callbacks  */
-/*	Peers callback is ~28,908 bytes  */
-/*  /api/transactions  */
-// String transactions()
-// { return ARK::API::Transaction::Gettable::transactions(this->netConnector); };
-/*************************************************/
-/*************************************************/
-/**************************************************************************************************/

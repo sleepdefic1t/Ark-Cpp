@@ -17,6 +17,31 @@ namespace Transaction
 namespace Respondable
 {
 /*************************************************
+* Peers
+**************************************************/
+struct Transactions :
+		public Printable
+{
+	private:
+		int count_;
+    	std::unique_ptr<ARK::Transaction[]> transactions_;
+
+	public:
+		Transactions(size_t newCapacity);
+
+		size_t count() const;
+		void setCount(int newCount);
+
+		const ARK::Transaction &operator[](size_t index) const;
+		ARK::Transaction &operator[](size_t index);
+
+		virtual size_t printTo(Print &p) const;
+};
+/*************************************************/
+
+/**************************************************************************************************/
+
+/*************************************************
 * ARK::API::Transaction::Respondable::Unconfirmed
 *
 * @param: bool loaded

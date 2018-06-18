@@ -5,7 +5,20 @@ namespace ARK
 /*************************************************
 * Default: Empty Constructor
 **************************************************/
-ARK::Transaction::Transaction() {};
+ARK::Transaction::Transaction()	:
+		id_(),
+		blockID_(),
+		height_(),
+		type_(),
+		timestamp_(),
+		amount_(),
+		fee_(),
+		vendorField_(),
+		senderId_(),
+		recipientId_(),
+		senderPublicKey_(),
+		signature_(),
+		confirmations_() {};
 /*************************************************/
 
 /*************************************************
