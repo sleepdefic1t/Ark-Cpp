@@ -11,6 +11,41 @@ namespace Block
 namespace Respondable
 {
 /*************************************************
+* Blocks
+**************************************************/
+Blocks::Blocks(size_t newCapacity) :
+		count_(),
+		blocks_(new ARK::Block[newCapacity]) {}
+
+size_t ARK::API::Block::Respondable::Blocks::count() const { return this->count_; }
+void ARK::API::Block::Respondable::Blocks::setCount(int newCount) { this->count_ = newCount; }
+
+const ARK::Block &ARK::API::Block::Respondable::Blocks::operator[](size_t index) const { return this->blocks_[index]; }
+ARK::Block &ARK::API::Block::Respondable::Blocks::operator[](size_t index) { return this->blocks_[index]; }
+
+size_t ARK::API::Block::Respondable::Blocks::printTo(Print &p) const
+{
+	size_t size = 0;
+	if (this->count_ > 0)
+	{
+		size += p.print("\n\0");
+		for (int i = 0; i < static_cast<int>(this->count_); i++)
+		{
+			size += p.print("\nblock ");
+			size += p.print(i + 1);
+			size += p.print(":\n");
+			size += p.println(blocks_[i].printTo(p));
+		};
+		size += p.print("\ncount: ");
+		size += p.print(this->count());
+	};
+	return size;
+}
+/*************************************************/
+
+/**************************************************************************************************/
+
+/*************************************************
 * Constructor
 **************************************************/
 Height::Height(

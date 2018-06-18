@@ -63,6 +63,95 @@ ARK::Block ARK::API::Blockable::block(
 /**************************************************************************************************/
 
 /*************************************************
+* /api/blocks?orderBy=height:desc&limit=20
+*
+* @brief: `/api/blocks` is too large for MCU's, so lets limit to the last 20 recent blocks
+*
+* EXAMPLE:
+* {
+*   "success":true,
+*   "blocks":
+*	[
+*		{
+*			"id": char[],
+*			"version": int,
+*			"timestamp": char[],
+*			"height": char[],
+*			"previousBlock": char[],
+*			"numberOfTransactions": char[],
+*			"totalAmount": Balance,
+*			"totalFee": Balance,
+*			"reward": Balance,
+*			"payloadLength": char[],
+*			"payloadHash":  "Hash",
+*			"generatorPublicKey": "Publickey",
+*			"generatorId":  "Address",
+*			"blockSignature": "Signature",
+*			"confirmations":   char[],
+*			"totalForged":" Balance"
+*		},
+*		...
+*		{
+*			"id": char[],
+*			"version": int,
+*			"timestamp": char[],
+*			"height": char[],
+*			"previousBlock": char[],
+*			"numberOfTransactions": char[],
+*			"totalAmount": Balance,
+*			"totalFee": Balance,
+*			"reward": Balance,
+*			"payloadLength": char[],
+*			"payloadHash":  "Hash",
+*			"generatorPublicKey": "Publickey",
+*			"generatorId":  "Address",
+*			"blockSignature": "Signature",
+*			"confirmations":   char[],
+*			"totalForged":" Balance"
+*		}
+*	],
+*	"count": 3639000
+* }
+**************************************************/
+ARK::API::Block::Respondable::Blocks ARK::API::Blockable::blocks()
+{
+	char uri[59] = { '\0' };
+		strcpy(uri, ARK::API::Paths::Block::blocks_s);
+	auto callback = netConnector.callback(uri);
+	auto parser = ARK::Utilities::makeJSONString(callback);
+
+	const size_t maxCapacity = 20; // last 20 recent blocks
+	ARK::API::Block::Respondable::Blocks blocks(maxCapacity);
+
+	for (int i = 0; i < maxCapacity; i++)
+	{
+		blocks[i] = {
+			parser->subarrayValueIn("block", i, "id").c_str(),
+			std::atoi(parser->subarrayValueIn("block", i, "version").c_str()),
+			parser->subarrayValueIn("block", i, "timestamp").c_str(),
+			parser->subarrayValueIn("block", i, "height").c_str(),
+			parser->subarrayValueIn("block", i, "previousBlock").c_str(),
+			parser->subarrayValueIn("block", i, "numberOfTransactions").c_str(),
+			parser->subarrayValueIn("block", i, "totalAmount").c_str(),
+			parser->subarrayValueIn("block", i, "totalFee").c_str(),
+			parser->subarrayValueIn("block", i, "reward").c_str(),
+			parser->subarrayValueIn("block", i, "payloadLength").c_str(),
+			parser->subarrayValueIn("block", i, "payloadHash").c_str(),
+			parser->subarrayValueIn("block", i, "generatorPublicKey").c_str(),
+			parser->subarrayValueIn("block", i, "generatorId").c_str(),
+			parser->subarrayValueIn("block", i, "blockSignature").c_str(),
+			parser->subarrayValueIn("block", i, "confirmations").c_str(),
+			parser->subarrayValueIn("block", i, "totalForged").c_str()
+		};
+	};
+	blocks.setCount(std::atoi(parser->valueFor("count").c_str()));
+	return blocks;
+};
+/*************************************************/
+
+
+
+/*************************************************
 * /api/blocks/getEpoch
 *
 * EXAMPLE:

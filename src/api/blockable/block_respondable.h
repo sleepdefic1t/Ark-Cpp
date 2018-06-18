@@ -19,6 +19,31 @@ namespace Block
 namespace Respondable
 {
 /*************************************************
+* ARK::API::Block::Respondable::blocks_s 
+**************************************************/
+struct Blocks :
+		public Printable
+{
+	private:
+		size_t count_;
+    	std::unique_ptr<ARK::Block[]> blocks_;
+
+	public:
+		Blocks(size_t newCapacity);
+
+		size_t count() const;
+		void setCount(int newCount);
+
+		const ARK::Block &operator[](size_t index) const;
+		ARK::Block &operator[](size_t index);
+
+		virtual size_t printTo(Print &p) const;
+};
+/*************************************************/
+
+/**************************************************************************************************/
+
+/*************************************************
 * ARK::API::Block::Respondable::height_t 
 *
 * @param: char height[64]
@@ -34,28 +59,15 @@ struct Height :
 		char id_[64];
 		
 	public:
-		/*************************************************
-		* Constructor
-		**************************************************/
 		Height(
 				const char *const newHeight,
 				const char *const newID
 		);
-		/*************************************************/
 
-		/*************************************************
-		* Accessors
-		**************************************************/
 		const char* height() const noexcept { return height_; }
 		const char* id() const noexcept { return id_; }
-		/*************************************************/
 
-		/*************************************************
-		*
-		**************************************************/
 		virtual size_t printTo(Print &p) const;
-		/*************************************************/
-
 };
 /*************************************************/
 
@@ -77,7 +89,6 @@ struct Height :
 struct Status :
 		public Printable
 {
-
 	protected:
 		char epoch_[64]; //TODO: check sizes
 		char height_[64];
@@ -86,10 +97,8 @@ struct Status :
 		Hash nethash_;
 		Balance reward_;
 		Balance supply_;
+		
 	public:
-		/*************************************************
-		* Constructor
-		**************************************************/
 		Status(
 				const char *const newEpoch,
 				const char *const newHeight,
@@ -99,11 +108,7 @@ struct Status :
 				const char *const newReward,
 				const char *const newSupply
 		);
-		/*************************************************/
 
-		/*************************************************
-		* Accessors
-		**************************************************/
 		const char* epoch() const noexcept { return epoch_; }
 		const char* height() const noexcept { return height_; }
 		const Balance& fee() const noexcept { return fee_; }
@@ -111,14 +116,8 @@ struct Status :
 		const Hash nethash() const noexcept { return nethash_; }
 		const Balance& reward() const noexcept { return reward_; }
 		const Balance& supply() const noexcept { return supply_; }
-		/*************************************************/
 
-		/*************************************************
-		*
-		**************************************************/
-		virtual size_t printTo(Print &p) const;
-		/*************************************************/
-		
+		virtual size_t printTo(Print &p) const;		
 };
 /*************************************************/
 
@@ -128,59 +127,3 @@ struct Status :
 };
 
 #endif
-
-// 60k callback too big for arduino. maybe implement a stream parser?
-/**************************************************************************************************/
-/*************************************************
-* ARK::API::Block::Respondable::blocks_s 
-*
-* @param: char height[64]
-* @param: char id[64]
-*
-* @brief: Model for Height API Response
-**************************************************/
-// struct Blocks :
-// 		public Printable
-// {
-// 	private:
-// 		size_t capacity_;
-// 		unsigned int count_;
-//     	std::unique_ptr<ARK::Block[]> blocks_;
-
-// 	public:
-// 		Blocks(size_t capacity, unsigned int newBlockCount);
-// 		size_t capacity() const;
-// 		unsigned int count() const;
-// 		const ARK::Block &operator[](size_t index) const;
-// 		ARK::Block &operator[](size_t index);
-// 		virtual size_t printTo(Print &p) const;
-// };
-/*************************************************/
-/**************************************************************************************************/
-/*************************************************/
-// Blocks::Blocks(size_t capacity, unsigned int newBlockCount) :
-// 		capacity_(capacity),
-// 		blocks_(new ARK::Block[capacity]),
-// 		count_(newBlockCount) {}
-// const ARK::Block &ARK::API::Block::Respondable::Blocks::operator[](size_t index) const { return this->blocks_[index]; }
-// ARK::Block &ARK::API::Block::Respondable::Blocks::operator[](size_t index) { return this->blocks_[index]; }
-// size_t ARK::API::Block::Respondable::Blocks::capacity() const { return this->capacity_; }
-// unsigned int ARK::API::Block::Respondable::Blocks::count() const { return this->count_; };
-// size_t ARK::API::Block::Respondable::Blocks::printTo(Print &p) const
-// {
-// 	size_t size = 0;
-// 	if (this->count_ > 0)
-// 	{
-// 		size += p.print("\n\0");
-// 		for (int i = 0; i < static_cast<int>(this->count_); i++)
-// 		{
-// 			size += p.print("\nblock ");
-// 			size += p.print(i + 1);
-// 			size += p.print(":\n");
-// 			size += p.println(blocks_[i].printTo(p));
-// 		};
-// 	};
-// 	return size;
-// }
-/*************************************************/
-/**************************************************************************************************/

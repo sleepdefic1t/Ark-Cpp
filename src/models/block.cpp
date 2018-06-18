@@ -5,6 +5,28 @@
 namespace ARK
 {
 /*************************************************
+* Constructor: default empty
+**************************************************/
+Block::Block()	:
+		id_(),
+		version_(),
+		timestamp_(),
+		height_(),
+		previousBlock_(),
+		numberOfTransactions_(),
+		totalAmount_(),
+		totalFee_(),
+		reward_(),
+		payloadLength_(),
+		payloadHash_(),
+		generatorPublicKey_(),
+		generatorId_(),
+		blockSignature_(),
+		confirmations_(),
+		totalForged_() {};
+/*************************************************/
+
+/*************************************************
 *	Constructor
 **************************************************/
 Block::Block(
