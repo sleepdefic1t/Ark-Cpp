@@ -115,7 +115,7 @@ ARK::API::Delegate::Respondable::Delegates ARK::API::Delegatable::delegates()
 			convert_to_float(parser->subarrayValueIn("delegates", i, "productivity").c_str())
 		};
 	};
-	delegates.setTotalCount( std::atoi(parser->valueFor("totalCount").c_str()) );
+	delegates.setTotalCount( convert_to_int(parser->valueFor("totalCount").c_str()) );
 	return delegates;
 };
 /*************************************************/

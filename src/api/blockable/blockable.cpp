@@ -127,7 +127,7 @@ ARK::API::Block::Respondable::Blocks ARK::API::Blockable::blocks()
 	{
 		blocks[i] = {
 			parser->subarrayValueIn("block", i, "id").c_str(),
-			std::atoi(parser->subarrayValueIn("block", i, "version").c_str()),
+			convert_to_int(parser->subarrayValueIn("block", i, "version").c_str()),
 			parser->subarrayValueIn("block", i, "timestamp").c_str(),
 			parser->subarrayValueIn("block", i, "height").c_str(),
 			parser->subarrayValueIn("block", i, "previousBlock").c_str(),
@@ -144,7 +144,7 @@ ARK::API::Block::Respondable::Blocks ARK::API::Blockable::blocks()
 			parser->subarrayValueIn("block", i, "totalForged").c_str()
 		};
 	};
-	blocks.setCount(std::atoi(parser->valueFor("count").c_str()));
+	blocks.setCount(convert_to_int(parser->valueFor("count").c_str()));
 	return blocks;
 };
 /*************************************************/

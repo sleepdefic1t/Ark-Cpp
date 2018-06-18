@@ -31,12 +31,12 @@
 
 inline int convert_to_int(const std::string& s)
 {
-return atoi(s.c_str());
+return std::atoi(s.c_str());
 }
 
 inline float convert_to_float(const std::string& s)
 {
-	return atof(s.c_str());
+	return std::atof(s.c_str());
 }
 
 /*************************************************
@@ -80,12 +80,12 @@ inline uint32_t generate_random_number(
 
 inline int convert_to_int(const std::string& s)
 {
-	return std::stoi(s);
+	return std::atoi(s.c_str());
 }
 
 inline float convert_to_float(const std::string& s)
 {
-	return std::stof(s);
+	return std::atof(s.c_str());
 }
 
 uint32_t generate_random_number(
