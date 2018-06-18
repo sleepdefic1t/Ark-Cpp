@@ -75,7 +75,8 @@ namespace Loader
 namespace Peer
 {
 	const auto get_s = "/api/peers/get";
-	const auto peers_s = "/api/peers";
+	// const auto peers_s = "/api/peers";
+	const auto peers_s = "/api/peers?limit=20";
 	const auto version_s = "/api/peers/version";
 };
 /*************************************************/

@@ -3,7 +3,7 @@
 #include "gtest/gtest.h"
 #include "api/api.h"
 
-TEST(api, test_peer_peer)
+TEST(api, test_peer)
 {
 	ARK::API::Manager _arkManager(ARK::Constants::Networks::Model::Devnet);
 	const auto peer = _arkManager.peer("167.114.29.55", 4002);
@@ -16,6 +16,12 @@ TEST(api, test_peer_peer)
 
 	ASSERT_TRUE(strcmp("OK", peer.status()) == 0 || strcmp("EUNAVAILABLE", peer.status()) == 0);
 	ASSERT_NE(0, peer.delay());
+}
+
+TEST(api, test_peers)
+{
+	ARK::API::Manager _arkManager(ARK::Constants::Networks::Model::Devnet);
+	const auto delegate = _arkManager.peers();
 }
 
 TEST(api, test_peer_version)

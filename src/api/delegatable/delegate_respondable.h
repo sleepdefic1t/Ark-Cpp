@@ -25,9 +25,8 @@ namespace Delegate
 {
 namespace Respondable
 {
-
 /*************************************************
-* Constructor
+* Delegates
 **************************************************/
 struct Delegates :
 		public Printable

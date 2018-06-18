@@ -45,6 +45,72 @@ ARK::Peer ARK::API::Peerable::peer(
 		convert_to_int(parser->valueIn("peer", "delay").c_str())
 	};
 };
+/*************************************************/
+
+/**************************************************************************************************/
+
+/*************************************************
+* /api/peers?limit=20
+*
+* @brief: return list of Peers, limited to 20 to fit MCU's.
+*
+* EXAMPLE:
+* {
+*	"success":true,
+*	"peers":
+*	[
+*		{
+*			"ip": "string",
+*			"port": int,
+*			"version": "string",
+*			"errors": int,
+*			"os": "string",
+*			"height": int,
+*			"status": "string",
+*			"delay": int
+*		},
+*		...
+*		{
+*			"ip": "string",
+*			"port": int,
+*			"version": "string",
+*			"errors": int,
+*			"os": "string",
+*			"height": int,
+*			"status": "string",
+*			"delay": int
+*		}
+*	]
+* }
+**************************************************/
+ARK::API::Peer::Respondable::Peers ARK::API::Peerable::peers()
+{
+	char uri[39] = { '\0' };
+		strcpy(uri, ARK::API::Paths::Peer::peers_s);
+	auto callback = netConnector.callback(uri);
+	auto parser = ARK::Utilities::makeJSONString(callback);
+
+	const size_t maxCapacity = 20; // limit to 20 peers
+	ARK::API::Peer::Respondable::Peers peers(maxCapacity);
+
+	for (int i = 0; i < maxCapacity; i++)
+	{
+		peers[i] = {
+			parser->subarrayValueIn("peer", i, "ip").c_str(),
+			convert_to_int(parser->subarrayValueIn("peer", i, "port").c_str()),
+			parser->subarrayValueIn("peer", i, "version").c_str(),
+			convert_to_int(parser->valusubarrayValueIneIn("peer", i, "errors").c_str()),
+			parser->subarrayValueIn("peer", i, "os").c_str(),
+			parser->subarrayValueIn("peer", i, "height").c_str(),
+			parser->subarrayValueIn("peer", i, "status").c_str(),
+			convert_to_int(parser->subarrayValueIn("peer", i, "delay").c_str())
+		};
+	};
+	return peers;
+};
+/*************************************************/
+
+/**************************************************************************************************/
 
 /*************************************************
 * /api/peers/version
@@ -65,3 +131,4 @@ ARK::API::Peer::Respondable::Version ARK::API::Peerable::peerVersion()
 		parser->valueFor("build").c_str()
 	};
 };
+/*************************************************/

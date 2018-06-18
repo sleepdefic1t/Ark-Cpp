@@ -4,7 +4,9 @@
 #define PEER_RESPONDABLE_H
 
 #include "utilities/platform.h"
+#include "models/peer"
 #include <cstring>
+#include <memory>
 
 namespace ARK
 {
@@ -14,6 +16,26 @@ namespace Peer
 {
 namespace Respondable
 {
+/*************************************************
+* Peers
+**************************************************/
+struct Peers :
+		public Printable
+{
+	private:
+    	std::unique_ptr<ARK::Peer[]> peers_;
+
+	public:
+		Peers(size_t newCapacity);
+		const ARK::Peer &operator[](size_t index) const;
+		ARK::Peer &operator[](size_t index);
+
+		virtual size_t printTo(Print &p) const;
+};
+/*************************************************/
+
+/**************************************************************************************************/
+
 /*************************************************
 * ARK::API::Peer::Respondable::Version
 *

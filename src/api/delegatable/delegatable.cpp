@@ -98,7 +98,7 @@ ARK::API::Delegate::Respondable::Delegates ARK::API::Delegatable::delegates()
 	auto callback = netConnector.callback(uri);
 	auto parser = ARK::Utilities::makeJSONString(callback);
 
-	const size_t maxCapacity = 20; // last 20 recent blocks
+	const size_t maxCapacity = 20; // limit to top 20 delegates to fit MCU's.
 	ARK::API::Delegate::Respondable::Delegates delegates(maxCapacity);
 
 	for (int i = 0; i < maxCapacity; i++)
