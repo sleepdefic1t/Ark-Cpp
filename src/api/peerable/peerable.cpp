@@ -96,14 +96,14 @@ ARK::API::Peer::Respondable::Peers ARK::API::Peerable::peers()
 	for (int i = 0; i < maxCapacity; i++)
 	{
 		peers[i] = {
-			parser->subarrayValueIn("peer", i, "ip").c_str(),
+			parser->subarrayValueIn("peers", i, "ip").c_str(),
 			convert_to_int(parser->subarrayValueIn("peer", i, "port").c_str()),
-			parser->subarrayValueIn("peer", i, "version").c_str(),
-			convert_to_int(parser->valusubarrayValueIneIn("peer", i, "errors").c_str()),
-			parser->subarrayValueIn("peer", i, "os").c_str(),
-			parser->subarrayValueIn("peer", i, "height").c_str(),
-			parser->subarrayValueIn("peer", i, "status").c_str(),
-			convert_to_int(parser->subarrayValueIn("peer", i, "delay").c_str())
+			parser->subarrayValueIn("peers", i, "version").c_str(),
+			convert_to_int(parser->subarrayValueIn("peer", i, "errors").c_str()),
+			parser->subarrayValueIn("peers", i, "os").c_str(),
+			parser->subarrayValueIn("peers", i, "height").c_str(),
+			parser->subarrayValueIn("peers", i, "status").c_str(),
+			convert_to_int(parser->subarrayValueIn("peers", i, "delay").c_str())
 		};
 	};
 	return peers;
