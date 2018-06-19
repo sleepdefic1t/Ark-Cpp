@@ -46,8 +46,8 @@ const char password[] = "your_password";  // your network password
 
 >| board | command |
 >|:-- |:-- |
->| ESP8266 | ```pio run -e nodemcuv2 -t upload``` |
->| ESP32 | ```pio run -e esp32dev -t upload``` |
+>| ESP8266 | ```pio run -e esp8266 -t upload``` |
+>| ESP32 | ```pio run -e esp32 -t upload``` |
 >| Uno | ```pio run -e uno -t upload``` |
 
 

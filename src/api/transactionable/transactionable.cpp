@@ -106,7 +106,7 @@ ARK::API::Transaction::Respondable::Transactions ARK::API::Transactionable::tran
 	const size_t maxCapacity = 20; // limit to 20 peers
 	ARK::API::Transaction::Respondable::Transactions transactions(maxCapacity);
 
-	for (int i = 0; i < maxCapacity; i++)
+	for (unsigned int i = 0; i < maxCapacity; i++)
 	{
 		transactions[i] = {
 		parser->subarrayValueIn("transactions", i, "id").c_str(),

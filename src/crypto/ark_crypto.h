@@ -9,16 +9,16 @@
 
 #include "constants/networks.h"
 
-#include "bcl/Utils.hpp"
-#include "bcl/Base58Check.hpp"
-#include "bcl/CurvePoint.hpp"
-#include "bcl/Ecdsa.hpp"
-#include "bcl/FieldInt.hpp"
-#include "bcl/Ripemd160.hpp"
-#include "bcl/Sha256Hash.hpp"
-#include "bcl/Sha256.hpp"
-#include "bcl/Sha512.hpp"
-#include "bcl/Uint256.hpp"
+#include "../include/bcl/Utils.hpp"
+#include "../include/bcl/Base58Check.hpp"
+#include "../include/bcl/CurvePoint.hpp"
+#include "../include/bcl/Ecdsa.hpp"
+#include "../include/bcl/FieldInt.hpp"
+#include "../include/bcl/Ripemd160.hpp"
+#include "../include/bcl/Sha256Hash.hpp"
+#include "../include/bcl/Sha256.hpp"
+#include "../include/bcl/Sha512.hpp"
+#include "../include/bcl/Uint256.hpp"
 
 #if defined(USE_IOT)
 	#include "uECC.h"

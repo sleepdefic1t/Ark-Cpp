@@ -101,7 +101,7 @@ ARK::API::Delegate::Respondable::Delegates ARK::API::Delegatable::delegates()
 	const size_t maxCapacity = 20; // limit to top 20 delegates to fit MCU's.
 	ARK::API::Delegate::Respondable::Delegates delegates(maxCapacity);
 
-	for (int i = 0; i < maxCapacity; i++)
+	for (unsigned int i = 0; i < maxCapacity; i++)
 	{
 		delegates[i] = {
 			parser->subarrayValueIn("delegates", i, "username").c_str(),

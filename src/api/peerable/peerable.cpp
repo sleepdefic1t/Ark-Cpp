@@ -93,7 +93,7 @@ ARK::API::Peer::Respondable::Peers ARK::API::Peerable::peers()
 	const size_t maxCapacity = 20; // limit to 20 peers
 	ARK::API::Peer::Respondable::Peers peers(maxCapacity);
 
-	for (int i = 0; i < maxCapacity; i++)
+	for (unsigned int i = 0; i < maxCapacity; i++)
 	{
 		peers[i] = {
 			parser->subarrayValueIn("peers", i, "ip").c_str(),

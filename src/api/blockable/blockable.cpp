@@ -123,7 +123,7 @@ ARK::API::Block::Respondable::Blocks ARK::API::Blockable::blocks()
 	const size_t maxCapacity = 20; // last 20 recent blocks
 	ARK::API::Block::Respondable::Blocks blocks(maxCapacity);
 
-	for (int i = 0; i < maxCapacity; i++)
+	for (unsigned int i = 0; i < maxCapacity; i++)
 	{
 		blocks[i] = {
 			parser->subarrayValueIn("blocks", i, "id").c_str(),
