@@ -126,22 +126,22 @@ ARK::API::Block::Respondable::Blocks ARK::API::Blockable::blocks()
 	for (int i = 0; i < maxCapacity; i++)
 	{
 		blocks[i] = {
-			parser->subarrayValueIn("block", i, "id").c_str(),
-			convert_to_int(parser->subarrayValueIn("block", i, "version").c_str()),
-			parser->subarrayValueIn("block", i, "timestamp").c_str(),
-			parser->subarrayValueIn("block", i, "height").c_str(),
-			parser->subarrayValueIn("block", i, "previousBlock").c_str(),
-			parser->subarrayValueIn("block", i, "numberOfTransactions").c_str(),
-			parser->subarrayValueIn("block", i, "totalAmount").c_str(),
-			parser->subarrayValueIn("block", i, "totalFee").c_str(),
-			parser->subarrayValueIn("block", i, "reward").c_str(),
-			parser->subarrayValueIn("block", i, "payloadLength").c_str(),
-			parser->subarrayValueIn("block", i, "payloadHash").c_str(),
-			parser->subarrayValueIn("block", i, "generatorPublicKey").c_str(),
-			parser->subarrayValueIn("block", i, "generatorId").c_str(),
-			parser->subarrayValueIn("block", i, "blockSignature").c_str(),
-			parser->subarrayValueIn("block", i, "confirmations").c_str(),
-			parser->subarrayValueIn("block", i, "totalForged").c_str()
+			parser->subarrayValueIn("blocks", i, "id").c_str(),
+			convert_to_int(parser->subarrayValueIn("blocks", i, "version").c_str()),
+			parser->subarrayValueIn("blocks", i, "timestamp").c_str(),
+			parser->subarrayValueIn("blocks", i, "height").c_str(),
+			parser->subarrayValueIn("blocks", i, "previousBlock").c_str(),
+			parser->subarrayValueIn("blocks", i, "numberOfTransactions").c_str(),
+			parser->subarrayValueIn("blocks", i, "totalAmount").c_str(),
+			parser->subarrayValueIn("blocks", i, "totalFee").c_str(),
+			parser->subarrayValueIn("blocks", i, "reward").c_str(),
+			parser->subarrayValueIn("blocks", i, "payloadLength").c_str(),
+			parser->subarrayValueIn("blocks", i, "payloadHash").c_str(),
+			parser->subarrayValueIn("blocks", i, "generatorPublicKey").c_str(),
+			parser->subarrayValueIn("blocks", i, "generatorId").c_str(),
+			parser->subarrayValueIn("blocks", i, "blockSignature").c_str(),
+			parser->subarrayValueIn("blocks", i, "confirmations").c_str(),
+			parser->subarrayValueIn("blocks", i, "totalForged").c_str()
 		};
 	};
 	blocks.setCount(convert_to_int(parser->valueFor("count").c_str()));
