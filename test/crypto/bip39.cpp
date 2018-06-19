@@ -1,7 +1,7 @@
 
 
 #include "gtest/gtest.h"
-#include "bip39/bip39.h"
+#include "crypto/bip39/bip39.h"
 #include <cstring>
 #include <set>
 

@@ -1,7 +1,7 @@
 #ifndef EN_H
 #define EN_H
 
-#include "bip39/en_str.h"
+#include "crypto/bip39/en_str.h"
 #include "utilities/platform.h"
 
 const char* const en_table[] /*PROGMEM*/ = {

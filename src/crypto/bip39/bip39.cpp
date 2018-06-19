@@ -1,7 +1,7 @@
-#include "bip39/bip39.h"
+#include "crypto/bip39/bip39.h"
 #include "utilities/platform.h"
 
-#include "bip39/en.h"
+#include "crypto/bip39/en.h"
 
 #include <cassert>
 

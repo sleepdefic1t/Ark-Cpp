@@ -1,7 +1,7 @@
 #ifndef EN_STR_H
 #define EN_STR_H
 
-#include "bip39/util.h"
+#include "crypto/bip39/util.h"
 
 STRING_VAR_DECL(abandon)
 STRING_VAR_DECL(ability)

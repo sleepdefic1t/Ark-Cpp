@@ -5,7 +5,7 @@
 
 #include "utilities/platform.h"
 #include "constants/networks.h"
-#include "bip39/bip39.h"
+#include "crypto/bip39/bip39.h"
 
 #include "types/address.h"
 #include "types/balance.h"
