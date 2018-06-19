@@ -31,12 +31,12 @@
 
 inline int convert_to_int(const std::string& s)
 {
-return std::atoi(s.c_str());
+	return atoi(s.c_str());
 }
 
 inline float convert_to_float(const std::string& s)
 {
-	return std::atof(s.c_str());
+	return atof(s.c_str());
 }
 
 /*************************************************
