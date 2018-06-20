@@ -12,7 +12,7 @@ set (PROJECT_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR})
 include_directories(
 	${PROJECT_SOURCE_DIR}
 	${PROJECT_SOURCE_DIR}/../include/bcl
-	${PROJECT_SOURCE_DIR}/uECC
+	${PROJECT_SOURCE_DIR}/../include/uECC
 )
  
 find_package(nlohmann_json CONFIG REQUIRED)
@@ -64,7 +64,7 @@ set (BCL_SRC
 )
 
 set (uECC_SRC
-	${PROJECT_SOURCE_DIR}/uECC/uECC.c
+	${PROJECT_SOURCE_DIR}/../include/uECC/uECC.c
 )
 
 set(PLATFORM_SRC 

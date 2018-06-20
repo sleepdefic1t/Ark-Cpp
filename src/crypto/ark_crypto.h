@@ -23,7 +23,7 @@
 #if defined(USE_IOT)
 	#include "uECC.h"
 #else
-	#include "uECC/uECC.h"
+	#include "../include/uECC/uECC.h"
 #endif
 
 #include <cassert>
